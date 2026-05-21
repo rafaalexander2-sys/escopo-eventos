@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing de Reunião — 21 Mai 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #1d1d1f;
+    --gray-6:  #2d2d2f;
+    --gray-5:  #6e6e73;
+    --gray-4:  #86868b;
+    --gray-3:  #d2d2d7;
+    --gray-2:  #f5f5f7;
+    --gray-1:  #fbfbfd;
+    --white:   #ffffff;
+    --blue:    #0071e3;
+    --blue-bg: #e8f1fb;
+    --warn:    #bf5900;
+    --warn-bg: #fff4ec;
+    --green:   #1a7f3c;
+    --green-bg:#edfaf2;
+    --red:     #c7000b;
+    --red-bg:  #fff0f1;
+    --radius:  12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.58824;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 22px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--gray-3);
+  }
+  .nav-inner {
+    max-width: 760px; margin: 0 auto; padding: 0 22px;
+    height: 48px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-title { font-size: 13px; font-weight: 600; color: var(--black); }
+  .nav-meta  { font-size: 12px; color: var(--gray-4); }
+
+  .hero {
+    padding: 72px 0 64px; text-align: center;
+    border-bottom: 1px solid var(--gray-3);
+  }
+  .hero-eyebrow {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 46px); font-weight: 700;
+    letter-spacing: -1.2px; line-height: 1.1; color: var(--black); margin-bottom: 16px;
+  }
+  .hero-sub {
+    font-size: 18px; color: var(--gray-5); max-width: 460px;
+    margin: 0 auto 28px; line-height: 1.5;
+  }
+  .hero-badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gray-2); border-radius: 20px; padding: 5px 14px;
+    font-size: 13px; color: var(--gray-5);
+  }
+  .badge-pill span { color: var(--black); font-weight: 600; }
+
+  section { padding: 64px 0; border-bottom: 1px solid var(--gray-3); }
+  section:last-of-type { border-bottom: none; }
+
+  .eyebrow {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+  }
+  h2 {
+    font-size: clamp(24px, 3.5vw, 32px); font-weight: 700;
+    letter-spacing: -0.6px; line-height: 1.15; color: var(--black); margin-bottom: 10px;
+  }
+  .section-lead { font-size: 16px; color: var(--gray-5); margin-bottom: 40px; max-width: 500px; }
+
+  /* Stat grid */
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .stat-card {
+    background: var(--gray-2); border-radius: var(--radius); padding: 24px 20px;
+  }
+  .stat-card.highlight { background: var(--blue-bg); }
+  .stat-card.warn      { background: var(--warn-bg); }
+  .stat-num {
+    font-size: clamp(22px, 3vw, 28px); font-weight: 700;
+    letter-spacing: -0.8px; color: var(--black); margin-bottom: 4px;
+  }
+  .stat-card.highlight .stat-num { color: var(--blue); }
+  .stat-card.warn      .stat-num { color: var(--warn); }
+  .stat-label { font-size: 13px; color: var(--gray-5); line-height: 1.4; }
+
+  /* Competitor */
+  .comp-table {
+    width: 100%; border-collapse: collapse;
+    border: 1px solid var(--gray-3); border-radius: var(--radius); overflow: hidden;
+  }
+  .comp-table thead { background: var(--gray-2); }
+  .comp-table th {
+    text-align: left; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray-4);
+    padding: 10px 16px; border-bottom: 1px solid var(--gray-3);
+  }
+  .comp-table td { padding: 14px 16px; border-bottom: 1px solid var(--gray-3); font-size: 15px; }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr:hover td { background: var(--gray-1); }
+  .t-name { font-weight: 600; color: var(--black); }
+  .t-dim  { color: var(--gray-5); font-size: 14px; }
+
+  .badge {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+  }
+  .badge-green { background: var(--green-bg); color: var(--green); }
+  .badge-warn  { background: var(--warn-bg);  color: var(--warn); }
+  .badge-blue  { background: var(--blue-bg);  color: var(--blue); }
+  .badge-red   { background: var(--red-bg);   color: var(--red);  }
+
+  /* Diff list */
+  .diff-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--gray-3); border-radius: var(--radius); overflow: hidden; }
+  .diff-row {
+    display: grid; grid-template-columns: 140px 1fr 1fr;
+    border-bottom: 1px solid var(--gray-3);
+  }
+  .diff-row:last-child { border-bottom: none; }
+  .diff-row.header { background: var(--gray-2); }
+  .diff-cell {
+    padding: 14px 18px; font-size: 14px; border-right: 1px solid var(--gray-3);
+  }
+  .diff-cell:last-child { border-right: none; }
+  .diff-cell.label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-4); }
+  .diff-cell.col-a { background: #f0f6ff; }
+  .diff-cell.col-b { background: #f0fff6; }
+  .diff-cell.head  { font-weight: 700; color: var(--black); font-size: 14px; }
+  .diff-row.header .diff-cell { padding: 10px 18px; }
+
+  /* Differentiator blocks */
+  .diff-blocks { display: flex; flex-direction: column; gap: 14px; }
+  .diff-block {
+    border: 1px solid var(--gray-3); border-radius: var(--radius); overflow: hidden;
+  }
+  .diff-block-head {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 22px; background: var(--gray-2); border-bottom: 1px solid var(--gray-3);
+  }
+  .diff-rank {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    padding: 4px 10px; border-radius: 20px; white-space: nowrap;
+    background: var(--black); color: var(--white);
+  }
+  .diff-block-head h3 { font-size: 16px; font-weight: 700; color: var(--black); }
+  .diff-block-head p  { font-size: 13px; color: var(--gray-5); margin-top: 1px; }
+  .diff-block-body { padding: 20px 22px; }
+  .diff-block-body p { font-size: 15px; color: var(--gray-5); line-height: 1.6; margin-bottom: 14px; }
+  .diff-block-body p:last-child { margin-bottom: 0; }
+  .diff-block-body strong { color: var(--black); }
+
+  .calc-box {
+    background: var(--green-bg); border-radius: 10px; padding: 16px 20px;
+    display: flex; align-items: center; gap: 16px; margin-top: 14px;
+  }
+  .calc-num { font-size: 22px; font-weight: 700; color: var(--green); white-space: nowrap; }
+  .calc-desc { font-size: 13px; color: var(--green); line-height: 1.4; }
+
+  .warn-box {
+    background: var(--warn-bg); border-radius: 10px; padding: 16px 20px; margin-top: 14px;
+  }
+  .warn-box p { font-size: 14px; color: var(--warn); line-height: 1.5; margin: 0; }
+
+  /* Tensions */
+  .tension-list { display: flex; flex-direction: column; }
+  .tension-item {
+    display: grid; grid-template-columns: 32px 1fr;
+    gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--gray-3); align-items: start;
+  }
+  .tension-item:last-child { border-bottom: none; }
+  .tension-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--warn-bg); color: var(--warn);
+    font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .tension-item h4 { font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .tension-item p  { font-size: 14px; color: var(--gray-5); line-height: 1.6; }
+
+  /* Action items */
+  .action-list { display: flex; flex-direction: column; gap: 12px; }
+  .action-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: var(--gray-2); border-radius: var(--radius); padding: 18px 20px;
+  }
+  .action-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--blue);
+    color: var(--white); font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+  .action-item h4 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+  .action-item p  { font-size: 13px; color: var(--gray-5); line-height: 1.5; }
+
+  /* Positioning box */
+  .position-box {
+    background: var(--black); border-radius: var(--radius);
+    padding: 36px 40px; text-align: center;
+  }
+  .position-box .label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--gray-4); margin-bottom: 16px;
+  }
+  .position-box blockquote {
+    font-size: clamp(18px, 2.5vw, 24px); font-weight: 600;
+    color: var(--white); line-height: 1.4; letter-spacing: -0.3px;
+    font-style: normal;
+  }
+
+  footer { padding: 28px 0; text-align: center; font-size: 13px; color: var(--gray-4); border-top: 1px solid var(--gray-3); }
+
+  @media (max-width: 640px) {
+    .hero { padding: 48px 0 40px; }
+    section { padding: 48px 0; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .diff-row { grid-template-columns: 1fr; }
+    .diff-cell.label { border-right: none; border-bottom: 1px solid var(--gray-3); background: var(--gray-2); }
+    .diff-cell.col-a { border-right: none; border-bottom: 1px solid var(--gray-3); }
+    .diff-row.header { display: none; }
+    .position-box { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-title">Briefing de Reunião</div>
+    <div class="nav-meta">21 Mai 2026 · Interno</div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Alinhamento de Sócios</div>
+    <h1>O que precisamos decidir hoje</h1>
+    <p class="hero-sub">Análise comparativa dos dois escopos, dados reais de mercado e o posicionamento que faz sentido antes de escrever uma linha de código.</p>
+    <div class="hero-badges">
+      <div class="badge-pill">Documento interno&nbsp;·&nbsp;<span>Mai 2026</span></div>
+      <div class="badge-pill">Baseado em dados reais de&nbsp;<span>2024–2025</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Mercado -->
+  <section>
+    <div class="eyebrow">O Mercado</div>
+    <h2>Endurance no Brasil: o tamanho real</h2>
+    <p class="section-lead">Dados de 2024–2025. Mercado em explosão, um incumbente dominante e uma janela de oportunidade aberta.</p>
+
+    <div class="stat-grid" style="margin-bottom: 14px;">
+      <div class="stat-card">
+        <div class="stat-num">14M</div>
+        <div class="stat-label">corredores ativos no Brasil; 3M participam de provas pagas</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-num">+85%</div>
+        <div class="stat-label">crescimento em provas de corrida de 2024 para 2025 (2.827 → 5.241)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">R$1,1B</div>
+        <div class="stat-label">movimentados por corridas de rua por ano no Brasil</div>
+      </div>
+    </div>
+    <div class="stat-grid" style="margin-bottom: 14px;">
+      <div class="stat-card">
+        <div class="stat-num">25K+</div>
+        <div class="stat-label">praticantes de triathlon · 206 eventos · 56 organizadores distintos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">R$250–500</div>
+        <div class="stat-label">ticket médio no triathlon — 2–4× maior que corrida de rua</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-num">R$200–300M</div>
+        <div class="stat-label">GMV total de inscrições endurance por ano no Brasil (TAM)</div>
+      </div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card warn">
+        <div class="stat-num">R$300M</div>
+        <div class="stat-label">GMV da Ticket Sports em 2024 — o adversário tem o mercado inteiro</div>
+      </div>
+      <div class="stat-card warn">
+        <div class="stat-num">~10%</div>
+        <div class="stat-label">take rate da Ticket Sports — R$ 20M de receita em 2024</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Set/24</div>
+        <div class="stat-label">Ticket Sports adquirida pela Ingresse — janela de 12–18 meses aberta agora</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparativo -->
+  <section>
+    <div class="eyebrow">Os Dois Documentos</div>
+    <h2>Onde convergimos e onde divergimos</h2>
+    <p class="section-lead">Os dois escopos têm mercados reais, mas são apostas diferentes. Precisam ser reconciliados hoje.</p>
+
+    <div class="diff-list">
+      <div class="diff-row header">
+        <div class="diff-cell label">Dimensão</div>
+        <div class="diff-cell head col-a">Escopo Rafael</div>
+        <div class="diff-cell head col-b">Documento Cássio</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-cell label">Nicho</div>
+        <div class="diff-cell col-a">Generalista (corporativo, científico, religioso)</div>
+        <div class="diff-cell col-b">Endurance específico (corrida, triathlon, ciclismo)</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-cell label">Diferencial</div>
+        <div class="diff-cell col-a">White label — identidade visual própria do organizador</div>
+        <div class="diff-cell col-b">Captação de inscritos — parceiro de marketing, não só plataforma</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-cell label">Stage atual</div>
+        <div class="diff-cell col-a">Stack definida, roadmap de 10 semanas, gateway analisado</div>
+        <div class="diff-cell col-b">Ainda sem MVP — validar com organizadores antes de construir</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-cell label">Receita</div>
+        <div class="diff-cell col-a">TBD — spread, mensalidade ou híbrido</div>
+        <div class="diff-cell col-b">Só % por inscrição — sem mensalidade</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-cell label">Concorrentes</div>
+        <div class="diff-cell col-a">Sympla, Eventbrite (mercado geral)</div>
+        <div class="diff-cell col-b">Ticket Sports/Ingresse, Sympla (endurance)</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-cell label">White label</div>
+        <div class="diff-cell col-a">Diferencial central do produto</div>
+        <div class="diff-cell col-b">Não mencionado</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-cell label">Capital</div>
+        <div class="diff-cell col-a">Não definido</div>
+        <div class="diff-cell col-b">R$ 1.000 bootstrap full</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diferencial -->
+  <section>
+    <div class="eyebrow">Análise de Diferencial</div>
+    <h2>O que realmente faz sentido para entrar</h2>
+    <p class="section-lead">White label é relevante, mas não é o gancho de entrada para endurance. O posicionamento vencedor combina três coisas simples e mensuráveis.</p>
+
+    <div class="diff-blocks">
+
+      <div class="diff-block">
+        <div class="diff-block-head">
+          <div class="diff-rank">01 — Entrada</div>
+          <div>
+            <h3>Taxa menor + repasse no dia seguinte</h3>
+            <p>Diferencial imediato, percebido em dinheiro real antes de assinar</p>
+          </div>
+        </div>
+        <div class="diff-block-body">
+          <p>A Ticket Sports cobra <strong>~10%</strong>. Se você cobra <strong>7%</strong>, o organizador percebe na matemática antes de qualquer argumento de produto.</p>
+          <div class="calc-box">
+            <div class="calc-num">R$ 6.700</div>
+            <div class="calc-desc">a mais por evento para o organizador com 2.000 inscrições a R$112 · só de taxa</div>
+          </div>
+          <p style="margin-top:14px">O repasse lento é a <strong>dor número 1 identificada no Reclame Aqui</strong> — Sympla retém dinheiro pós-evento e ainda cobra 3,49% para antecipar. Repasse no D+1 resolve o problema mais vocal do mercado sem precisar de feature nenhuma.</p>
+        </div>
+      </div>
+
+      <div class="diff-block">
+        <div class="diff-block-head">
+          <div class="diff-rank">02 — Entrada</div>
+          <div>
+            <h3>Atendimento humano e dedicado</h3>
+            <p>O que a escala destrói — e que uma startup pequena consegue entregar</p>
+          </div>
+        </div>
+        <div class="diff-block-body">
+          <p>A Ticket Sports tem <strong>2.500 eventos cadastrados</strong>. O organizador médio é um número. Um sócio respondendo no WhatsApp em 2 horas, que conhece o histórico do evento e lembra da última edição — isso é <strong>impossível para um incumbente grande manter</strong>.</p>
+          <p>Esse diferencial não precisa de código. Existe desde a primeira venda.</p>
+        </div>
+      </div>
+
+      <div class="diff-block">
+        <div class="diff-block-head">
+          <div class="diff-rank">03 — Retenção</div>
+          <div>
+            <h3>Reativação de base — a captação que escala</h3>
+            <p>O que o Cássio chama de captação, mas como feature de produto</p>
+          </div>
+        </div>
+        <div class="diff-block-body">
+          <p><strong>46% dos inscritos em 2025 são atletas de primeira vez.</strong> O mercado está crescendo pela base. Mas os inscritos de edições anteriores existem na plataforma e hoje são reconvocados manualmente — planilha, grupo de WhatsApp, e-mail feito na mão.</p>
+          <p>Uma feature que automaticamente dispara e-mail para todos os participantes da edição passada 90 dias antes da próxima abertura <strong>entrega captação real, escala com o produto e não requer consultoria de marketing</strong>. Isso é construível em semanas.</p>
+          <div class="warn-box">
+            <p><strong>Atenção:</strong> "captação" como consultoria de marketing (a outra interpretação) não escala em bootstrap. Precisa ser definido antes da primeira conversa com organizador.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="diff-block">
+        <div class="diff-block-head">
+          <div class="diff-rank">04 — Retenção</div>
+          <div>
+            <h3>Dashboard acionável</h3>
+            <p>Informação que nenhum concorrente entrega hoje</p>
+          </div>
+        </div>
+        <div class="diff-block-body">
+          <p>O organizador hoje não sabe em tempo real <strong>quantas inscrições estão abandonadas, de qual cidade vieram os inscritos, qual lote está vendendo mais rápido, qual canal converteu mais</strong>. Isso existe no e-commerce comum há 10 anos. Não existe em nenhuma plataforma de eventos brasileira.</p>
+          <p>Feature de produto, construível em semanas, gera retenção forte — o organizador que passou 6 meses olhando para aquele dashboard não troca de plataforma facilmente.</p>
+        </div>
+      </div>
+
+      <div class="diff-block">
+        <div class="diff-block-head">
+          <div class="diff-rank">05 — Upsell</div>
+          <div>
+            <h3>White label — para quem tem marca consolidada</h3>
+            <p>Não é o gancho de entrada, mas é o diferencial de plano premium</p>
+          </div>
+        </div>
+        <div class="diff-block-body">
+          <p>No endurance, o atleta vai ao evento pelo <strong>nome da prova</strong> — Maratona de SP, São Silvestre, Ironman Floripa. O organizador já tem marca própria. White label não é a dor número 1 aqui.</p>
+          <p>Mas para os organizadores maiores (Yescom, Street Race, Race83) que têm marca consolidada, <strong>ter a página de inscrição em <code>inscricoes.maratonaxyz.com.br</code> em vez de <code>ticketsports.com.br/maratona-xyz</code></strong> é algo que eles pagariam. Isso vira o plano premium, não o diferencial de entrada.</p>
+          <p><strong>Jornada natural:</strong> entra pela taxa + repasse → retém pelo dashboard + reativação → upsell para white label com domínio próprio.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Posicionamento -->
+  <section>
+    <div class="eyebrow">Posicionamento</div>
+    <h2>Uma frase para testar em campo</h2>
+    <p class="section-lead">Simples, direto, mensurável. O organizador calcula quanto ganha antes de assinar.</p>
+
+    <div class="position-box">
+      <div class="label">Proposta de posicionamento</div>
+      <blockquote>"A plataforma de inscrição que trata o organizador como parceiro — taxa menor, repasse no dia seguinte, atendimento humano."</blockquote>
+    </div>
+  </section>
+
+  <!-- Nicho -->
+  <section>
+    <div class="eyebrow">Nicho de Entrada</div>
+    <h2>Triathlon: o nicho dentro do nicho</h2>
+    <p class="section-lead">Pequeno o suficiente para validar rápido. Grande o suficiente para sustentar negócio. Muito menos competição.</p>
+
+    <div class="stat-grid" style="margin-bottom: 32px;">
+      <div class="stat-card highlight">
+        <div class="stat-num">56</div>
+        <div class="stat-label">organizadores de triathlon no Brasil inteiro — dá para falar com todos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">R$250–500</div>
+        <div class="stat-label">ticket médio — 3–4× maior que corrida de rua</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">+62%</div>
+        <div class="stat-label">crescimento em menos de 3 anos — esporte em ascensão</div>
+      </div>
+    </div>
+
+    <div style="border: 1px solid var(--gray-3); border-radius: var(--radius); overflow: hidden;">
+      <div style="padding: 20px 24px; background: var(--blue-bg); border-bottom: 1px solid var(--gray-3);">
+        <div class="eyebrow" style="margin-bottom: 4px;">Por que triathlon e não corrida de rua</div>
+        <p style="font-size: 15px; color: var(--black); font-weight: 600; margin: 0;">Corrida tem 5.241 eventos e muito mais competição de plataformas. Triathlon tem 206 eventos, 56 organizadores e a Ticket Sports não é especialista nesse nicho.</p>
+      </div>
+      <div style="padding: 20px 24px; background: var(--green-bg);">
+        <div class="eyebrow" style="color: var(--green); margin-bottom: 4px;">Nordeste como flanqueamento geográfico</div>
+        <p style="font-size: 15px; color: var(--black); margin: 0;">A Ticket Sports tem 51% dos seus participantes no Sudeste. O Nordeste cresceu de 9% para <strong>22,3% das inscrições em um único ano</strong>. Organizadores nordestinos têm menos voz, menos opções e maior disposição a ouvir. Entrar pelo Nordeste evita competição frontal com o líder onde ele é mais forte.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tensões -->
+  <section>
+    <div class="eyebrow">Pontos Críticos</div>
+    <h2>O que precisa ser resolvido hoje</h2>
+    <p class="section-lead">Cinco tensões identificadas entre os documentos. Pelo menos as três primeiras bloqueiam qualquer avanço.</p>
+
+    <div class="tension-list">
+      <div class="tension-item">
+        <div class="tension-num">1</div>
+        <div>
+          <h4>Nicho ou generalista?</h4>
+          <p>Endurance específico (Cássio) ou white label para qualquer evento (Rafael)? São estratégias completamente diferentes — competição, produto, roadmap e primeiros clientes mudam totalmente dependendo da resposta. Não dá para tentar as duas em bootstrap.</p>
+        </div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-num">2</div>
+        <div>
+          <h4>Diferencial técnico ou de serviço?</h4>
+          <p>White label é construível em semanas. Captação como consultoria é vendável amanhã mas não escala. Captação como produto (reativação de base, dashboard) demora para construir mas escala. Qual vem primeiro no MVP?</p>
+        </div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-num">3</div>
+        <div>
+          <h4>Validar antes ou construir em paralelo?</h4>
+          <p>Cássio está metodologicamente certo: nenhum organizador confirmou que vai pagar pelo diferencial. Rafael já tem 10 semanas de roadmap. O risco de construir sem validar é gastar meses em algo que o mercado não quer. O risco de só validar é o projeto morrer por inércia.</p>
+        </div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-num">4</div>
+        <div>
+          <h4>Escopo geográfico inicial</h4>
+          <p>Nacional desde o início (mais ambicioso, mais difícil de fechar os primeiros clientes) ou concentração regional — Nordeste como fronteira de expansão, onde a Ticket Sports é mais fraca e os organizadores têm menos opções?</p>
+        </div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-num">5</div>
+        <div>
+          <h4>Acordo formal entre sócios</h4>
+          <p>Horas semanais, divisão de papéis, equity e critérios de revisão aos 3 e 6 meses ainda não foram formalizados. Sem isso, qualquer decisão de produto fica suspensa porque os incentivos não estão alinhados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Próximos passos -->
+  <section>
+    <div class="eyebrow">Próximos Passos</div>
+    <h2>O que sai dessa reunião</h2>
+    <p class="section-lead">Se as cinco tensões forem resolvidas hoje, esses são os próximos 45 dias.</p>
+
+    <div class="action-list">
+      <div class="action-item">
+        <div class="action-num">1</div>
+        <div>
+          <h4>Acordo entre sócios formalizado</h4>
+          <p>Horas semanais · responsabilidades por área · equity · critério de revisão aos 3 e 6 meses · como decidir em desacordo. Sem isso, nenhum dos próximos passos funciona.</p>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">2</div>
+        <div>
+          <h4>Decisão de nicho e diferencial</h4>
+          <p>Endurance (triathlon como ponta de entrada) ou generalista? Taxa + repasse + atendimento como posicionamento de entrada, ou outro diferencial? Definir antes da primeira lista de prospecção.</p>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">3</div>
+        <div>
+          <h4>Lista de 30 organizadores para prospectar</h4>
+          <p>Semanas 1–2. Priorizar: triathlon (56 no Brasil — dá pra mapear todos) + Nordeste (fronteira de expansão). Roteiro de entrevista com foco em: qual plataforma usa hoje, o que mais incomoda, quanto paga, já pensou em trocar.</p>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">4</div>
+        <div>
+          <h4>15 conversas reais com organizadores</h4>
+          <p>Semanas 2–4. Confirmar (ou refutar) a hipótese de dor. Especialmente: o organizador sente que a plataforma não ajuda na captação? Ou isso é dor latente que ele nem sabe que tem? A resposta muda completamente o produto.</p>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">5</div>
+        <div>
+          <h4>MVP em papel (3–5 telas críticas)</h4>
+          <p>Semanas 3–5, em paralelo às conversas. Fluxo principal: criação de evento → página pública → inscrição → confirmação por e-mail + QR. Regras de negócio essenciais: taxa, repasse, refund, prazos. Nada além disso.</p>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">6</div>
+        <div>
+          <h4>Decisão informada sobre desenvolvimento</h4>
+          <p>Fim do mês 2. Com 15 conversas feitas e hipótese confirmada: iniciar desenvolvimento técnico. Com hipótese refutada ou inconclusiva: pivot ou encerramento. Critério claro antes de começar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Documento interno · Reunião de alinhamento entre sócios · 21 Mai 2026
+</footer>
+
+</body>
+</html>

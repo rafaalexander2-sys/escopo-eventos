@@ -1,4 +1,4 @@
-# Plataforma de Eventos White Label — CLAUDE.md
+# Plataforma de Eventos Endurance — CLAUDE.md
 
 > Documento de referência para desenvolvimento assistido por IA. Atualizar sempre que houver decisões relevantes.
 
@@ -6,21 +6,21 @@
 
 ## Visão Geral do Projeto
 
-Plataforma SaaS multi-tenant para gestão de eventos com **white label completo** — o participante vê apenas a marca do organizador, nunca a marca da plataforma. Produto voltado ao mercado brasileiro, com foco inicial em eventos corporativos e científicos.
+Plataforma SaaS para gestão de inscrições em **eventos endurance** (corridas de rua, triathlon, ciclismo) com foco em ser parceiro real do organizador — taxa menor, repasse rápido, atendimento humano e ferramentas de retenção/captação. Produto voltado ao mercado brasileiro, nicho de eventos de resistência.
 
-**Status atual:** Fase de planejamento/escopo. Nenhum código escrito ainda.
-**Documento base:** `index.html` (Escopo MVP v0 — Mai 2026)
+**Status atual:** Fase de alinhamento entre sócios. Nenhum código escrito. Validação com organizadores é o próximo passo.
+**Documentos base:** `index.html` (Escopo MVP v0 — Rafael) · `reuniao-210526.html` (Briefing de reunião)
 **Branch ativo:** `claude/review-partner-document-cYrOx`
 
 ---
 
 ## O Problema que o Produto Resolve
 
-Três lacunas claras identificadas no mercado:
+Três lacunas identificadas no mercado de eventos endurance:
 
-1. **Sem white label de verdade** — nenhum concorrente permite que o organizador use sua própria marca
-2. **Dashboards ruins** — painéis limitados, lentos, sem informação acionável
-3. **Abandono de carrinho ignorado** — eventos perdem receita por não recuperar inscrições abandonadas
+1. **Taxa alta e repasse lento** — Ticket Sports cobra ~10% e retém dinheiro pós-evento; organizadores com fluxo de caixa travado
+2. **Organizador invisível nas grandes plataformas** — self-service puro, suporte frio, nenhuma ajuda para encher o próximo evento
+3. **Captação manual e ineficiente** — organizadores dependem de Instagram e WhatsApp, sem funil estruturado, sem reativação da base de edições anteriores
 
 ---
 
