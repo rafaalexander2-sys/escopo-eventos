@@ -6,233 +6,188 @@
 
 ## Visão Geral do Projeto
 
-Plataforma SaaS para gestão de inscrições em **eventos endurance** (corridas de rua, triathlon, ciclismo) com foco em ser parceiro real do organizador — taxa menor, repasse rápido, atendimento humano e ferramentas de retenção/captação. Produto voltado ao mercado brasileiro, nicho de eventos de resistência.
+Plataforma SaaS para gestão de inscrições em **eventos endurance** (corridas de rua, triathlon, ciclismo) posicionada como **parceiro real do organizador** — não apenas uma ferramenta de inscrição. A plataforma atua como braço de marketing e crescimento do organizador: taxa menor, repasse rápido, atendimento humano, ferramentas de captação e performance embutidas.
 
-**Status atual:** Fase de alinhamento entre sócios. Nenhum código escrito. Validação com organizadores é o próximo passo.
-**Documentos base:** `index.html` (Escopo MVP v0 — Rafael) · `reuniao-210526.html` (Briefing de reunião)
+**Status atual:** Decisões estratégicas alinhadas. Construção do MVP em paralelo à validação com organizadores.
+**Sócios:** Rafael Alexander (tech/produto/marketing) · Cássio Silva Miranda (estratégia/comercial/negócio)
+**Documentos:** `index.html` (Escopo MVP v0) · `reuniao-210526.html` (Briefing de reunião)
 **Branch ativo:** `claude/review-partner-document-cYrOx`
+
+---
+
+## Decisões Tomadas na Reunião (21 Mai 2026)
+
+Reunião de alinhamento entre sócios. Principais resoluções:
+
+### ✅ Nicho: Endurance, com porta aberta para adjacentes
+Mercado esportivo confirmado como foco. Corporativo descartado para MVP (ciclo de venda mais longo, decisão mais burocrática, estrutura maior necessária). A plataforma será posicionada para o endurance, mas se vier um organizador corporativo, ele é bem-vindo — o posicionamento simplesmente não falará com ele diretamente.
+
+### ✅ Diferencial: Ser parceiro, não só plataforma
+O diferencial central não é white label nem captação isoladamente — é a **combinação** de taxa menor + repasse rápido + atendimento próximo + ferramentas de performance. A plataforma atua como um braço de marketing do organizador. O cara não contrata só uma ferramenta; ele contrata alguém que vai junto no evento.
+
+### ✅ Modelo de negócio: Tiers de taxa por inscrição
+Sem mensalidade fixa. Só % por inscrição, com três níveis:
+
+| Tier | Taxa | O que entrega |
+|---|---|---|
+| **Básico** | ~7% | Plataforma padrão (inscrição, pagamento, QR code, dashboard) |
+| **Parceiro** | ~10–12% | Básico + apoio de marketing/performance (matching o que o cara já paga na Ticket Sports, mas com muito mais entrega) |
+| **Premium** | ~15% | Parceiro + app white label, comunidade, marketplace de produtos, ecossistema completo |
+
+**Lógica do tier Parceiro:** o organizador já paga 10% na Ticket Sports sem receber nada além da plataforma. No tier Parceiro ele paga igual mas recebe apoio real de performance/captação.
+
+### ✅ Captação = marketing como serviço, não mídia bancada pela plataforma
+O investimento em mídia paga é do organizador. A plataforma oferece a expertise em performance (Rafael) e as ferramentas (automação, dashboard, reativação de base). A taxa maior do tier Parceiro remunera esse trabalho. Analogia com Amazon: ao divulgar um evento, a plataforma ganha visibilidade de marca junto.
+
+### ✅ Validar e construir em paralelo
+Não é esperar validação para começar. É construir o MVP ao mesmo tempo em que se conversa com organizadores. Os primeiros 2–3 clientes não precisam gerar receita — o objetivo é validar que a plataforma funciona de verdade antes de escalar.
+
+### ✅ Oferta de inauguração para primeiros clientes
+Taxa reduzida (ex: 4% em vez de 7%) para os primeiros clientes que toparem ser "clientes fundadores". Limite claro de vagas. Cria senso de urgência e protege a capacidade técnica de suportar os primeiros eventos simultaneamente.
+
+### ✅ White label como upsell, não gancho de entrada
+Confirmado: white label vai para o tier Premium. Organizadores com marca consolidada (Yescom, Race83, etc.) pagarão mais por isso. Para entrada, o gancho é taxa + repasse + atendimento.
+
+### ✅ Divisão de papéis
+- **Rafael:** construção do produto (tech), marketing digital e performance pós-MVP
+- **Cássio:** estratégia de negócio, planejamento, comercial, análise de mercado, benchmarks
+- **Aline** (parceira de Rafael): design/branding/logo — entra quando o nome for definido
+
+### ✅ Cadência de trabalho
+- Reunião mensal longa (1–2h) para alinhamento estratégico
+- Comunicação assíncrona entre reuniões (documentos + WhatsApp)
+- Próxima reunião: daqui a 15 dias (início de junho 2026)
+- Cássio ficará 1 mês em SP sozinho (julho); família vai depois — ritmo pode variar nesse período
+
+### ✅ Equity / Formalização de sociedade
+Formalizar só após validação e primeiros sinais de receita. Quem entrar depois (eventual sócio técnico ou investidor) entra em condições diferentes, já que não esteve na nascente do projeto. Por enquanto: sociedade informal, foco em construir.
+
+### ✅ Escopo geográfico: circunstancial
+Sem estratégia geográfica rígida por enquanto. A prioridade é falar com organizadores que qualquer um dos dois sócios consiga acessar. Nordeste identificado como fronteira de crescimento (9% → 22% em 1 ano), mas não é pré-condição de entrada.
 
 ---
 
 ## O Problema que o Produto Resolve
 
-Três lacunas identificadas no mercado de eventos endurance:
+Três dores claras no mercado endurance:
 
-1. **Taxa alta e repasse lento** — Ticket Sports cobra ~10% e retém dinheiro pós-evento; organizadores com fluxo de caixa travado
-2. **Organizador invisível nas grandes plataformas** — self-service puro, suporte frio, nenhuma ajuda para encher o próximo evento
-3. **Captação manual e ineficiente** — organizadores dependem de Instagram e WhatsApp, sem funil estruturado, sem reativação da base de edições anteriores
+1. **Taxa alta e repasse lento** — Ticket Sports cobra ~10% e retém dinheiro após o evento; Sympla cobra 3,49% extra para antecipar o repasse. Organizador com fluxo de caixa travado.
+2. **Organizador invisível** — plataformas grandes são self-service. O organizador profissional é um número numa lista de 2.500 eventos. Nenhuma ajuda para encher a próxima edição.
+3. **Captação manual e ineficiente** — a base de participantes de edições anteriores existe mas é mal aproveitada. O organizador faz planilha + grupo de WhatsApp + e-mail manual. Não há funil estruturado, sem automação, sem dado.
+
+---
+
+## Modelo de Negócio
+
+**Receita:** percentual por inscrição vendida (sem mensalidade). Três tiers:
+
+- **Básico (~7%):** plataforma + checkout + dashboard + QR code. O organizador opera sozinho.
+- **Parceiro (~10–12%):** básico + apoio de performance/captação (Rafael aplica skills de marketing digital no evento do organizador). Taxa igual à Ticket Sports, entrega muito maior.
+- **Premium (~15%):** parceiro + app white label, marketplace de produtos, comunidade de atletas, ecossistema completo. Para organizadores com marca consolidada.
+
+**Pagamentos — política de repasse:**
+- **Pix:** repasse mais rápido (risco de chargeback baixo)
+- **Cartão de crédito:** repasse em 30 dias (proteção contra chargeback); antecipação disponível com acréscimo
+- **Boleto:** avaliar se mantém ou remove (baixa aderência no endurance)
+- **Pix parcelado:** explorar como substituto ao boleto parcelado — alta conversão, baixo risco
+
+**Gateway:** PagSeguro/PagBank como referência (usado pela concorrência direta). Benchmark técnico pendente entre PagSeguro e Asaas.
+
+---
+
+## Novas Features Identificadas na Reunião
+
+### Marketplace de produtos do organizador
+O organizador vende no mesmo checkout: camiseta, kit, medal, produtos licenciados do evento. A plataforma cobra taxa sobre as vendas de produto também. Alta aderência no endurance (atletas gastam muito em gear). No futuro: dropship de produtos esportivos terceiros dentro da plataforma.
+
+### Transferência de titularidade (mercado secundário autorizado)
+Inspirado no mercado australiano/asiático: atleta que não pode ir ao evento vende/transfere a inscrição dentro da própria plataforma. Plataforma cobra uma segunda taxa no mesmo ingresso. Acaba com o mercado informal de grupos de WhatsApp.
+
+### App white label (roadmap — não MVP)
+No tier Premium: app próprio do organizador (não só link). Dentro do app: comunidade, publicação de resultado pós-evento, integração com ferramentas de fitness (Strava, etc.), experiência do participante ao longo do evento.
 
 ---
 
 ## Arquitetura do Produto
 
-Três camadas independentes, mesmo backend multi-tenant. Cada organizador tem espaço isolado (RLS por tenant no Supabase).
+Três camadas independentes, mesmo backend multi-tenant. RLS por tenant no Supabase.
 
 | Camada | Descrição | URL |
-|--------|-----------|-----|
+|---|---|---|
 | Landing | Site institucional da plataforma | `plataforma.com.br` |
 | Admin | Painel do organizador | `app.plataforma.com.br` |
 | Portal | Página pública white label | `{slug}.plataforma.com.br` |
-| Futuro | Domínio próprio do cliente (pós-MVP) | `eventos.cliente.com` |
+| Futuro | Domínio próprio do cliente | `eventos.cliente.com` |
 
 ---
 
 ## Stack Técnica
 
 | Camada | Tecnologia | Custo MVP |
-|--------|------------|-----------|
+|---|---|---|
 | Frontend | React + Vite | Grátis |
 | Deploy | Cloudflare Pages (SSL wildcard, CDN global) | Grátis |
 | Banco / Auth | Supabase (PostgreSQL + Auth + Storage + Edge Functions) | Grátis até 500 MB |
-| Pagamentos | **A definir** (ver seção abaixo) | A definir |
+| Pagamentos | PagSeguro ou Asaas (benchmark pendente) | A definir |
 | E-mail | Resend (3.000/mês grátis) | Grátis |
 | QR Code | qrcode.js (client-side) | Grátis |
 
----
-
-## Gateway de Pagamento (Decisão Pendente)
-
-### Candidatos principais
-- **PagSeguro** — validado por concorrentes diretos, alta conversão no BR, Pix + boleto + split marketplace, ~3,99% no cartão
-- **Asaas** — fintech BR focada em SaaS, split nativo, API em PT bem documentada, ~2,99% no cartão
-
-### Fallback técnico
-- **Mercado Pago** — Pix nativo, split disponível, suporte ao dev limitado
-
-### Descartados
-- PayPal (sem Pix), Appmax (foco em afiliados), Stripe (sem boleto nativo — entra só em expansão internacional)
-
-**Status:** Definição aguardando benchmark técnico com concorrentes.
+**Custo real do MVP:** praticamente zero. Único gasto inicial: domínio.
+**Dev:** Rafael + Claude (AI) como par de desenvolvimento. Rafael estudando a arquitetura certa antes de escrever código.
 
 ---
 
 ## Features do MVP
 
-### Módulo Superadmin (acesso exclusivo dos fundadores)
-- Gestão de organizadores (criar, suspender, configurar planos)
+### Módulo Superadmin
+- Gestão de organizadores (criar, suspender, configurar tiers)
 - Dashboard financeiro consolidado (volume, spread retido, repasses)
-- Visão de todos os eventos ativos (status, inscrições, receita)
-- Configuração de planos e taxas
+- Visão de todos os eventos ativos
 
 ### Módulo Admin (painel do organizador)
-- Configuração de marca white label (logo, cores, slug, domínio)
 - Criação e edição de eventos (título, data, local, capacidade, imagem)
-- Formulário de inscrição customizável (campos configuráveis por evento)
+- Formulário de inscrição customizável por evento
 - Gestão de participantes (lista, check-in, exportar CSV)
-- Dashboard por evento (inscrições em tempo real, conversão, receita)
+- Dashboard por evento (inscrições tempo real, conversão, receita)
 - Recuperação de carrinho (e-mail automático para inscrições abandonadas)
-- Relatório financeiro (bruto, taxa da plataforma, líquido)
+- Reativação de base (e-mail automático para inscritos da edição anterior)
+- Marketplace de produtos do evento (checkout integrado)
+- Relatório financeiro (bruto, taxa, líquido, repasses)
 
-### Módulo Portal (página pública — zero rastro da plataforma)
-- Página do evento com marca do organizador (info, agenda, palestrantes, local)
-- Inscrição gratuita ou paga (formulário + checkout integrado)
-- Confirmação com QR Code por e-mail (envio automático pós-inscrição)
-- Vitrine de eventos do organizador (todos os eventos ativos em uma página)
-- Mobile-first e carregamento rápido
-
----
-
-## Roadmap MVP (8–10 semanas)
-
-| Semana | Entrega |
-|--------|---------|
-| 1–2 | Base multi-tenant + autenticação (RLS no Supabase, auth de organizadores, subdomínio via Cloudflare) |
-| 3–4 | CRUD de eventos + portal público (admin básico, página branded, inscrição gratuita) |
-| 5–6 | Checkout e pagamentos (integração gateway, split automático, QR code no e-mail) |
-| 7–8 | White label completo (upload de logo, picker de cor, preview em tempo real) |
-| 9–10 | Dashboard + superadmin + polimento (métricas tempo real, recuperação de carrinho, testes com primeiro cliente) |
+### Módulo Portal (página pública)
+- Página do evento com marca do organizador
+- Inscrição gratuita ou paga (formulário + checkout)
+- Confirmação com QR Code por e-mail
+- Vitrine de eventos do organizador
+- Transferência de titularidade (mercado secundário)
+- Mobile-first
 
 ---
 
-## Benchmark de Concorrentes
-
-| Plataforma | Nota RA | Taxa | White Label | Repasse | Nicho |
-|------------|---------|------|-------------|---------|-------|
-| Sympla | 8.5/10 (1.700 recl.) | ~10% + 3,49% antecip. | Não | 3+ dias úteis | Geral |
-| Eventbrite | Não recomendada (0% respondidas) | ~17,99% efetivo | Não | 14+ dias | Geral |
-| Even3 | 8.6/10 (68 recl.) | Não divulgada | Não | Não informado | Acadêmico |
-| E-inscrição | 7.91/10 (20 recl.) | 6,9% (mín. R$1,90) | Não | Não informado | Cristão |
-| Ticket Gospel | Sem nota (3 recl.) | Não divulgada | Não | Não informado | Evangélico |
-| Tiketo | Sem dados | Grátis p/ gratuitos | Não | Não informado | Geral |
-
-### Dores recorrentes identificadas
-1. **Repasse lento** — Sympla retém dinheiro pós-evento e cobra 3,49% para antecipar
-2. **Taxas opacas** — Eventbrite anuncia uma taxa e cobra 17,99% efetivo
-3. **Suporte péssimo** — Eventbrite 0% respondidas no RA; E-inscrição responde em 40 dias
-4. **Zero white label** — nenhum concorrente oferece identidade visual própria
-5. **E-inscrição domina nicho cristão** — mas sem white label, suporte lento, sem recuperação de carrinho
-6. **Eventbrite abandona o BR** — ativamente saindo do mercado, usuários buscando alternativa
-
----
-
-## Decisões Pendentes (TBD)
-
-### Técnicas / Produto
-- [ ] **Gateway de pagamento** — Asaas ou PagSeguro? Benchmark em andamento
-- [ ] **Domínio próprio por cliente** — MVP usa subdomínio; CNAME customizado pós-validação
-- [ ] **Certificado de participação** — baixo custo, alto valor (esp. eventos científicos) — MVP ou backlog?
-- [ ] **Notificações** — e-mail, WhatsApp ou SMS; quem paga o custo por disparo?
-- [ ] **Métricas de produto** — Posthog ou Mixpanel?
-
-### Negócio / Comercial (a validar com o sócio — Cássio)
-- [ ] **Billing do organizador** — só spread, mensalidade fixa, ou híbrido?
-- [ ] **Limites por plano** — cota de eventos, participantes, armazenamento
-- [ ] **Cancelamento e reembolso** — quem absorve a taxa do gateway? qual prazo?
-- [ ] **Onboarding** — self-service ou conversa comercial primeiro?
-- [ ] **LGPD** — parecer jurídico necessário antes do lançamento
-- [ ] **Nicho de entrada** — corporativos e científicos identificados; estratégia de aquisição do primeiro cliente
-- [ ] **Nome da plataforma** — não definido ainda
-- [ ] **Go-to-market** — self-service + inbound como direção inicial; playbook a construir
-
----
-
-## Ideias de Nome
-
-### Favoritos (semântica forte)
-- **Ágora** — praça pública grega, lugar de encontro, peso cultural
-- **Palco** — direto, aspiracional para o organizador
-- **Lota** — de lotação/sold out, aspiracional
-
-### Tech / Internacional
-- **Venuu** — Venue + "u" (você)
-- **Evolo** — Evolve + evento
-- **Gathero** — "to gather", reunir
-- **Eventix** — evento + sufixo tech -ix
-
-### Raízes latinas
-- **Présens** — latim praesens (presente, ao vivo)
-- **Ovação** — Ovation, o sentimento do evento bem-sucedido
-- **Reuna** — de reunir
-
----
-
-## Modelo de Negócio (Em Definição)
-
-O modelo de monetização ainda não está definido. Candidatos:
-
-1. **Só spread** — plataforma retém % de cada ingresso vendido (mais simples, alinha incentivos)
-2. **Mensalidade fixa** — assinatura mensal por plano (previsibilidade de receita)
-3. **Híbrido** — mensalidade + spread reduzido (modelo de mercado mais comum em SaaS de pagamentos)
-
----
-
-## Contexto da Reunião (Mai 2026)
-
-- Sócios: Rafael Alexander (tech/produto) + Cássio Silva Miranda (estratégia/comercial)
-- Reunião de alinhamento em andamento — 21 Mai 2026
-- Cássio enviou documento v0.1 "Projeto SaaS — Concepção" com visão diferente do escopo original
-
----
-
-## Documento do Cássio — Síntese (v0.1, 21 Mai 2026)
-
-**Tese central:** Plataforma de inscrição para eventos **endurance** (corrida, triathlon, ciclismo) que diferencia por **captação de inscritos** — ajuda o organizador a encher o evento, não só processa inscrição.
-
-**Diferenças em relação ao escopo original de Rafael:**
-
-| Dimensão | Escopo Rafael | Documento Cássio |
-|---|---|---|
-| Nicho | Generalista (corporativo, científico, religioso) | Endurance específico |
-| Diferencial | White label (técnico) | Captação de inscritos (serviço/produto) |
-| Stage | Stack definida, roadmap 10 semanas | Validar antes de construir |
-| Modelo receita | TBD (spread/mensalidade/híbrido) | Só % por inscrição, sem mensalidade |
-| Concorrência | Sympla, Eventbrite (mercado geral) | Ticket Sports, Sympla (endurance) |
-| White label | Diferencial central | Não mencionado |
-| Capital | Não definido | R$ 1.000 bootstrap |
-| Horizonte | 10 semanas para MVP | 3-6 meses de validação |
-
-**Próximos passos propostos por Cássio:**
-1. Alinhamento entre sócios (horas, papéis, equity, critérios de revisão)
-2. Desenho do MVP em papel (3–5 telas críticas, regras de negócio)
-3. Validação: 30 organizadores prospectados, 15 conversas, aprendizado consolidado
-4. Decisão informada sobre desenvolvimento técnico ou pivot
-
----
-
-## Dados de Mercado — Endurance Brasil (pesquisa Mai 2026)
+## Dados de Mercado — Endurance Brasil
 
 ### Corridas de Rua
-- **13–14 milhões de corredores** ativos no Brasil; ~3 milhões participam de provas pagas
+- **13–14 milhões de corredores** ativos; ~3 milhões participam de provas pagas
 - **2.827 provas homologadas em 2024** → **5.241 em 2025 (+85%)**
 - Mercado movimenta **R$ 1,1 bilhão/ano**
-- Ticket médio plataforma líder: **R$ 112,45 por inscrição**
-- 45% dos inscritos em 2025 eram **primeira vez num evento** (mercado em expansão de base)
-- Sudeste: 51% dos participantes; **Nordeste cresceu de 9% para 22,3%** (fronteira de expansão)
+- Ticket médio Ticket Sports: **R$ 112,45/inscrição**
+- **46% dos inscritos em 2025 eram primeira vez** — mercado crescendo pela base
+- Sudeste: 51% dos participantes; **Nordeste: 9% → 22,3%** em 1 ano
 
-### Triathlon
+### Triathlon ← nicho de entrada prioritário
 - **25.000+ praticantes**, 206 eventos em 2024, **56 organizadores distintos**
-- Ticket médio: **R$ 250–500** (2–4x o ticket de corrida)
+- Ticket médio: **R$ 250–500** (2–4x corrida de rua)
 - Crescimento de **62,4% em menos de 3 anos**
-- 60% dos triatletas no Sudeste; SP sozinho com 49,9%
+- 56 organizadores no Brasil inteiro = dá para mapear e falar com todos
 
 ### Ciclismo
 - 176 eventos em 2024, ticket médio: **R$ 226,81**
 
-### TAM — Mercado de Inscrições Endurance (Brasil)
-- **GMV total: R$ 200–300 milhões/ano**
-- Take rate de referência ~10% → **R$ 20–30 milhões de receita potencial total para as plataformas**
+### TAM
+- GMV total endurance: **R$ 200–300 milhões/ano**
+- Take rate referência 10%: **R$ 20–30 milhões/ano de receita para as plataformas**
 
-### Ticket Sports (incumbente dominante)
+### Ticket Sports (incumbente)
 | Métrica | Dado |
 |---|---|
 | GMV 2024 | R$ 300 milhões (+75% vs 2023) |
@@ -241,59 +196,66 @@ O modelo de monetização ainda não está definido. Candidatos:
 | Inscrições 2024 | 1,8 milhão |
 | Eventos | 2.500 |
 | Market share maratonas | 60% das 54 maiores do Brasil |
-| **Adquirida por Ingresse** | **Setembro 2024** — janela de oportunidade |
-
-### Sympla (player horizontal)
-- 336.000+ organizadores, 46 milhões de compradores
-- 400.000+ eventos em 2023
-- Taxa: até 12% ou mínimo R$ 3,99/ingresso
+| **Adquirida por Ingresse** | **Set/2024 — janela de 12–18 meses aberta agora** |
 
 ---
 
-## Análise Estratégica e Provocações
+## Benchmark de Concorrentes
 
-### Janela de oportunidade: aquisição da Ticket Sports pela Ingresse (Set 2024)
-Toda aquisição gera turbulência interna, reorganização e possível degradação de atendimento. A janela de 12–18 meses pós-aquisição é provavelmente a melhor oportunidade que existirá para um entrante no mercado endurance.
-
-### Triathlon como nicho dentro do nicho
-206 eventos, 56 organizadores, ticket 3x maior. Pequeno o suficiente para validar rápido, grande o suficiente para sustentar negócio. Muito menos competição que o mercado geral de corridas.
-
-### Nordeste como flanqueamento geográfico
-Ticket Sports concentrada no Sudeste. Nordeste cresceu de 9% para 22,3% em 1 ano. Organizadores nordestinos têm menos voz, menos opções, maior disposição a ouvir novos players.
-
-### "Captação" precisa ser definida antes da primeira conversa
-Três interpretações completamente diferentes:
-1. **Consultoria de marketing** — não escala, mas valida rápido
-2. **Ferramenta de reativação de base** — feature de produto, demora para construir
-3. **Tráfego próprio da plataforma** — leva anos, inviável em bootstrap
-
-### 46% dos inscritos são atletas de primeira vez
-Valida a hipótese de captação do Cássio: o organizador realmente precisa de ajuda para encher eventos com novos participantes. A dor é real e atual.
-
-### White label e captação não se excluem
-O documento do Cássio não menciona white label — mas nenhum concorrente no endurance oferece isso. Pode ser diferencial invisível (organizadores não percebem que querem) ou irrelevante para esse nicho (atleta vai ao evento pelo nome da prova, não pela plataforma).
+| Plataforma | Taxa | White Label | Repasse | Nicho |
+|---|---|---|---|---|
+| Ticket Sports/Ingresse | ~10% | Não | Pós-evento | Endurance |
+| Sympla | ~10% + 3,49% antecip. | Não | 3+ dias úteis | Geral |
+| Eventbrite | ~17,99% efetivo | Não | 14+ dias | Geral (saindo do BR) |
+| E-inscrição | 6,9% (mín. R$1,90) | Não | N/I | Cristão |
 
 ---
 
-## Decisões Que Bloqueiam Tudo (a resolver na reunião de hoje)
+## Próximos Passos (pós-reunião 21/Mai)
 
-- [ ] **Nicho ou generalista?** Endurance específico vs. white label para qualquer evento
-- [ ] **Diferencial técnico ou de serviço?** White label (semanas para construir) vs. captação (consultoria ou produto?)
-- [ ] **Validar antes ou construir em paralelo?** Cássio está metodologicamente certo, mas validação pura mata side projects por inércia
-- [ ] **Escopo geográfico inicial** — nacional desde o início ou concentração regional (Nordeste? SP?)
-- [ ] **Acordo formal entre sócios** — horas, papéis, equity, critérios de revisão aos 3 e 6 meses
+### Rafael (produto + tech)
+- [ ] Definir arquitetura técnica correta antes de codar (backend, banco, auth)
+- [ ] Começar construção do MVP (Rafael + Claude como par de dev)
+- [ ] Mapear capacidade simultânea do MVP (quantos clientes/eventos suporta sem upgrade de infra)
+- [ ] Definir nome da plataforma → briefar Aline para logo/design system
+
+### Cássio (negócio + estratégia)
+- [ ] Desenhar planejamento estratégico (visão 12 meses, 24 meses)
+- [ ] Mapear primeiros 30 organizadores endurance para prospectar
+- [ ] Iniciar conversas de validação (meta: 15 conversas nas próximas 4–6 semanas)
+- [ ] Benchmark técnico de taxas: confirmar o que Ticket Sports cobra no cartão vs pix vs boleto
+
+### Ambos
+- [ ] Definir critérios de "red flag" para cada etapa (o que nos faria pausar ou pivotar)
+- [ ] Próxima reunião: ~início de junho 2026
+
+---
+
+## Decisões Pendentes (TBD)
+
+- [ ] **Nome da plataforma** — deve refletir o mercado esportivo (Cássio sinalizou isso)
+- [ ] **Gateway de pagamento** — PagSeguro ou Asaas? Benchmark pendente
+- [ ] **Política de boleto** — manter, remover ou substituir por Pix parcelado?
+- [ ] **Notificações** — WhatsApp, e-mail ou SMS para lembretes de evento?
+- [ ] **Critérios de red flag** — o que define pausa/pivot em cada marco (3, 6, 12 meses)?
+- [ ] **LGPD** — parecer jurídico antes do lançamento público
 
 ---
 
 ## Histórico de Decisões
 
 | Data | Decisão | Justificativa |
-|------|---------|---------------|
-| Mai 2026 | Supabase como backend | PostgreSQL + Auth + Storage + Edge Functions em um lugar, grátis até escalar |
+|---|---|---|
+| Mai 2026 | Supabase como backend | PostgreSQL + Auth + Storage + Edge Functions num lugar, grátis até escalar |
 | Mai 2026 | Cloudflare Pages como deploy | SSL wildcard automático necessário para subdomínios dos tenants |
-| Mai 2026 | Stripe descartado para MVP | Sem boleto nativo; entra só em expansão internacional |
+| Mai 2026 | Stripe descartado | Sem boleto nativo; entra só em expansão internacional |
 | Mai 2026 | PayPal descartado | Sem Pix |
-| Mai 2026 | Appmax descartado | Foco em afiliados, não em eventos |
+| Mai 2026 | Nicho endurance confirmado | Ciclo de venda corporativo muito longo para bootstrap; esportivo: 2–3 decisores, decisão mais rápida |
+| 21/Mai/2026 | White label = tier premium, não entrada | No endurance o atleta compra pelo nome do evento, não da plataforma; entrada pelo preço e atendimento |
+| 21/Mai/2026 | Modelo de tiers de taxa confirmado | ~7% básico / ~10–12% parceiro / ~15% premium — sem mensalidade |
+| 21/Mai/2026 | Validar e construir em paralelo | Não esperar validação total; primeiros clientes validam a plataforma, não necessariamente geram receita |
+| 21/Mai/2026 | Marketplace de produtos no MVP | Alta aderência no endurance; segunda fonte de receita no mesmo checkout |
+| 21/Mai/2026 | Transferência de titularidade no roadmap | Mercado secundário autorizado gera segunda taxa no mesmo ingresso |
 
 ---
 
@@ -303,8 +265,8 @@ O documento do Cássio não menciona white label — mas nenhum concorrente no e
 # Branch de desenvolvimento ativo
 git checkout claude/review-partner-document-cYrOx
 
-# O escopo completo do MVP está em:
-# index.html — documento HTML navegável com toda a especificação
+# Documentos de referência:
+# index.html          — escopo MVP v0 (Rafael)
+# reuniao-210526.html — briefing de reunião com dados de mercado
+# CLAUDE.md           — este arquivo, sempre atualizado
 ```
-
-**Antes de iniciar desenvolvimento:** As decisões pendentes na seção TBD precisam ser respondidas pelo sócio (especialmente billing model, gateway de pagamento e nicho de entrada).
