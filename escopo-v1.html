@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plataforma Endurance — Escopo v1</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:    #1d1d1f;
+    --gray-6:   #2d2d2f;
+    --gray-5:   #6e6e73;
+    --gray-4:   #86868b;
+    --gray-3:   #d2d2d7;
+    --gray-2:   #f5f5f7;
+    --gray-1:   #fbfbfd;
+    --white:    #ffffff;
+    --blue:     #0071e3;
+    --blue-bg:  #e8f1fb;
+    --green:    #1a7f3c;
+    --green-bg: #edfaf2;
+    --warn:     #bf5900;
+    --warn-bg:  #fff4ec;
+    --red:      #c7000b;
+    --red-bg:   #fff0f1;
+    --purple:   #6e3fc3;
+    --purple-bg:#f2edfb;
+    --radius:   12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Layout ── */
+  .container { max-width: 760px; margin: 0 auto; padding: 0 22px; }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--gray-3);
+  }
+  .nav-inner {
+    max-width: 760px; margin: 0 auto; padding: 0 22px;
+    height: 48px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-title { font-size: 13px; font-weight: 600; color: var(--black); letter-spacing: -0.1px; }
+  .nav-right  { display: flex; gap: 16px; align-items: center; }
+  .nav-badge  {
+    font-size: 11px; font-weight: 600; padding: 3px 9px;
+    border-radius: 20px; background: var(--green-bg); color: var(--green);
+  }
+  .nav-meta   { font-size: 12px; color: var(--gray-4); }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 88px 0 80px; text-align: center;
+    border-bottom: 1px solid var(--gray-3);
+  }
+  .hero-eyebrow {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 6vw, 56px); font-weight: 700;
+    letter-spacing: -1.8px; line-height: 1.06; color: var(--black); margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: normal; color: var(--blue); }
+  .hero-sub {
+    font-size: 19px; color: var(--gray-5); max-width: 500px;
+    margin: 0 auto 36px; line-height: 1.5;
+  }
+  .hero-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .hero-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--gray-2); border-radius: 20px; padding: 6px 16px;
+    font-size: 13px; color: var(--gray-5);
+  }
+  .hero-pill strong { color: var(--black); font-weight: 600; }
+  .hero-pill.green { background: var(--green-bg); color: var(--green); }
+  .hero-pill.green strong { color: var(--green); }
+
+  /* ── Sections ── */
+  section { padding: 72px 0; border-bottom: 1px solid var(--gray-3); }
+  section:last-of-type { border-bottom: none; }
+
+  .eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.6px;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+  }
+  h2 {
+    font-size: clamp(26px, 4vw, 34px); font-weight: 700;
+    letter-spacing: -0.8px; line-height: 1.12; color: var(--black); margin-bottom: 10px;
+  }
+  .section-lead {
+    font-size: 16px; color: var(--gray-5); margin-bottom: 44px; max-width: 520px; line-height: 1.6;
+  }
+
+  /* ── Badges ── */
+  .badge {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 3px 9px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.2px;
+  }
+  .badge-green  { background: var(--green-bg);  color: var(--green);  }
+  .badge-blue   { background: var(--blue-bg);   color: var(--blue);   }
+  .badge-warn   { background: var(--warn-bg);   color: var(--warn);   }
+  .badge-red    { background: var(--red-bg);    color: var(--red);    }
+  .badge-purple { background: var(--purple-bg); color: var(--purple); }
+  .badge-gray   { background: var(--gray-2);    color: var(--gray-5); }
+
+  /* ── Stats ── */
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .stat-card {
+    background: var(--gray-2); border-radius: var(--radius); padding: 26px 20px;
+  }
+  .stat-card.blue   { background: var(--blue-bg); }
+  .stat-card.green  { background: var(--green-bg); }
+  .stat-card.warn   { background: var(--warn-bg); }
+  .stat-card.purple { background: var(--purple-bg); }
+  .stat-num {
+    font-size: clamp(22px, 3vw, 30px); font-weight: 700;
+    letter-spacing: -1px; color: var(--black); margin-bottom: 5px; line-height: 1;
+  }
+  .stat-card.blue   .stat-num { color: var(--blue); }
+  .stat-card.green  .stat-num { color: var(--green); }
+  .stat-card.warn   .stat-num { color: var(--warn); }
+  .stat-card.purple .stat-num { color: var(--purple); }
+  .stat-label { font-size: 13px; color: var(--gray-5); line-height: 1.45; }
+
+  /* ── Decision cards (aligned) ── */
+  .decision-list { display: flex; flex-direction: column; gap: 0; }
+  .decision-item {
+    display: grid; grid-template-columns: 28px 1fr;
+    gap: 18px; padding: 24px 0; border-bottom: 1px solid var(--gray-3); align-items: start;
+  }
+  .decision-item:last-child { border-bottom: none; }
+  .decision-check {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--green-bg); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .decision-check svg { width: 14px; height: 14px; }
+  .decision-item h4 { font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .decision-item p  { font-size: 14px; color: var(--gray-5); line-height: 1.6; }
+  .decision-item p strong { color: var(--black); }
+
+  /* ── Tier cards ── */
+  .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .tier-card {
+    border: 1px solid var(--gray-3); border-radius: var(--radius);
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .tier-card.featured { border-color: var(--blue); }
+  .tier-head {
+    padding: 22px 22px 18px; border-bottom: 1px solid var(--gray-3);
+  }
+  .tier-card.featured .tier-head { background: var(--blue-bg); border-color: rgba(0,113,227,0.2); }
+  .tier-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--gray-4); margin-bottom: 8px;
+  }
+  .tier-card.featured .tier-label { color: var(--blue); }
+  .tier-name  { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+  .tier-price {
+    font-size: 32px; font-weight: 700; letter-spacing: -1px;
+    color: var(--black); line-height: 1;
+  }
+  .tier-price span { font-size: 15px; font-weight: 400; color: var(--gray-5); letter-spacing: 0; }
+  .tier-body { padding: 18px 22px; flex: 1; }
+  .tier-desc { font-size: 14px; color: var(--gray-5); margin-bottom: 16px; line-height: 1.5; }
+  .tier-features { display: flex; flex-direction: column; gap: 9px; }
+  .tier-feat {
+    display: flex; align-items: flex-start; gap: 9px;
+    font-size: 13px; color: var(--gray-5); line-height: 1.4;
+  }
+  .tier-feat::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gray-3); flex-shrink: 0; margin-top: 6px;
+  }
+  .tier-card.featured .tier-feat::before { background: var(--blue); }
+  .tier-foot { padding: 16px 22px; border-top: 1px solid var(--gray-3); background: var(--gray-1); }
+  .tier-card.featured .tier-foot { background: var(--blue-bg); border-color: rgba(0,113,227,0.2); }
+  .tier-cta {
+    font-size: 13px; font-weight: 600;
+    color: var(--gray-5);
+  }
+  .tier-card.featured .tier-cta { color: var(--blue); }
+
+  /* ── Feature modules ── */
+  .module {
+    border: 1px solid var(--gray-3); border-radius: var(--radius);
+    overflow: hidden; margin-bottom: 14px;
+  }
+  .module:last-child { margin-bottom: 0; }
+  .module-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 22px; background: var(--gray-2);
+    border-bottom: 1px solid var(--gray-3);
+  }
+  .module-tag {
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;
+    padding: 3px 9px; border-radius: 20px; background: var(--gray-3); color: var(--gray-6);
+    white-space: nowrap;
+  }
+  .module-tag.new { background: var(--green-bg); color: var(--green); }
+  .module-tag.future { background: var(--purple-bg); color: var(--purple); }
+  .module-head-text h3 { font-size: 15px; font-weight: 600; color: var(--black); }
+  .module-head-text p  { font-size: 13px; color: var(--gray-5); margin-top: 1px; }
+  .feat-row {
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 12px 22px; border-bottom: 1px solid var(--gray-3); font-size: 15px;
+  }
+  .feat-row:last-child { border-bottom: none; }
+  .feat-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gray-3); flex-shrink: 0; margin-top: 9px;
+  }
+  .feat-name { flex: 1; color: var(--black); }
+  .feat-note { font-size: 13px; color: var(--gray-4); white-space: nowrap; }
+
+  /* ── Roadmap ── */
+  .roadmap-list { display: flex; flex-direction: column; }
+  .roadmap-item {
+    display: grid; grid-template-columns: 96px 1fr;
+    gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--gray-3); align-items: start;
+  }
+  .roadmap-item:last-child { border-bottom: none; }
+  .rweek { font-size: 13px; font-weight: 600; color: var(--blue); padding-top: 3px; }
+  .roadmap-item h3 { font-size: 16px; font-weight: 600; color: var(--black); margin-bottom: 5px; }
+  .roadmap-item p  { font-size: 14px; color: var(--gray-5); line-height: 1.5; }
+
+  /* ── Competitor table ── */
+  .comp-table {
+    width: 100%; border-collapse: collapse;
+    border: 1px solid var(--gray-3); border-radius: var(--radius); overflow: hidden;
+  }
+  .comp-table thead { background: var(--gray-2); }
+  .comp-table th {
+    text-align: left; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray-4);
+    padding: 10px 16px; border-bottom: 1px solid var(--gray-3);
+  }
+  .comp-table td { padding: 14px 16px; border-bottom: 1px solid var(--gray-3); font-size: 14px; }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr:hover td { background: var(--gray-1); }
+  .t-name { font-weight: 600; color: var(--black); }
+  .t-dim  { color: var(--gray-5); }
+
+  /* ── Stack table ── */
+  .stack-table {
+    width: 100%; border-collapse: collapse;
+    border: 1px solid var(--gray-3); border-radius: var(--radius); overflow: hidden;
+  }
+  .stack-table thead { background: var(--gray-2); }
+  .stack-table th {
+    text-align: left; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray-4);
+    padding: 10px 16px; border-bottom: 1px solid var(--gray-3);
+  }
+  .stack-table td { padding: 14px 16px; border-bottom: 1px solid var(--gray-3); }
+  .stack-table tr:last-child td { border-bottom: none; }
+  .stack-table tr:hover td { background: var(--gray-1); }
+  .t-layer { font-size: 13px; color: var(--gray-4); }
+  .t-tech  { font-size: 15px; font-weight: 600; color: var(--black); }
+  .t-why   { font-size: 13px; color: var(--gray-5); }
+
+  /* ── Roles ── */
+  .roles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .role-card {
+    border: 1px solid var(--gray-3); border-radius: var(--radius); overflow: hidden;
+  }
+  .role-head {
+    padding: 18px 22px; background: var(--gray-2);
+    border-bottom: 1px solid var(--gray-3);
+  }
+  .role-name { font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
+  .role-title { font-size: 13px; color: var(--gray-5); }
+  .role-items { padding: 14px 22px; display: flex; flex-direction: column; gap: 10px; }
+  .role-item {
+    display: flex; align-items: flex-start; gap: 9px;
+    font-size: 14px; color: var(--gray-5); line-height: 1.4;
+  }
+  .role-item::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gray-3); flex-shrink: 0; margin-top: 7px;
+  }
+
+  /* ── Steps ── */
+  .steps-list { display: flex; flex-direction: column; }
+  .step-item {
+    display: grid; grid-template-columns: 36px 1fr;
+    gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--gray-3); align-items: start;
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--blue);
+    color: var(--white); font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .step-item h4 { font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 5px; }
+  .step-item p  { font-size: 14px; color: var(--gray-5); line-height: 1.6; }
+  .step-item p strong { color: var(--black); }
+
+  /* ── TBD list ── */
+  .tbd-list { display: flex; flex-direction: column; }
+  .tbd-item {
+    display: grid; grid-template-columns: 88px 1fr;
+    gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--gray-3); align-items: start;
+  }
+  .tbd-item:last-child { border-bottom: none; }
+  .tbd-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--warn); padding-top: 2px;
+  }
+  .tbd-item h4 { font-size: 15px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
+  .tbd-item p  { font-size: 14px; color: var(--gray-5); line-height: 1.5; }
+
+  /* ── Positioning box ── */
+  .position-box {
+    background: var(--black); border-radius: var(--radius);
+    padding: 44px 40px; text-align: center; margin-bottom: 14px;
+  }
+  .position-box .pos-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--gray-4); margin-bottom: 18px;
+  }
+  .position-box blockquote {
+    font-size: clamp(18px, 2.8vw, 26px); font-weight: 600;
+    color: var(--white); line-height: 1.4; letter-spacing: -0.3px; font-style: normal;
+  }
+
+  /* ── Highlight box ── */
+  .highlight-box {
+    border-radius: var(--radius); padding: 24px 28px; margin-bottom: 14px;
+  }
+  .highlight-box.blue   { background: var(--blue-bg); }
+  .highlight-box.green  { background: var(--green-bg); }
+  .highlight-box.warn   { background: var(--warn-bg); }
+  .highlight-box.purple { background: var(--purple-bg); }
+  .highlight-box .hl-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;
+    margin-bottom: 8px;
+  }
+  .blue   .hl-label { color: var(--blue); }
+  .green  .hl-label { color: var(--green); }
+  .warn   .hl-label { color: var(--warn); }
+  .purple .hl-label { color: var(--purple); }
+  .highlight-box h3 { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .highlight-box p  { font-size: 14px; color: var(--gray-5); line-height: 1.6; }
+  .highlight-box p strong { color: var(--black); }
+
+  /* ── Calc box ── */
+  .calc-box {
+    background: var(--green-bg); border-radius: 10px;
+    padding: 18px 22px; display: flex; align-items: center; gap: 18px; margin-top: 14px;
+  }
+  .calc-num { font-size: 26px; font-weight: 700; color: var(--green); white-space: nowrap; }
+  .calc-desc { font-size: 13px; color: var(--green); line-height: 1.45; }
+
+  /* ── Payments ── */
+  .pay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pay-card {
+    border: 1px solid var(--gray-3); border-radius: var(--radius);
+    padding: 20px 22px; background: var(--white);
+  }
+  .pay-card.pix   { border-color: var(--green); background: var(--green-bg); }
+  .pay-card.cc    { border-color: var(--blue);  background: var(--blue-bg); }
+  .pay-card-role {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.8px; margin-bottom: 8px;
+  }
+  .pix  .pay-card-role { color: var(--green); }
+  .cc   .pay-card-role { color: var(--blue); }
+  .gray .pay-card-role { color: var(--gray-4); }
+  .pay-card h4 { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .pay-card p  { font-size: 13px; color: var(--gray-5); line-height: 1.5; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 32px 0; text-align: center;
+    font-size: 13px; color: var(--gray-4); border-top: 1px solid var(--gray-3);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .hero { padding: 60px 0 52px; }
+    section { padding: 52px 0; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .tier-grid { grid-template-columns: 1fr; }
+    .roles-grid { grid-template-columns: 1fr; }
+    .pay-grid { grid-template-columns: 1fr; }
+    .roadmap-item { grid-template-columns: 72px 1fr; gap: 16px; }
+    .tbd-item { grid-template-columns: 1fr; gap: 4px; }
+    .tbd-label { padding-top: 0; }
+    .position-box { padding: 32px 24px; }
+    .feat-note { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-title">Plataforma Endurance</div>
+    <div class="nav-right">
+      <span class="nav-badge">Escopo v1</span>
+      <span class="nav-meta">Mai 2026</span>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Escopo v1 — Pós-alinhamento de sócios</div>
+    <h1>Parceiro real do<br><em>organizador endurance</em></h1>
+    <p class="hero-sub">Plataforma de inscrição que vai além do processamento — taxa menor, repasse rápido, atendimento humano e ferramentas de captação embutidas.</p>
+    <div class="hero-badges">
+      <div class="hero-pill"><strong>Nicho:</strong> Endurance (corrida, triathlon, ciclismo)</div>
+      <div class="hero-pill green"><strong>Decisões alinhadas</strong> em 21/Mai/2026</div>
+      <div class="hero-pill"><strong>Bootstrap</strong> · MVP em paralelo à validação</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Decisões da reunião -->
+  <section>
+    <div class="eyebrow">Reunião 21 Mai 2026</div>
+    <h2>O que foi decidido</h2>
+    <p class="section-lead">Alinhamento entre sócios. Estas decisões encerram as tensões abertas dos documentos anteriores.</p>
+
+    <div class="decision-list">
+
+      <div class="decision-item">
+        <div class="decision-check">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#1a7f3c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4>Nicho: endurance — porta aberta para adjacentes</h4>
+          <p>Mercado esportivo confirmado. Corporativo descartado para MVP — ciclo de venda mais longo, decisão mais burocrática. Se vier um organizador corporativo espontaneamente, ele é atendido. Mas o posicionamento, o produto e o marketing falam com o endurance.</p>
+        </div>
+      </div>
+
+      <div class="decision-item">
+        <div class="decision-check">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#1a7f3c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4>Diferencial: ser parceiro, não só plataforma</h4>
+          <p>A plataforma atua como <strong>braço de marketing e crescimento do organizador</strong>. Não é só processar inscrição — é trazer inscrito para dentro do evento. O organizador que contrata o tier Parceiro não está comprando uma ferramenta; está comprando alguém que vai junto no evento.</p>
+        </div>
+      </div>
+
+      <div class="decision-item">
+        <div class="decision-check">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#1a7f3c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4>Modelo de receita: tiers de taxa — sem mensalidade</h4>
+          <p>Percentual por inscrição, três níveis: ~7% básico / ~10–12% parceiro / ~15% premium. O tier Parceiro chega ao mesmo preço que o organizador já paga na Ticket Sports — mas entrega muito mais. Sem mensalidade fixa.</p>
+        </div>
+      </div>
+
+      <div class="decision-item">
+        <div class="decision-check">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#1a7f3c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4>White label = tier premium, não gancho de entrada</h4>
+          <p>No endurance, o atleta vai ao evento pelo nome da prova, não da plataforma. White label existe, tem mercado (organizadores com marca consolidada), mas vai para o plano Premium. Entrada é por taxa + repasse + atendimento.</p>
+        </div>
+      </div>
+
+      <div class="decision-item">
+        <div class="decision-check">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#1a7f3c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4>Validar e construir em paralelo</h4>
+          <p>Não é esperar validação para começar a construir. Os primeiros 2–3 clientes não precisam gerar receita — <strong>o objetivo é validar que a plataforma funciona</strong> de verdade, antes de escalar. Oferta de inauguração com taxa reduzida para clientes fundadores.</p>
+        </div>
+      </div>
+
+      <div class="decision-item">
+        <div class="decision-check">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#1a7f3c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4>Escopo geográfico: circunstancial</h4>
+          <p>Sem estratégia geográfica rígida de entrada. A prospecção segue o network dos sócios. Nordeste identificado como fronteira de expansão (crescimento de 9% → 22% em 1 ano), mas não é pré-requisito. Qualquer região com organizadores acessíveis é válida.</p>
+        </div>
+      </div>
+
+      <div class="decision-item">
+        <div class="decision-check">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="#1a7f3c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4>Equity e formalização: depois da validação</h4>
+          <p>Sociedade informal no início. Formalizar só após os primeiros sinais de receita. Quem entrar depois — como eventual sócio técnico ou investidor — entra em condições diferentes por não ter estado na nascente.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Posicionamento -->
+  <section>
+    <div class="eyebrow">Posicionamento</div>
+    <h2>Em uma frase</h2>
+    <p class="section-lead">Simples, direto e mensurável. O organizador consegue calcular quanto ganha antes de assinar.</p>
+
+    <div class="position-box">
+      <div class="pos-label">Proposta de valor</div>
+      <blockquote>"A plataforma de inscrição que trata o organizador como parceiro — taxa menor, repasse no dia seguinte, atendimento humano."</blockquote>
+    </div>
+
+    <div class="highlight-box blue">
+      <div class="hl-label">Por que esse posicionamento funciona</div>
+      <h3>O organizador entende antes de qualquer demonstração</h3>
+      <p>Taxa menor é calculável. Repasse mais rápido é comparável. Atendimento humano é imediato de perceber. Nenhum dos três exige convencer o organizador de que ele tem uma dor que ainda não sentiu.</p>
+    </div>
+  </section>
+
+  <!-- Mercado -->
+  <section>
+    <div class="eyebrow">O Mercado</div>
+    <h2>Endurance no Brasil: tamanho e crescimento</h2>
+    <p class="section-lead">Dados reais de 2024–2025. Mercado em explosão com um incumbente dominante e janela de oportunidade aberta.</p>
+
+    <div class="stat-grid" style="margin-bottom:14px">
+      <div class="stat-card">
+        <div class="stat-num">14M</div>
+        <div class="stat-label">corredores ativos no Brasil; ~3M participam de provas pagas</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-num">+85%</div>
+        <div class="stat-label">crescimento em provas de corrida de 2024 para 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">R$1,1B</div>
+        <div class="stat-label">movimentados por corridas de rua por ano no Brasil</div>
+      </div>
+    </div>
+    <div class="stat-grid" style="margin-bottom:14px">
+      <div class="stat-card purple">
+        <div class="stat-num">56</div>
+        <div class="stat-label">organizadores de triathlon no Brasil — ticket 3–4× maior que corrida</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">46%</div>
+        <div class="stat-label">dos inscritos em 2025 eram atletas de primeira vez — mercado crescendo pela base</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">R$200–300M</div>
+        <div class="stat-label">GMV anual de inscrições endurance no Brasil (TAM das plataformas)</div>
+      </div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card warn">
+        <div class="stat-num">R$300M</div>
+        <div class="stat-label">GMV da Ticket Sports em 2024 — captura quase todo o TAM sozinha</div>
+      </div>
+      <div class="stat-card warn">
+        <div class="stat-num">~10%</div>
+        <div class="stat-label">take rate da Ticket Sports → R$20M de receita em 2024</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Set/24</div>
+        <div class="stat-label">Ticket Sports adquirida pela Ingresse — janela de 12–18 meses aberta agora</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="highlight-box warn">
+        <div class="hl-label">Janela de oportunidade</div>
+        <h3>Aquisição da Ticket Sports pela Ingresse — Setembro 2024</h3>
+        <p>Toda aquisição gera reorganização interna, possível degradação de atendimento e mudança de foco. <strong>Os 12–18 meses pós-aquisição são a melhor janela que existirá para um entrante.</strong> Organizadores insatisfeitos com mudanças têm disposição muito maior de ouvir alternativas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modelo de negócio -->
+  <section>
+    <div class="eyebrow">Modelo de Negócio</div>
+    <h2>Tiers de taxa — sem mensalidade</h2>
+    <p class="section-lead">O organizador paga só quando vende. Quanto mais serviço contratar, maior a taxa — mas maior a entrega de valor.</p>
+
+    <div class="tier-grid" style="margin-bottom:32px">
+
+      <div class="tier-card">
+        <div class="tier-head">
+          <div class="tier-label">Básico</div>
+          <div class="tier-name">Plataforma</div>
+          <div class="tier-price">~7% <span>por inscrição</span></div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-desc">O organizador usa a plataforma de forma independente. Taxa bem abaixo dos concorrentes.</div>
+          <div class="tier-features">
+            <div class="tier-feat">Checkout completo (Pix, cartão, Pix parcelado)</div>
+            <div class="tier-feat">Página do evento com marca do organizador</div>
+            <div class="tier-feat">Dashboard em tempo real</div>
+            <div class="tier-feat">QR Code por e-mail</div>
+            <div class="tier-feat">Recuperação de carrinho</div>
+            <div class="tier-feat">Repasse rápido no Pix</div>
+          </div>
+        </div>
+        <div class="tier-foot">
+          <div class="tier-cta">Gancho de entrada — preço imbatível</div>
+        </div>
+      </div>
+
+      <div class="tier-card featured">
+        <div class="tier-head">
+          <div class="tier-label">Parceiro</div>
+          <div class="tier-name">Plataforma + Performance</div>
+          <div class="tier-price">~10–12% <span>por inscrição</span></div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-desc">Taxa igual à Ticket Sports — mas com apoio real de marketing e captação. O organizador paga o mesmo e recebe muito mais.</div>
+          <div class="tier-features">
+            <div class="tier-feat">Tudo do Básico</div>
+            <div class="tier-feat">Apoio de performance digital (Rafael aplica skills de tráfego no evento)</div>
+            <div class="tier-feat">Reativação automatizada de base anterior</div>
+            <div class="tier-feat">Atendimento dedicado no WhatsApp</div>
+            <div class="tier-feat">Dashboard avançado com origem de inscrições</div>
+            <div class="tier-feat">Estratégia de lotes e urgência</div>
+          </div>
+        </div>
+        <div class="tier-foot">
+          <div class="tier-cta">Mesmo preço que hoje, com muito mais entrega</div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-head">
+          <div class="tier-label">Premium</div>
+          <div class="tier-name">Ecossistema completo</div>
+          <div class="tier-price">~15% <span>por inscrição</span></div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-desc">Para organizadores com marca consolidada que querem um ecossistema próprio de marca e comunidade.</div>
+          <div class="tier-features">
+            <div class="tier-feat">Tudo do Parceiro</div>
+            <div class="tier-feat">White label completo (domínio próprio)</div>
+            <div class="tier-feat">Marketplace de produtos no checkout</div>
+            <div class="tier-feat">Transferência de titularidade (mercado secundário)</div>
+            <div class="tier-feat">App white label com comunidade de atletas</div>
+            <div class="tier-feat">Integração com ferramentas de fitness (Strava, etc.)</div>
+          </div>
+        </div>
+        <div class="tier-foot">
+          <div class="tier-cta">Upsell natural para organizadores que crescem</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight-box green">
+      <div class="hl-label">Lógica do tier Parceiro</div>
+      <h3>Pagar igual — receber muito mais</h3>
+      <p>A Ticket Sports cobra ~10%. O tier Parceiro cobra 10–12%. A diferença é que na Ticket Sports o organizador recebe zero apoio — é self-service puro. No tier Parceiro ele recebe expertise de performance, automação e atendimento dedicado. <strong>A proposta é: não vamos te cobrar menos que o concorrente nesse tier. Mas vamos te entregar infinitamente mais.</strong></p>
+    </div>
+
+    <div class="calc-box" style="margin-top:0">
+      <div class="calc-num">R$6.700</div>
+      <div class="calc-desc">a mais por evento para o organizador no tier Básico (7% vs 10% da Ticket Sports) · 2.000 inscrições a R$112 · só de taxa</div>
+    </div>
+  </section>
+
+  <!-- Pagamentos -->
+  <section>
+    <div class="eyebrow">Pagamentos</div>
+    <h2>Política de repasse e meios</h2>
+    <p class="section-lead">A dor mais vocal do mercado é repasse lento. Nossa política resolve isso diretamente.</p>
+
+    <div class="pay-grid" style="margin-bottom:14px">
+      <div class="pay-card pix">
+        <div class="pay-card-role">Pix — prioridade</div>
+        <h4>Repasse no D+1</h4>
+        <p>Risco de chargeback muito baixo. Compensação praticamente imediata. Repasse no dia seguinte ao evento é tecnicamente viável e é o diferencial mais perceptível para o organizador.</p>
+      </div>
+      <div class="pay-card cc">
+        <div class="pay-card-role">Cartão de crédito</div>
+        <h4>Repasse em 30 dias</h4>
+        <p>Risco de chargeback exige proteção. Antecipação disponível com acréscimo por parcela. Modelagem: o organizador escolhe quando quer receber e paga pelo adiantamento — a plataforma ganha mais.</p>
+      </div>
+      <div class="pay-card gray">
+        <div class="pay-card-role">Pix parcelado — explorar</div>
+        <h4>Substituto ao boleto</h4>
+        <p>Atleta parcelou em 3× no Pix meses antes do evento. Alta conversão, risco controlado. A plataforma ganha o spread das parcelas.</p>
+      </div>
+      <div class="pay-card gray">
+        <div class="pay-card-role">Boleto — a avaliar</div>
+        <h4>Possivelmente remover</h4>
+        <p>Baixa aderência no endurance. Alta taxa de não pagamento. Cássio sinaliza que boleto "já era" — o Pix parcelado cobre o mesmo caso de uso com muito menos fricção.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box warn">
+      <div class="hl-label">Chargeback — risco principal</div>
+      <h3>Fraude em cartão de crédito é o maior risco operacional</h3>
+      <p>Cópia de evento + cartão de crédito falso é o vetor mais comum. <strong>Por isso cartão tem repasse de 30 dias</strong> — é a proteção. Conforme a plataforma crescer, investir em antifraude. Pix é o caminho para repasse rápido porque o risco é inerentemente menor.</p>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section>
+    <div class="eyebrow">Features do MVP</div>
+    <h2>O que vamos construir</h2>
+    <p class="section-lead">Três módulos. Duas novas features identificadas na reunião. Um ecossistema de longo prazo no roadmap.</p>
+
+    <div class="module">
+      <div class="module-head">
+        <span class="module-tag">Superadmin</span>
+        <div class="module-head-text">
+          <h3>Painel da plataforma</h3>
+          <p>Acesso exclusivo dos fundadores. Visão total de todos os tenants e finanças.</p>
+        </div>
+      </div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Gestão de organizadores (tenants)</div><div class="feat-note">Criar, suspender, configurar tiers</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Dashboard financeiro consolidado</div><div class="feat-note">Volume, spread retido, repasses</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Visão de todos os eventos ativos</div><div class="feat-note">Status, inscrições, receita</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Configuração de tiers e taxas por tenant</div></div>
+    </div>
+
+    <div class="module">
+      <div class="module-head">
+        <span class="module-tag">Admin</span>
+        <div class="module-head-text">
+          <h3>Painel do organizador</h3>
+          <p>Onde o cliente cria eventos, acompanha resultados e usa as ferramentas de captação.</p>
+        </div>
+      </div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Criação e edição de eventos</div><div class="feat-note">Título, data, local, capacidade, imagem, lotes</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Formulário de inscrição customizável</div><div class="feat-note">Campos configuráveis por evento</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Gestão de participantes</div><div class="feat-note">Lista, check-in, exportar CSV</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Dashboard por evento</div><div class="feat-note">Inscrições tempo real, conversão, origem, receita</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Recuperação de carrinho</div><div class="feat-note">E-mail automático para inscrições abandonadas</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Reativação de base</div><div class="feat-note">E-mail automático para inscritos de edições anteriores</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Relatório financeiro</div><div class="feat-note">Bruto, taxa plataforma, líquido, repasses</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Configuração de marca (white label)</div><div class="feat-note">Logo, cores, slug — tier Premium</div></div>
+    </div>
+
+    <div class="module">
+      <div class="module-head">
+        <span class="module-tag">Portal</span>
+        <div class="module-head-text">
+          <h3>Página pública</h3>
+          <p>O que o participante vê. Zero rastro da plataforma.</p>
+        </div>
+      </div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Página do evento com marca do organizador</div><div class="feat-note">Info, agenda, local, regulamento</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Checkout completo</div><div class="feat-note">Pix, cartão, Pix parcelado</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Confirmação com QR Code por e-mail</div><div class="feat-note">Envio automático pós-inscrição</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Vitrine de eventos do organizador</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Mobile-first e carregamento rápido</div></div>
+    </div>
+
+    <div class="module">
+      <div class="module-head">
+        <span class="module-tag new">Novo</span>
+        <div class="module-head-text">
+          <h3>Marketplace de produtos no checkout</h3>
+          <p>Feature identificada na reunião. Segunda fonte de receita no mesmo checkout.</p>
+        </div>
+      </div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Organizador cadastra produtos do evento</div><div class="feat-note">Camiseta, kit, medal, acessórios</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Participante compra junto na inscrição</div><div class="feat-note">Um único checkout para inscrição + produtos</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Plataforma cobra taxa sobre vendas de produto</div><div class="feat-note">Segunda receita no mesmo evento</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Alta aderência no endurance</div><div class="feat-note">Atletas gastam muito em gear — conversão natural</div></div>
+    </div>
+
+    <div class="module">
+      <div class="module-head">
+        <span class="module-tag new">Novo</span>
+        <div class="module-head-text">
+          <h3>Transferência de titularidade</h3>
+          <p>Mercado secundário autorizado. Inspirado no mercado australiano/asiático.</p>
+        </div>
+      </div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Atleta que não pode ir transfere a inscrição</div><div class="feat-note">Dentro da própria plataforma</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Plataforma cobra segunda taxa na transferência</div><div class="feat-note">Segunda receita no mesmo ingresso</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Elimina mercado informal</div><div class="feat-note">Grupos de WhatsApp e Marketplace são substituídos</div></div>
+    </div>
+
+    <div class="module">
+      <div class="module-head">
+        <span class="module-tag future">Roadmap futuro</span>
+        <div class="module-head-text">
+          <h3>App white label + comunidade</h3>
+          <p>Tier Premium de longo prazo. Não é MVP — é a visão de ecossistema.</p>
+        </div>
+      </div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">App com marca do organizador</div><div class="feat-note">Não só link — app próprio na loja</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Comunidade de atletas dentro do app</div><div class="feat-note">Pós-evento, resultados, troca de experiências</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Integração com ferramentas de fitness</div><div class="feat-note">Strava, Garmin, etc.</div></div>
+      <div class="feat-row"><div class="feat-dot"></div><div class="feat-name">Dropship de produtos esportivos</div><div class="feat-note">Dentro do app, plataforma ganha margem</div></div>
+    </div>
+
+  </section>
+
+  <!-- Stack -->
+  <section>
+    <div class="eyebrow">Stack Técnica</div>
+    <h2>Tecnologias do MVP</h2>
+    <p class="section-lead">100% gratuito até escalar. Custo real do MVP: praticamente zero (único gasto = domínio). Dev: Rafael + Claude como par de desenvolvimento.</p>
+
+    <table class="stack-table">
+      <thead>
+        <tr>
+          <th>Camada</th>
+          <th>Tecnologia</th>
+          <th>Por que</th>
+          <th>Custo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="t-layer">Frontend</td>
+          <td class="t-tech">React + Vite</td>
+          <td class="t-why">Stack dominada, ecossistema maduro, produtividade alta</td>
+          <td><span class="badge badge-green">Grátis</span></td>
+        </tr>
+        <tr>
+          <td class="t-layer">Deploy</td>
+          <td class="t-tech">Cloudflare Pages</td>
+          <td class="t-why">SSL wildcard automático para subdomínios dos tenants, CDN global</td>
+          <td><span class="badge badge-green">Grátis</span></td>
+        </tr>
+        <tr>
+          <td class="t-layer">Banco / Auth</td>
+          <td class="t-tech">Supabase</td>
+          <td class="t-why">PostgreSQL + Auth + Storage + Edge Functions + RLS por tenant</td>
+          <td><span class="badge badge-green">Grátis até 500 MB</span></td>
+        </tr>
+        <tr>
+          <td class="t-layer">Pagamentos</td>
+          <td class="t-tech">PagSeguro ou Asaas</td>
+          <td class="t-why">PagBank usado pela concorrência direta; Asaas tem split nativo e API em PT</td>
+          <td><span class="badge badge-warn">Benchmark pendente</span></td>
+        </tr>
+        <tr>
+          <td class="t-layer">E-mail</td>
+          <td class="t-tech">Resend</td>
+          <td class="t-why">3.000/mês grátis, API simples, boa entregabilidade</td>
+          <td><span class="badge badge-green">Grátis</span></td>
+        </tr>
+        <tr>
+          <td class="t-layer">QR Code</td>
+          <td class="t-tech">qrcode.js</td>
+          <td class="t-why">Geração client-side, sem dependência externa</td>
+          <td><span class="badge badge-green">Grátis</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Roadmap -->
+  <section>
+    <div class="eyebrow">Cronograma</div>
+    <h2>Roadmap do MVP</h2>
+    <p class="section-lead">Construção em paralelo à validação com organizadores. Primeiros clientes validam a plataforma antes da escala.</p>
+
+    <div class="roadmap-list">
+      <div class="roadmap-item">
+        <div class="rweek">Agora — Sem. 1–2</div>
+        <div>
+          <h3>Arquitetura e base multi-tenant</h3>
+          <p>Definir arquitetura técnica correta (backend, banco, auth). Estrutura de tenants no Supabase, RLS por tenant, auth de organizadores, subdomínio dinâmico via Cloudflare.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="rweek">Sem. 3–4</div>
+        <div>
+          <h3>CRUD de eventos e portal público</h3>
+          <p>Admin básico para criar e editar eventos. Página pública branded com formulário de inscrição. Checkout gratuito funcional.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="rweek">Sem. 5–6</div>
+        <div>
+          <h3>Checkout e pagamentos</h3>
+          <p>Integração com gateway (PagSeguro ou Asaas). Pix, cartão, Pix parcelado. Split automático do spread. QR Code no e-mail de confirmação.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="rweek">Sem. 7–8</div>
+        <div>
+          <h3>Dashboard + automações de captação</h3>
+          <p>Dashboard acionável por evento. Recuperação de carrinho. Reativação de base (e-mail automático para inscritos anteriores). Marketplace de produtos.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="rweek">Sem. 9–10</div>
+        <div>
+          <h3>Primeiros clientes + polimento</h3>
+          <p>Oferta de inauguração para clientes fundadores (taxa reduzida). Superadmin básico. Testes em condições reais. Transferência de titularidade. Ajustes baseados em feedback.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benchmark -->
+  <section>
+    <div class="eyebrow">Concorrência</div>
+    <h2>Benchmark do mercado</h2>
+    <p class="section-lead">Players diretos no endurance e no mercado geral. Nenhum oferece white label. Nenhum atua como parceiro de captação.</p>
+
+    <table class="comp-table" style="margin-bottom:32px">
+      <thead>
+        <tr>
+          <th>Plataforma</th>
+          <th>Taxa</th>
+          <th>White Label</th>
+          <th>Repasse</th>
+          <th>Captação</th>
+          <th>Nicho</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="t-name">Ticket Sports / Ingresse</td>
+          <td class="t-dim">~10%</td>
+          <td><span class="badge badge-red">Não</span></td>
+          <td class="t-dim">Pós-evento</td>
+          <td><span class="badge badge-red">Não</span></td>
+          <td class="t-dim">Endurance</td>
+        </tr>
+        <tr>
+          <td class="t-name">Sympla</td>
+          <td class="t-dim">~10% + 3,49% antecip.</td>
+          <td><span class="badge badge-red">Não</span></td>
+          <td class="t-dim">3+ dias úteis</td>
+          <td><span class="badge badge-red">Não</span></td>
+          <td class="t-dim">Geral</td>
+        </tr>
+        <tr>
+          <td class="t-name">Eventbrite</td>
+          <td class="t-dim">~17,99% efetivo</td>
+          <td><span class="badge badge-red">Não</span></td>
+          <td class="t-dim">14+ dias</td>
+          <td><span class="badge badge-red">Não</span></td>
+          <td class="t-dim">Geral (saindo do BR)</td>
+        </tr>
+        <tr>
+          <td class="t-name">E-inscrição</td>
+          <td class="t-dim">6,9% (mín. R$1,90)</td>
+          <td><span class="badge badge-red">Não</span></td>
+          <td class="t-dim">Não informado</td>
+          <td><span class="badge badge-red">Não</span></td>
+          <td class="t-dim">Cristão</td>
+        </tr>
+        <tr style="background: var(--green-bg)">
+          <td class="t-name" style="color:var(--green)">Nossa plataforma</td>
+          <td class="t-dim">7% / 10–12% / 15%</td>
+          <td><span class="badge badge-green">Tier Premium</span></td>
+          <td><span class="badge badge-green">D+1 no Pix</span></td>
+          <td><span class="badge badge-green">Tier Parceiro</span></td>
+          <td class="t-dim">Endurance</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Divisão de papéis -->
+  <section>
+    <div class="eyebrow">Time</div>
+    <h2>Divisão de papéis</h2>
+    <p class="section-lead">Dois sócios complementares. Cada um focado no que faz de melhor.</p>
+
+    <div class="roles-grid">
+      <div class="role-card">
+        <div class="role-head">
+          <div class="role-name">Rafael Alexander</div>
+          <div class="role-title">Tech · Produto · Marketing</div>
+        </div>
+        <div class="role-items">
+          <div class="role-item">Construção do produto (Rafael + Claude como par de dev)</div>
+          <div class="role-item">Arquitetura técnica e stack</div>
+          <div class="role-item">Marketing digital e performance pós-MVP</div>
+          <div class="role-item">Automações de captação (robô de prospecção, reativação)</div>
+          <div class="role-item">Design system — briefar Aline após definição do nome</div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-head">
+          <div class="role-name">Cássio Silva Miranda</div>
+          <div class="role-title">Estratégia · Negócio · Comercial</div>
+        </div>
+        <div class="role-items">
+          <div class="role-item">Planejamento estratégico (visão 12 e 24 meses)</div>
+          <div class="role-item">Análise de mercado, benchmarks, números</div>
+          <div class="role-item">Mapeamento e prospecção de organizadores</div>
+          <div class="role-item">Condução das conversas de validação</div>
+          <div class="role-item">Modelagem do negócio (tiers, taxas, politicas)</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <div class="highlight-box blue">
+        <div class="hl-label">Cadência de trabalho</div>
+        <h3>Reunião mensal longa + async entre elas</h3>
+        <p>Uma reunião por mês de 1–2 horas para alinhamento estratégico. Entre reuniões: documentos e WhatsApp. Evita overhead de calls frequentes sem pauta clara. <strong>Próxima reunião: início de junho 2026</strong> (Cássio inicia a mudança para SP em julho).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Próximos passos -->
+  <section>
+    <div class="eyebrow">Próximos Passos</div>
+    <h2>O que acontece agora</h2>
+    <p class="section-lead">Em ordem de prioridade. Construção e validação rodando em paralelo.</p>
+
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Definir nome da plataforma</h4>
+          <p><strong>Rafael + Cássio.</strong> O nome deve refletir o mercado esportivo — Cássio sinalizou que nomear para o endurance facilita o posicionamento. Após definição, briefar Aline para logo e design system.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Arquitetura técnica e início do MVP</h4>
+          <p><strong>Rafael.</strong> Estudar e definir a arquitetura correta antes de escrever código. Backend, banco de dados, auth, estrutura de tenants. Depois: codar com Claude como par de desenvolvimento.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Mapear 30 organizadores para prospectar</h4>
+          <p><strong>Cássio.</strong> Prioridade: triathlon (56 organizadores no Brasil — dá para mapear todos). Corrida de rua como volume. Nordeste como fronteira de expansão. Qualquer região onde os sócios tenham network.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div>
+          <h4>15 conversas de validação com organizadores</h4>
+          <p><strong>Cássio.</strong> Nas próximas 4–6 semanas. Roteiro focado em: qual plataforma usa hoje, o que mais incomoda, quanto paga, já pensou em trocar. Confirmar (ou refutar) a hipótese de dor.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div>
+          <h4>Benchmark de gateway de pagamento</h4>
+          <p><strong>Rafael.</strong> PagSeguro/PagBank vs Asaas. Verificar taxas reais no cartão, no Pix, split marketplace, tempo de implementação da API. Cássio levantou que a E-inscrição usa PagBank como referência.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div>
+          <h4>Definir critérios de red flag por etapa</h4>
+          <p><strong>Ambos.</strong> O que nos faria pausar ou pivotar em 3 meses? Em 6? Exemplos: não conseguir conversa com organizadores, não conseguir viabilidade técnica sem terceiro dev, sem nenhum sinal de disposição a pagar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TBD -->
+  <section>
+    <div class="eyebrow">Em Aberto</div>
+    <h2>Decisões ainda pendentes</h2>
+    <p class="section-lead">O que ficou para ser resolvido nas próximas semanas.</p>
+
+    <div class="tbd-list">
+      <div class="tbd-item">
+        <div class="tbd-label">Urgente</div>
+        <div>
+          <h4>Nome da plataforma</h4>
+          <p>Deve refletir o mercado esportivo. Ideias existentes (Ágora, Palco, Lota, Venuu, Evolo, Gathero, Reuna, Présens) foram criadas para o posicionamento generalista. O nicho endurance pode pedir algo diferente.</p>
+        </div>
+      </div>
+      <div class="tbd-item">
+        <div class="tbd-label">Urgente</div>
+        <div>
+          <h4>Gateway de pagamento</h4>
+          <p>PagSeguro/PagBank (usado pela E-inscrição — referência próxima) ou Asaas (split nativo, API em PT)? Benchmark técnico pendente com foco em taxas reais, split marketplace e tempo de integração.</p>
+        </div>
+      </div>
+      <div class="tbd-item">
+        <div class="tbd-label">Produto</div>
+        <div>
+          <h4>Política do boleto</h4>
+          <p>Manter, remover ou substituir por Pix parcelado? Cássio sinalizou que boleto "já era" no endurance. Pix parcelado cobre o mesmo caso de uso com menos fricção e menor risco de inadimplência.</p>
+        </div>
+      </div>
+      <div class="tbd-item">
+        <div class="tbd-label">Produto</div>
+        <div>
+          <h4>Notificações de evento</h4>
+          <p>Lembretes para participantes por WhatsApp, SMS ou e-mail? Quem paga o custo por disparo — a plataforma absorve ou repassa ao organizador?</p>
+        </div>
+      </div>
+      <div class="tbd-item">
+        <div class="tbd-label">Negócio</div>
+        <div>
+          <h4>Critérios de red flag e revisão</h4>
+          <p>O que define pausa ou pivot em cada marco (3, 6 e 12 meses)? Cássio levantou: não conseguir falar com organizadores é red flag suficiente para encerrar. Outros critérios precisam ser formalizados.</p>
+        </div>
+      </div>
+      <div class="tbd-item">
+        <div class="tbd-label">Jurídico</div>
+        <div>
+          <h4>LGPD</h4>
+          <p>Dados dos participantes (nome, CPF, e-mail, histórico de inscrições) exigem consentimento explícito e política de privacidade. Parecer jurídico necessário antes do lançamento público.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Plataforma Endurance · Escopo v1 · Pós-reunião de alinhamento · 21 Mai 2026 · Documento interno
+</footer>
+
+</body>
+</html>
