@@ -91,7 +91,7 @@ Três dores claras no mercado endurance:
 - **Boleto:** avaliar se mantém ou remove (baixa aderência no endurance)
 - **Pix parcelado:** explorar como substituto ao boleto parcelado — alta conversão, baixo risco
 
-**Gateway:** PagSeguro/PagBank como referência (usado pela concorrência direta). Benchmark técnico pendente entre PagSeguro e Asaas.
+**Gateway:** Benchmark em andamento — resultado pendente. Ver seção "Gateway de Pagamento" abaixo.
 
 ---
 
@@ -123,17 +123,61 @@ Três camadas independentes, mesmo backend multi-tenant. RLS por tenant no Supab
 
 ## Stack Técnica
 
-| Camada | Tecnologia | Custo MVP |
-|---|---|---|
-| Frontend | React + Vite | Grátis |
-| Deploy | Cloudflare Pages (SSL wildcard, CDN global) | Grátis |
-| Banco / Auth | Supabase (PostgreSQL + Auth + Storage + Edge Functions) | Grátis até 500 MB |
-| Pagamentos | PagSeguro ou Asaas (benchmark pendente) | A definir |
-| E-mail | Resend (3.000/mês grátis) | Grátis |
-| QR Code | qrcode.js (client-side) | Grátis |
+| Camada | Tecnologia | Decisão | Custo MVP |
+|---|---|---|---|
+| Frontend | React + Vite | ✅ Definido | Grátis |
+| Linguagem | TypeScript | ✅ Definido | Grátis |
+| Estilo / UI | Tailwind CSS + shadcn/ui | ✅ Definido | Grátis |
+| Deploy | Cloudflare Pages (SSL wildcard, CDN global) | ✅ Definido | Grátis |
+| Banco / Auth | Supabase (PostgreSQL + Auth + Storage + Edge Functions) | ✅ Definido | Grátis até 500 MB |
+| Servidor | Supabase Edge Functions (Deno/JS) | ✅ Definido | Grátis |
+| Pagamentos | A definir — benchmark em andamento | ⏳ Pendente | A definir |
+| E-mail | Resend | ✅ Definido | Grátis (3.000/mês) |
+| QR Code | qrcode.js (client-side) | ✅ Definido | Grátis |
 
-**Custo real do MVP:** praticamente zero. Único gasto inicial: domínio.
-**Dev:** Rafael + Claude (AI) como par de desenvolvimento. Rafael estudando a arquitetura certa antes de escrever código.
+**Custo real do MVP:** praticamente zero. Único gasto: domínio (~R$50/ano).
+**Dev:** Rafael + Claude (AI) como par de desenvolvimento.
+
+### Por que essa stack aguenta 10 clientes sem custo
+
+| Serviço | Limite free | 10 organizadores usam |
+|---|---|---|
+| Supabase banco | 500 MB | ~5–10 MB |
+| Supabase auth | 50.000 usuários ativos/mês | ~500 |
+| Cloudflare Pages | Requests ilimitados | Sem problema |
+| Resend | 3.000 e-mails/mês | ~300 |
+
+Upgrade necessário só com 50–100 organizadores ativos. Supabase Pro: ~R$130/mês.
+
+### Arquitetura multi-tenant: Row-Level Security (RLS)
+
+Todos os organizadores compartilham as mesmas tabelas. Cada linha tem `tenant_id`. O Supabase bloqueia no banco que o organizador A nunca veja dado do organizador B — via políticas de RLS automáticas por sessão autenticada.
+
+**Por que não schema por tenant:** Mais complexo, necessário só para compliance enterprise. RLS resolve para 10–200 clientes sem overhead.
+
+### Arquitetura geral
+
+```
+React + Vite + TypeScript + Tailwind + shadcn/ui
+           ↓
+     Cloudflare Pages
+     (deploy + SSL wildcard + CDN)
+           ↓
+         Supabase
+  ┌────────────────────┐
+  │ PostgreSQL (RLS)   │
+  │ Auth               │
+  │ Storage            │
+  │ Edge Functions     │ ← webhooks, e-mails, automações
+  └────────────────────┘
+     ↓              ↓
+  Gateway        Resend
+  pagamentos     (e-mails)
+```
+
+### shadcn/ui — por que foi escolhido
+
+Biblioteca de componentes copy-paste construída sobre Tailwind + Radix UI. Componentes prontos e acessíveis: Button, Input, Table, Form, Dialog, Dropdown, Toast, etc. Não é dependência pesada — o código vai para o projeto e você controla. Acelera o desenvolvimento de UI em 3–4×.
 
 ---
 
