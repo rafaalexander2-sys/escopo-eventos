@@ -233,7 +233,7 @@ Três camadas independentes, mesmo backend multi-tenant. RLS por tenant no Supab
 
 ## Decisões Pendentes (TBD)
 
-- [ ] **Nome da plataforma** — deve refletir o mercado esportivo (Cássio sinalizou isso)
+- [x] **Nome da plataforma** — **Ticket Moove** ✅ (definido em 24/Mai/2026)
 - [ ] **Gateway de pagamento** — PagSeguro ou Asaas? Benchmark pendente
 - [ ] **Política de boleto** — manter, remover ou substituir por Pix parcelado?
 - [ ] **Notificações** — WhatsApp, e-mail ou SMS para lembretes de evento?
@@ -256,6 +256,7 @@ Três camadas independentes, mesmo backend multi-tenant. RLS por tenant no Supab
 | 21/Mai/2026 | Validar e construir em paralelo | Não esperar validação total; primeiros clientes validam a plataforma, não necessariamente geram receita |
 | 21/Mai/2026 | Marketplace de produtos no MVP | Alta aderência no endurance; segunda fonte de receita no mesmo checkout |
 | 21/Mai/2026 | Transferência de titularidade no roadmap | Mercado secundário autorizado gera segunda taxa no mesmo ingresso |
+| 24/Mai/2026 | Nome da plataforma: **Ticket Moove** | Reflete o mercado esportivo (movimento, endurance) e contém "Ticket" como referência ao produto |
 
 ---
 
