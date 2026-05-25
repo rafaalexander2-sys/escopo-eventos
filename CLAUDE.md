@@ -91,7 +91,7 @@ Três dores claras no mercado endurance:
 - **Boleto:** avaliar se mantém ou remove (baixa aderência no endurance)
 - **Pix parcelado:** explorar como substituto ao boleto parcelado — alta conversão, baixo risco
 
-**Gateway:** Benchmark em andamento — resultado pendente. Ver seção "Gateway de Pagamento" abaixo.
+**Gateway:** **Asaas** ✅ — split nativo via subcontas, Pix R$1,99 flat, onboarding programático 100% via API, Conta Escrow para eventos com risco de cancelamento. Ver seção "Gateway de Pagamento" abaixo.
 
 ---
 
@@ -131,7 +131,7 @@ Três camadas independentes, mesmo backend multi-tenant. RLS por tenant no Supab
 | Deploy | Cloudflare Pages (SSL wildcard, CDN global) | ✅ Definido | Grátis |
 | Banco / Auth | Supabase (PostgreSQL + Auth + Storage + Edge Functions) | ✅ Definido | Grátis até 500 MB |
 | Servidor | Supabase Edge Functions (Deno/JS) | ✅ Definido | Grátis |
-| Pagamentos | A definir — benchmark em andamento | ⏳ Pendente | A definir |
+| Pagamentos | Asaas (split por subcontas) | ✅ Definido | 0% mensal + R$1,99/Pix |
 | E-mail | Resend | ✅ Definido | Grátis (3.000/mês) |
 | QR Code | qrcode.js (client-side) | ✅ Definido | Grátis |
 
@@ -208,6 +208,56 @@ Biblioteca de componentes copy-paste construída sobre Tailwind + Radix UI. Comp
 
 ---
 
+## Gateway de Pagamento — Benchmark e Decisão
+
+**Decisão:** Asaas ✅ (24/Mai/2026)
+
+### Por que Asaas para este MVP
+
+| Critério | Asaas ✅ | PagBank ❌ | Mercado Pago ⚠️ |
+|---|---|---|---|
+| **Modelo split** | Subcontas nativas via API | OAuth por seller | OAuth por seller |
+| **Taxa Pix** | R$ 1,99 flat (melhor para tickets R$100–500) | 0,35%–1,89% do valor | ~0,99% do valor |
+| **Taxa cartão 1x** | 2,99% + R$0,49 | ~3,05%–3,97% | ~3,99% (D+30) |
+| **Onboarding organizador** | POST /accounts → aprovação em 5 min | OAuth + homologação manual (semanas) | OAuth + conta MP aprovada |
+| **Go-live em produção** | 2–5 dias úteis | Semanas (homologação manual obrigatória) | Dias a semanas |
+| **Sandbox completo** | Sim — testa split real | Não testa split transacional | Sim |
+| **Webhooks** | Confiáveis — retry automático, 14 dias de log | Bugs reportados em Pix | Bons |
+| **SDK React/TS** | Sem oficial (REST puro nas Edge Functions) | Sem oficial | SDK oficial (`@mercadopago/sdk-react`) |
+| **Conta Escrow** | Nativo — retém até 45 dias antes de liberar | Não | Não |
+| **Custo mensal** | R$0 (+ R$99,90 se usar Escrow + R$9,90/subconta/mês) | R$0 | R$0 |
+
+### Benchmark de custo: Pix por inscrição
+
+| Ticket | Asaas (flat R$1,99) | Mercado Pago (0,99%) | PagBank (1,89%) |
+|---|---|---|---|
+| R$ 80 (corrida entry) | R$1,99 (2,49%) | R$0,79 | R$1,51 |
+| R$ 120 (corrida rua) | R$1,99 (1,66%) | R$1,19 | R$2,27 |
+| R$ 300 (triathlon) | R$1,99 (0,66%) | R$2,97 | R$5,67 |
+| R$ 500 (triathlon longo) | R$1,99 (0,40%) | R$4,95 | R$9,45 |
+
+**Triathlon é o nicho de entrada prioritário** (ticket R$250–500) — Asaas é decisivamente mais barato.
+
+### Alerta operacional: período regulatório Asaas (60 dias)
+
+Toda conta nova no Asaas que cria subcontas via API entra em período de avaliação regulatória (Res. BACEN nº 16/17):
+- Limite de R$2.000 em cobranças por subconta nos primeiros 60 dias
+- Superado com KYC completo do organizador (selfie + docs — 90% dos casos: aprovação em 5 min)
+- **Ação obrigatória no onboarding:** disparar link de KYC ao criar conta do organizador. Ativação plena só após aprovação.
+
+### Como integrar com Supabase Edge Functions
+
+```
+Supabase Edge Function
+  → POST /v3/accounts        # cria subconta do organizador
+  → POST /v3/payments        # cria cobrança com split no payload
+  ← Webhook Asaas            # confirma pagamento → atualiza DB → dispara QR via Resend
+```
+- Sem SDK oficial — usar `fetch` REST direto (mais simples em Deno)
+- Armazenar `walletId` e `apiKey` da subconta por organizador no Supabase (colunas criptografadas)
+
+---
+
 ## Dados de Mercado — Endurance Brasil
 
 ### Corridas de Rua
@@ -278,7 +328,7 @@ Biblioteca de componentes copy-paste construída sobre Tailwind + Radix UI. Comp
 ## Decisões Pendentes (TBD)
 
 - [x] **Nome da plataforma** — **Ticket Moove** ✅ (definido em 24/Mai/2026)
-- [ ] **Gateway de pagamento** — PagSeguro ou Asaas? Benchmark pendente
+- [x] **Gateway de pagamento** — **Asaas** ✅ (decidido 24/Mai/2026 — ver seção Gateway acima)
 - [ ] **Política de boleto** — manter, remover ou substituir por Pix parcelado?
 - [ ] **Notificações** — WhatsApp, e-mail ou SMS para lembretes de evento?
 - [ ] **Critérios de red flag** — o que define pausa/pivot em cada marco (3, 6, 12 meses)?
@@ -301,6 +351,7 @@ Biblioteca de componentes copy-paste construída sobre Tailwind + Radix UI. Comp
 | 21/Mai/2026 | Marketplace de produtos no MVP | Alta aderência no endurance; segunda fonte de receita no mesmo checkout |
 | 21/Mai/2026 | Transferência de titularidade no roadmap | Mercado secundário autorizado gera segunda taxa no mesmo ingresso |
 | 24/Mai/2026 | Nome da plataforma: **Ticket Moove** | Reflete o mercado esportivo (movimento, endurance) e contém "Ticket" como referência ao produto |
+| 24/Mai/2026 | Gateway: **Asaas** | Split por subcontas nativas via API, Pix R$1,99 flat (melhor para triathlon R$250–500), Conta Escrow, onboarding programático sem homologação manual. PagBank descartado (homologação semanas + sandbox sem teste de split); Mercado Pago descartado (token OAuth expira 6 meses, risco de conta congelada) |
 
 ---
 
