@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ticket Moove — Demo de Produto</title>
-  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg" />
+  <link rel="icon" type="image/png" href="assets/logomarca.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -961,7 +961,7 @@
       const h = parseInt(el.getAttribute('data-brand'), 10) || 22;
       const fb = Math.round(h * 0.82);
       el.innerHTML =
-        '<img class="brand-img" style="height:' + h + 'px" src="assets/logo.svg" alt="ticket moove" ' +
+        '<img class="brand-img" style="height:' + h + 'px" src="assets/logo-white.png" alt="ticket moove" ' +
         'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-flex\'">' +
         '<span class="brand-fallback" style="display:none;font-size:' + fb + 'px">ticket&nbsp;<b>moove</b></span>';
       el.dataset.rendered = '1';
