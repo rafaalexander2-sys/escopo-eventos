@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ticket Moove — Demo de Produto</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,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" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --card: #141414; --card2: #1a1a1a; --muted-bg: #2a2a2a;
+      --lime: #ccff00; --blue: #0066ff; --cyan: #00e5ff;
+      --green: #00ff88; --amber: #ffd700; --red: #ff3366;
+      --b6: rgba(255,255,255,0.06); --b8: rgba(255,255,255,0.08);
+      --b15: rgba(255,255,255,0.15); --b40: rgba(255,255,255,0.40);
+    }
+    html { font-size: 16px; }
+    body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .lime { color: var(--lime); } .blue { color: var(--blue); }
+    .muted { color: rgba(255,255,255,0.35); }
+    .flex { display: flex; } .items-center { align-items: center; }
+    .gap-1 { gap: 4px; } .gap-2 { gap: 8px; } .gap-3 { gap: 12px; } .gap-4 { gap: 16px; }
+    .justify-between { justify-content: space-between; }
+    .text-xs { font-size: 11px; } .text-sm { font-size: 13px; }
+    .font-semibold { font-weight: 600; } .font-bold { font-weight: 700; }
+    .w-full { width: 100%; } .shrink-0 { flex-shrink: 0; }
+
+    /* ── Icon system (Lucide, monochrome / brand color, zero emoji) ── */
+    .ico { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 16px; height: 16px; line-height: 0; }
+    .ico svg { width: 100%; height: 100%; display: block; }
+    .ico-xs { width: 12px; height: 12px; } .ico-sm { width: 14px; height: 14px; }
+    .ico-lg { width: 18px; height: 18px; } .ico-xl { width: 22px; height: 22px; } .ico-2xl { width: 30px; height: 30px; }
+
+    /* ── Brand logo ── */
+    .brand { display: inline-flex; align-items: center; line-height: 0; }
+    .brand-img { display: block; width: auto; }
+    .brand-fallback { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; color: #fff; letter-spacing: 0.3px; text-transform: lowercase; line-height: 1; white-space: nowrap; }
+    .brand-fallback b { color: var(--lime); font-weight: 800; }
+
+    .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 99px; font-size: 10px; font-weight: 600; border: 1px solid transparent; }
+    .badge .ico { width: 11px; height: 11px; }
+    .badge-default  { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.45); border-color: rgba(255,255,255,0.1); }
+    .badge-success  { background: rgba(0,255,136,0.12);  color: var(--green); border-color: rgba(0,255,136,0.22); }
+    .badge-warning  { background: rgba(255,215,0,0.12);  color: var(--amber); border-color: rgba(255,215,0,0.22); }
+    .badge-danger   { background: rgba(255,51,102,0.12); color: var(--red); border-color: rgba(255,51,102,0.22); }
+    .badge-lime     { background: rgba(204,255,0,0.15);  color: var(--lime); border-color: rgba(204,255,0,0.2); }
+    .badge-blue     { background: rgba(0,102,255,0.16);  color: #6ba5ff; border-color: rgba(0,102,255,0.3); }
+    .badge-checkin  { background: rgba(0,229,255,0.12);  color: var(--cyan); border-color: rgba(0,229,255,0.22); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; font-weight: 600; border-radius: 10px; cursor: pointer; padding: 0 16px; height: 36px; border: none; transition: all 0.12s; flex-shrink: 0; font-family: 'Inter', sans-serif; }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary  { background: var(--lime); color: #000; box-shadow: 0 0 18px rgba(204,255,0,0.2); }
+    .btn-primary:hover { background: #d9ff33; }
+    .btn-accent   { background: var(--blue); color: #fff; font-weight: 700; box-shadow: 0 0 18px rgba(0,102,255,0.25); }
+    .btn-accent:hover { filter: brightness(1.12); }
+    .btn-outline  { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.18); }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.35); }
+    .btn-ghost    { background: transparent; color: rgba(255,255,255,0.5); border: none; }
+    .btn-ghost:hover { color: #fff; background: rgba(255,255,255,0.05); }
+    .btn-sm { height: 30px; padding: 0 12px; font-size: 12px; border-radius: 8px; }
+    .btn-sm .ico { width: 13px; height: 13px; }
+    .btn-lg { height: 44px; padding: 0 24px; font-size: 15px; border-radius: 12px; }
+    .input { width: 100%; height: 40px; padding: 0 12px; border-radius: 10px; background: var(--card2); border: 1px solid rgba(255,255,255,0.08); color: #fff; font-size: 13px; outline: none; font-family: 'Inter', sans-serif; transition: border-color 0.15s, box-shadow 0.15s; }
+    .input:focus { border-color: rgba(204,255,0,0.5); box-shadow: 0 0 0 3px rgba(204,255,0,0.08); }
+    .input::placeholder { color: rgba(255,255,255,0.2); }
+    .select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 32px; }
+    .textarea { width: 100%; padding: 10px 12px; border-radius: 10px; background: var(--card2); border: 1px solid rgba(255,255,255,0.08); color: #fff; font-size: 13px; outline: none; font-family: 'Inter', sans-serif; resize: none; transition: border-color 0.15s; }
+    .textarea:focus { border-color: rgba(204,255,0,0.5); }
+    .field-label { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.6); margin-bottom: 6px; display: block; }
+    .field-label .req { color: var(--red); margin-left: 2px; }
+    .card { background: var(--card); border: 1px solid var(--b6); border-radius: 16px; }
+    .progress-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 99px; overflow: hidden; }
+    .progress-fill  { height: 100%; border-radius: 99px; transition: width 0.4s; }
+    .metric-card { background: var(--card); border: 1px solid var(--b6); border-radius: 18px; padding: 20px; }
+    .metric-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .metric-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .metric-value { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 800; color: #fff; line-height: 1; margin-top: 6px; }
+    .metric-delta { font-size: 11px; color: var(--green); display: flex; align-items: center; gap: 3px; margin-top: 4px; }
+    #main-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,10,10,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); height: 52px; display: flex; align-items: center; padding: 0 20px; gap: 10px; }
+    .nav-screens { display: flex; gap: 2px; overflow-x: auto; flex: 1; padding: 0 8px; }
+    .nav-screens::-webkit-scrollbar { display: none; }
+    .nav-btn { flex-shrink: 0; display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 7px; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.35); background: transparent; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.12s; white-space: nowrap; }
+    .nav-btn:hover { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.05); }
+    .nav-btn.active { color: var(--lime); background: rgba(204,255,0,0.1); }
+    .nav-tag { font-size: 9px; padding: 1px 5px; border-radius: 4px; font-weight: 600; letter-spacing: 0.04em; }
+    .tag-pub { background: rgba(0,102,255,0.16); color: #6ba5ff; }
+    .tag-adm { background: rgba(204,255,0,0.12); color: var(--lime); }
+    .tag-mob { background: rgba(0,229,255,0.12); color: var(--cyan); }
+    .screen { display: none; padding-top: 52px; min-height: 100vh; }
+    .screen.active { display: block; }
+    .admin-wrap { display: flex; height: calc(100vh - 52px); overflow: hidden; }
+    .sidebar { width: 212px; background: #111; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; flex-shrink: 0; }
+    .sidebar-logo { padding: 16px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; }
+    .sidebar-nav { flex: 1; padding: 10px 8px; display: flex; flex-direction: column; gap: 2px; }
+    .sidebar-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 10px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.32); cursor: pointer; transition: all 0.12s; background: transparent; border: none; font-family: 'Inter', sans-serif; width: 100%; text-align: left; }
+    .sidebar-item:hover { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.04); }
+    .sidebar-item.active { color: var(--lime); background: rgba(204,255,0,0.1); }
+    .sidebar-dot { width: 5px; height: 5px; border-radius: 99px; background: var(--lime); margin-left: auto; }
+    .sidebar-footer { padding: 8px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .sidebar-footer .sidebar-item { color: rgba(255,255,255,0.2); }
+    .sidebar-footer .sidebar-item:hover { color: var(--red); background: rgba(255,51,102,0.06); }
+    .main-content { flex: 1; overflow-y: auto; }
+    .topbar { height: 52px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; gap: 8px; }
+    .avatar { width: 28px; height: 28px; border-radius: 99px; background: linear-gradient(135deg, var(--lime), var(--cyan)); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #000; }
+    .page-content { padding: 28px; }
+    .page-header { margin-bottom: 28px; }
+    .page-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 4px; }
+    .page-title { font-size: 28px; }
+    .table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .table th { padding: 11px 16px; text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.22); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(255,255,255,0.75); vertical-align: middle; }
+    .table tr:last-child td { border-bottom: none; }
+    .table tbody tr:hover td { background: rgba(255,255,255,0.018); }
+    .table td.name { font-weight: 600; color: #fff; }
+    .table td.mono-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.4); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 16px 0; }
+    .callout { border-radius: 10px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.5; }
+    .callout-lime { background: rgba(204,255,0,0.07); border: 1px solid rgba(204,255,0,0.14); color: rgba(255,255,255,0.6); }
+    .icon-sm { width: 14px; height: 14px; flex-shrink: 0; }
+    .journey-step { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; border-radius: 16px; cursor: pointer; width: 140px; transition: all 0.15s; background: none; border: none; font-family: 'Inter', sans-serif; }
+    .journey-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .journey-arrow { flex-shrink: 0; display: flex; align-items: center; padding: 0 4px; }
+    .screen-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+    .screen-card { background: #141414; border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 18px; text-align: left; cursor: pointer; transition: all 0.15s; width: 100%; font-family: 'Inter', sans-serif; }
+    .screen-card:hover { border-color: rgba(255,255,255,0.14); background: #1a1a1a; }
+    select option { background: #1a1a1a; color: #fff; }
+    .ev-tab { background: transparent; border: none; color: rgba(255,255,255,0.4); font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 7px; cursor: pointer; transition: all 0.12s; }
+    .ev-tab:hover { color: rgba(255,255,255,0.75); }
+    .ev-tab.active { background: var(--lime); color: #000; }
+    .fin-range { background: transparent; border: none; color: rgba(255,255,255,0.4); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 6px; cursor: pointer; transition: all 0.12s; }
+    .fin-range:hover { color: rgba(255,255,255,0.75); }
+    .fin-range.active { background: var(--lime); color: #000; }
+    .chart-bar { flex: 1; border-radius: 3px 3px 0 0; min-height: 2px; transition: height 0.3s, background 0.2s; }
+    .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a class="brand" href="#" onclick="showScreen('journey');return false;" data-brand="20"></a>
+  <div class="nav-screens">
+    <button class="nav-btn active" onclick="showScreen('journey')"><span class="ico ico-sm" data-icon="map"></span> Jornada</button>
+    <button class="nav-btn" onclick="showScreen('public-event')"><span class="nav-tag tag-pub">PÚBLICO</span>Página do evento</button>
+    <button class="nav-btn" onclick="showScreen('confirmation')"><span class="nav-tag tag-pub">PÚBLICO</span>Confirmação</button>
+    <button class="nav-btn" onclick="showScreen('login')"><span class="nav-tag tag-adm">ADMIN</span>Login</button>
+    <button class="nav-btn" onclick="showScreen('onboarding')"><span class="nav-tag tag-adm">ADMIN</span>Onboarding</button>
+    <button class="nav-btn" onclick="showScreen('dashboard')"><span class="nav-tag tag-adm">ADMIN</span>Dashboard</button>
+    <button class="nav-btn" onclick="showScreen('events-list')"><span class="nav-tag tag-adm">ADMIN</span>Eventos</button>
+    <button class="nav-btn" onclick="showScreen('event-detail')"><span class="nav-tag tag-adm">ADMIN</span>Detalhe evento</button>
+    <button class="nav-btn" onclick="showScreen('create-event')"><span class="nav-tag tag-adm">ADMIN</span>Criar evento</button>
+    <button class="nav-btn" onclick="showScreen('checkin')"><span class="nav-tag tag-mob">MOBILE</span>Check-in</button>
+    <button class="nav-btn" onclick="showScreen('participants')"><span class="nav-tag tag-adm">ADMIN</span>Participantes</button>
+    <button class="nav-btn" onclick="showScreen('financeiro')"><span class="nav-tag tag-adm">ADMIN</span>Financeiro</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════ SCREEN: JOURNEY MAP -->
+<div id="screen-journey" class="screen active">
+  <div style="max-width:1100px;margin:0 auto;padding:48px 24px 80px">
+
+    <div style="margin-bottom:60px">
+      <p style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:10px">Demo de produto · Maio 2026</p>
+      <h1 style="font-size:clamp(48px,7vw,80px);color:#fff;margin-bottom:16px">DOIS PERFIS,<br><span style="color:var(--lime)">UMA PLATAFORMA</span></h1>
+      <p style="font-size:14px;color:rgba(255,255,255,0.38);max-width:520px;line-height:1.6">O atleta nunca cria conta — acessa o link, se inscreve e recebe o QR. O organizador gerencia tudo pelo painel admin.</p>
+      <div style="display:flex;gap:16px;margin-top:24px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="showScreen('public-event')">
+          <span class="ico ico-sm" data-icon="arrow-right"></span> Ver jornada do atleta
+        </button>
+        <button class="btn btn-outline" onclick="showScreen('login')">
+          <span class="ico ico-sm" data-icon="lock"></span> Ver painel do organizador
+        </button>
+      </div>
+    </div>
+
+    <!-- Athlete flow -->
+    <div style="margin-bottom:52px">
+      <div class="flex items-center gap-3" style="margin-bottom:20px">
+        <div class="metric-icon" style="background:rgba(0,102,255,0.12);color:var(--blue)">
+          <span class="ico ico-lg" data-icon="check-circle"></span>
+        </div>
+        <div>
+          <h2 style="font-size:22px;color:#fff">JORNADA DO ATLETA</h2>
+          <p class="text-xs muted" style="margin-top:2px">Mobile-first · Sem cadastro · Formulário inline · QR code por e-mail</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;overflow-x:auto;padding-bottom:8px">
+        <button class="journey-step" onclick="showScreen('public-event')" style="border:1px solid rgba(0,102,255,0.15);background:rgba(0,102,255,0.04)" onmouseover="this.style.borderColor='rgba(0,102,255,0.4)';this.style.background='rgba(0,102,255,0.1)'" onmouseout="this.style.borderColor='rgba(0,102,255,0.15)';this.style.background='rgba(0,102,255,0.04)'">
+          <div class="journey-icon" style="background:rgba(0,102,255,0.12);color:var(--blue)"><span class="ico ico-lg" data-icon="link"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Recebe o link</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">/e/:slug</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(0,102,255,0.25)"></div><span class="ico ico-xs" style="color:rgba(0,102,255,0.5)" data-icon="chevron-right"></span></div>
+        <button class="journey-step" onclick="showScreen('public-event')" style="border:1px solid rgba(0,102,255,0.15);background:rgba(0,102,255,0.04)" onmouseover="this.style.borderColor='rgba(0,102,255,0.4)';this.style.background='rgba(0,102,255,0.1)'" onmouseout="this.style.borderColor='rgba(0,102,255,0.15)';this.style.background='rgba(0,102,255,0.04)'">
+          <div class="journey-icon" style="background:rgba(0,102,255,0.12);color:var(--blue)"><span class="ico ico-lg" data-icon="file-text"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Vê o evento</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Hero + info</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(0,102,255,0.25)"></div><span class="ico ico-xs" style="color:rgba(0,102,255,0.5)" data-icon="chevron-right"></span></div>
+        <button class="journey-step" onclick="showScreen('public-event')" style="border:1px solid rgba(0,102,255,0.15);background:rgba(0,102,255,0.04)" onmouseover="this.style.borderColor='rgba(0,102,255,0.4)';this.style.background='rgba(0,102,255,0.1)'" onmouseout="this.style.borderColor='rgba(0,102,255,0.15)';this.style.background='rgba(0,102,255,0.04)'">
+          <div class="journey-icon" style="background:rgba(0,102,255,0.12);color:var(--blue)"><span class="ico ico-lg" data-icon="edit-3"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Preenche form</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Dados pessoais</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(0,102,255,0.25)"></div><span class="ico ico-xs" style="color:rgba(0,102,255,0.5)" data-icon="chevron-right"></span></div>
+        <button class="journey-step" onclick="showScreen('confirmation')" style="border:1px solid rgba(0,102,255,0.15);background:rgba(0,102,255,0.04)" onmouseover="this.style.borderColor='rgba(0,102,255,0.4)';this.style.background='rgba(0,102,255,0.1)'" onmouseout="this.style.borderColor='rgba(0,102,255,0.15)';this.style.background='rgba(0,102,255,0.04)'">
+          <div class="journey-icon" style="background:rgba(0,102,255,0.12);color:var(--blue)"><span class="ico ico-lg" data-icon="trophy"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Confirmação</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Tela de sucesso</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(0,102,255,0.25)"></div><span class="ico ico-xs" style="color:rgba(0,102,255,0.5)" data-icon="chevron-right"></span></div>
+        <button class="journey-step" onclick="showScreen('confirmation')" style="border:1px solid rgba(0,102,255,0.15);background:rgba(0,102,255,0.04)" onmouseover="this.style.borderColor='rgba(0,102,255,0.4)';this.style.background='rgba(0,102,255,0.1)'" onmouseout="this.style.borderColor='rgba(0,102,255,0.15)';this.style.background='rgba(0,102,255,0.04)'">
+          <div class="journey-icon" style="background:rgba(0,102,255,0.12);color:var(--blue)"><span class="ico ico-lg" data-icon="mail"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">E-mail + QR</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Código de check-in</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- Organizer flow -->
+    <div style="margin-bottom:52px">
+      <div class="flex items-center gap-3" style="margin-bottom:20px">
+        <div class="metric-icon" style="background:rgba(204,255,0,0.1);color:var(--lime)">
+          <span class="ico ico-lg" data-icon="layout-dashboard"></span>
+        </div>
+        <div>
+          <h2 style="font-size:22px;color:#fff">JORNADA DO ORGANIZADOR</h2>
+          <p class="text-xs muted" style="margin-top:2px">Desktop-first · Painel admin · Dados densos · Gestão completa</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;overflow-x:auto;padding-bottom:8px">
+        <button class="journey-step" onclick="showScreen('login')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div class="journey-icon" style="background:rgba(204,255,0,0.1);color:var(--lime)"><span class="ico ico-lg" data-icon="lock"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Login</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">/login</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(204,255,0,0.2)"></div><span class="ico ico-xs" style="color:rgba(204,255,0,0.45)" data-icon="chevron-right"></span></div>
+        <button class="journey-step" onclick="showScreen('onboarding')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div class="journey-icon" style="background:rgba(204,255,0,0.1);color:var(--lime)"><span class="ico ico-lg" data-icon="building-2"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Onboarding</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Org + banco</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(204,255,0,0.2)"></div><span class="ico ico-xs" style="color:rgba(204,255,0,0.45)" data-icon="chevron-right"></span></div>
+        <button class="journey-step" onclick="showScreen('dashboard')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div class="journey-icon" style="background:rgba(204,255,0,0.1);color:var(--lime)"><span class="ico ico-lg" data-icon="layout-dashboard"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Dashboard</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Visão geral</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(204,255,0,0.2)"></div><span class="ico ico-xs" style="color:rgba(204,255,0,0.45)" data-icon="chevron-right"></span></div>
+        <button class="journey-step" onclick="showScreen('create-event')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div class="journey-icon" style="background:rgba(204,255,0,0.1);color:var(--lime)"><span class="ico ico-lg" data-icon="plus"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Criar evento</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">/events/new</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(204,255,0,0.2)"></div><span class="ico ico-xs" style="color:rgba(204,255,0,0.45)" data-icon="chevron-right"></span></div>
+        <button class="journey-step" onclick="showScreen('event-detail')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div class="journey-icon" style="background:rgba(204,255,0,0.1);color:var(--lime)"><span class="ico ico-lg" data-icon="settings"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Gerenciar</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">/events/:id</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(204,255,0,0.2)"></div><span class="ico ico-xs" style="color:rgba(204,255,0,0.45)" data-icon="chevron-right"></span></div>
+        <button class="journey-step" onclick="showScreen('checkin')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div class="journey-icon" style="background:rgba(204,255,0,0.1);color:var(--lime)"><span class="ico ico-lg" data-icon="qr-code"></span></div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Check-in</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Dia do evento</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- All screens grid -->
+    <div>
+      <h2 style="font-size:22px;color:#fff;margin-bottom:4px">TODAS AS TELAS</h2>
+      <p class="text-sm muted" style="margin-bottom:20px">Clique para navegar direto para qualquer tela</p>
+      <div class="screen-grid">
+        <button class="screen-card" onclick="showScreen('public-event')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:#6ba5ff" data-icon="globe"></span><span class="badge badge-blue">PÚBLICO</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Página do evento</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('confirmation')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:#6ba5ff" data-icon="check-circle"></span><span class="badge badge-blue">PÚBLICO</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Confirmação</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('login')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:var(--lime)" data-icon="lock"></span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Login</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('onboarding')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:var(--lime)" data-icon="building-2"></span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Onboarding</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('dashboard')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:var(--lime)" data-icon="layout-dashboard"></span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Dashboard</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('events-list')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:var(--lime)" data-icon="calendar"></span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Lista de eventos</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('create-event')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:var(--lime)" data-icon="plus"></span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Criar evento</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('event-detail')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:var(--lime)" data-icon="settings"></span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Detalhe do evento</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('checkin')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:var(--cyan)" data-icon="qr-code"></span><span class="badge badge-checkin">MOBILE</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Check-in</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('participants')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:var(--lime)" data-icon="users"></span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Participantes</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('financeiro')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span class="ico ico-xl" style="color:var(--lime)" data-icon="dollar-sign"></span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Financeiro</p>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: PUBLIC EVENT -->
+<div id="screen-public-event" class="screen">
+  <div style="background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:52px;z-index:10">
+    <div style="max-width:900px;margin:0 auto;padding:0 16px;height:44px;display:flex;align-items:center;justify-content:space-between">
+      <button onclick="showScreen('journey')" style="font-size:12px;color:rgba(255,255,255,0.35);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.35)'"><span class="ico ico-xs" data-icon="arrow-left"></span> Jornada</button>
+      <span class="mono" style="font-size:10px;color:rgba(255,255,255,0.18)">/e/corrida-das-pedras-2026</span>
+      <button onclick="showScreen('login')" class="btn btn-ghost btn-sm">Admin <span class="ico ico-xs" data-icon="arrow-right"></span></button>
+    </div>
+  </div>
+  <div style="position:relative;height:360px;overflow:hidden;background:#0d0d0d">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=1200&h=520&fit=crop&auto=format" alt="Atletas em corrida de rua" loading="lazy" />
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0.35) 0%,rgba(10,10,10,0.55) 45%,rgba(10,10,10,0.96) 100%)"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 20px">
+      <div style="max-width:900px;margin:0 auto">
+        <div class="flex gap-2" style="margin-bottom:12px">
+          <span class="badge badge-success">Inscrições abertas</span>
+          <span class="badge badge-warning">13 vagas restantes</span>
+        </div>
+        <h1 style="font-size:clamp(40px,7vw,68px);color:#fff;margin-bottom:10px;text-shadow:0 2px 24px rgba(0,0,0,0.5)">CORRIDA DAS<br>PEDRAS 2026</h1>
+        <div class="flex gap-4" style="flex-wrap:wrap">
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);display:inline-flex;align-items:center;gap:6px"><span class="ico ico-sm" style="color:var(--lime)" data-icon="calendar"></span> 23 de agosto de 2026</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);display:inline-flex;align-items:center;gap:6px"><span class="ico ico-sm" style="color:var(--lime)" data-icon="clock"></span> 07:00h</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);display:inline-flex;align-items:center;gap:6px"><span class="ico ico-sm" style="color:var(--lime)" data-icon="map-pin"></span> Parque Ibirapuera, São Paulo — SP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:28px 20px 60px">
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:28px">
+      <div>
+        <h2 style="font-size:18px;margin-bottom:10px">SOBRE O EVENTO</h2>
+        <p class="text-sm" style="color:rgba(255,255,255,0.48);line-height:1.7;margin-bottom:24px">A Corrida das Pedras é um dos eventos mais tradicionais de São Paulo, percorrendo os caminhos do Parque Ibirapuera. Em sua 8ª edição, o evento oferece percursos de 5km, 10km e 21km com chip de cronometragem e kit completo do atleta.</p>
+        <h2 style="font-size:18px;margin-bottom:12px">CATEGORIAS</h2>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center;background:#141414;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 16px">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-right:8px">5km</span><span class="text-sm" style="color:rgba(255,255,255,0.38)">Recreativa — sem chip</span></div>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--lime)">R$ 89</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:#141414;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 16px">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-right:8px">10km</span><span class="text-sm" style="color:rgba(255,255,255,0.38)">Competitivo — chip de cronometragem</span></div>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--lime)">R$ 149</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:#141414;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 16px">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-right:8px">21km</span><span class="text-sm" style="color:rgba(255,255,255,0.38)">Meia maratona — kit premium</span></div>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--lime)">R$ 189</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="padding:18px;margin-bottom:12px">
+          <p class="font-bold text-sm" style="margin-bottom:12px">Lotes</p>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:9px;border:1px solid rgba(255,255,255,0.05);background:transparent;opacity:0.45">
+              <div><p style="font-size:12px;font-weight:600;color:#fff">Lote 1 — Early Bird</p><p style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px">Esgotado</p></div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:#fff">R$ 89</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:9px;border:1px solid rgba(204,255,0,0.28);background:rgba(204,255,0,0.05)">
+              <div><p style="font-size:12px;font-weight:600;color:#fff">Lote 2 — Regular</p><p style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px">Ativo · até 31/07</p></div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:#fff">R$ 149</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:9px;border:1px solid rgba(255,255,255,0.05);background:transparent;opacity:0.45">
+              <div><p style="font-size:12px;font-weight:600;color:#fff">Lote 3 — Last Call</p><p style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px">A partir de 01/08</p></div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:#fff">R$ 189</span>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span class="text-xs muted">Vagas disponíveis</span><span class="text-xs mono" style="color:var(--lime)">97%</span></div>
+            <div class="progress-track"><div class="progress-fill" style="width:97%;background:var(--lime)"></div></div>
+          </div>
+        </div>
+        <div class="card" style="padding:18px">
+          <p class="font-bold text-sm" style="margin-bottom:14px;display:flex;align-items:center;gap:7px"><span class="ico ico-sm" style="color:var(--lime)" data-icon="users"></span> Fazer inscrição</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div><label class="field-label">Nome completo <span class="req">*</span></label><input class="input" placeholder="Ana Paula Ferreira" /></div>
+            <div><label class="field-label">E-mail <span class="req">*</span></label><input class="input" type="email" placeholder="ana@gmail.com" /></div>
+            <div class="grid-2" style="gap:8px">
+              <div><label class="field-label">CPF <span class="req">*</span></label><input class="input" placeholder="000.000.000-00" /></div>
+              <div><label class="field-label">Telefone</label><input class="input" placeholder="(11) 99999-9999" /></div>
+            </div>
+            <div><label class="field-label">Categoria <span class="req">*</span></label>
+              <select class="input select"><option>10km — R$ 149,00</option><option>5km — R$ 89,00</option><option>21km — R$ 189,00</option></select>
+            </div>
+            <button class="btn btn-accent btn-lg w-full" onclick="showScreen('confirmation')" style="margin-top:4px"><span class="ico ico-sm" data-icon="zap"></span> Confirmar inscrição — R$ 149,00</button>
+            <p style="font-size:10px;text-align:center;color:rgba(255,255,255,0.2)">Seus dados são protegidos e usados apenas para este evento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,0.06);padding:14px;text-align:center">
+    <p style="font-size:11px;color:rgba(255,255,255,0.2);display:inline-flex;align-items:center;gap:6px">Inscrições gerenciadas por <span class="brand" data-brand="13"></span></p>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: CONFIRMATION -->
+<div id="screen-confirmation" class="screen">
+  <div style="min-height:calc(100vh - 52px);display:flex;align-items:center;justify-content:center;padding:24px">
+    <div style="max-width:420px;width:100%;text-align:center">
+      <div style="position:relative;display:inline-flex;margin-bottom:24px">
+        <div style="width:80px;height:80px;border-radius:99px;background:rgba(0,255,136,0.1);display:flex;align-items:center;justify-content:center;color:var(--green)"><span class="ico ico-2xl" data-icon="check-circle"></span></div>
+        <div style="position:absolute;bottom:-4px;right:-4px;width:32px;height:32px;border-radius:99px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff"><span class="ico ico-sm" data-icon="zap"></span></div>
+      </div>
+      <h1 style="font-size:46px;color:#fff;margin-bottom:8px">INSCRIÇÃO<br>CONFIRMADA!</h1>
+      <p class="text-sm muted" style="margin-bottom:24px">Boa, Ana Paula! Você está inscrita na Corrida das Pedras 2026.</p>
+      <div class="card" style="padding:20px;text-align:left;margin-bottom:16px">
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px">
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.35)">Evento</span><span style="font-weight:500;color:#fff">Corrida das Pedras 2026</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.35)">Categoria</span><span style="font-weight:500;color:#fff">10km — Competitivo</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.35)">Data</span><span style="font-weight:500;color:#fff">23 de agosto · 07:00h</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.35)">Local</span><span style="font-weight:500;color:#fff">Parque Ibirapuera, SP</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.35)">Valor pago</span><span style="font-weight:500;color:#fff">R$ 149,00</span></div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;display:flex;flex-direction:column;align-items:center;gap:8px">
+          <p style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25)">QR Code de check-in</p>
+          <div style="width:110px;height:110px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#0a0a0a"><span class="ico" style="width:78px;height:78px" data-icon="qr-code"></span></div>
+          <code class="font-bold mono" style="color:var(--lime);font-size:14px">#INS-0042</code>
+        </div>
+      </div>
+      <div class="callout callout-lime" style="margin-bottom:20px;text-align:left">
+        <span class="ico ico-sm" style="color:var(--lime);margin-top:1px" data-icon="mail"></span>
+        <p>Enviamos a confirmação e o QR code para <strong style="color:#fff">ana@gmail.com</strong>. Verifique sua caixa de entrada.</p>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-outline" style="flex:1" onclick="showScreen('public-event')"><span class="ico ico-xs" data-icon="arrow-left"></span> Ver evento</button>
+        <button class="btn btn-accent" style="flex:1" onclick="showScreen('journey')"><span class="ico ico-xs" data-icon="flag"></span> Início</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: LOGIN -->
+<div id="screen-login" class="screen">
+  <div style="min-height:calc(100vh - 52px);display:flex">
+    <div style="flex:1;display:flex;position:relative;overflow:hidden;background:#090909">
+      <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=900&h=1100&fit=crop&auto=format" alt="Atleta correndo ao amanhecer" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18" />
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(204,255,0,0.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(0,229,255,0.07) 0%,transparent 50%)"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.4),#0a0a0a)"></div>
+      <div style="position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;padding:40px;max-width:480px">
+        <span class="brand" data-brand="26"></span>
+        <div>
+          <h2 style="font-size:48px;color:#fff;margin-bottom:14px">GERENCIE SEUS<br><span style="color:var(--lime)">EVENTOS</span><br>COM PRECISÃO</h2>
+          <p class="text-sm" style="color:rgba(255,255,255,0.38);line-height:1.7">A plataforma para organizadores de eventos endurance. Inscrições, check-in e financeiro em um único lugar.</p>
+          <div style="display:flex;gap:24px;margin-top:20px">
+            <div><p style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff">1.847</p><p style="font-size:11px;color:rgba(255,255,255,0.3)">Inscrições</p></div>
+            <div><p style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff">12</p><p style="font-size:11px;color:rgba(255,255,255,0.3)">Eventos ativos</p></div>
+            <div><p style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff">R$ 38K</p><p style="font-size:11px;color:rgba(255,255,255,0.3)">Receita/mês</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width:400px;background:#0a0a0a;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px;flex-shrink:0">
+      <div style="width:100%;max-width:320px">
+        <h1 style="font-size:30px;color:#fff;margin-bottom:4px">Entrar no painel</h1>
+        <p class="text-sm muted" style="margin-bottom:28px">Acesso exclusivo para organizadores</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><label class="field-label">E-mail</label><input class="input" type="email" value="rafael@race83.com" /></div>
+          <div><label class="field-label">Senha</label><input class="input" type="password" value="••••••••" /></div>
+          <button class="btn btn-primary btn-lg w-full" onclick="showScreen('dashboard')">Entrar</button>
+        </div>
+        <button style="width:100%;text-align:center;font-size:12px;color:var(--lime);background:none;border:none;cursor:pointer;margin-top:14px">Esqueci minha senha</button>
+        <div class="divider"></div>
+        <p class="text-xs" style="text-align:center;color:rgba(255,255,255,0.2)">Não tem acesso? Fale com a equipe Ticket Moove.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: ONBOARDING -->
+<div id="screen-onboarding" class="screen">
+  <div style="min-height:calc(100vh - 52px);display:flex;align-items:center;justify-content:center;padding:24px">
+    <div style="width:100%;max-width:420px">
+      <div class="flex items-center" style="justify-content:center;margin-bottom:32px">
+        <span class="brand" data-brand="24"></span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:28px">
+        <div id="ob-dot-1" style="width:32px;height:32px;border-radius:99px;background:var(--lime);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">1</div>
+        <div id="ob-line" style="width:60px;height:1px;background:rgba(255,255,255,0.1)"></div>
+        <div id="ob-dot-2" style="width:32px;height:32px;border-radius:99px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:rgba(255,255,255,0.3)">2</div>
+      </div>
+
+      <!-- STEP 1 — Organização -->
+      <div id="ob-step-1" class="card" style="padding:28px">
+        <h2 style="font-size:24px;margin-bottom:4px">DADOS DA ORGANIZAÇÃO</h2>
+        <p class="text-xs muted" style="margin-bottom:20px">Passo 1 de 2 · Como você quer aparecer para os atletas</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><label class="field-label">Nome da organização <span class="req">*</span></label><input class="input" value="Race83 Eventos" /></div>
+          <div>
+            <label class="field-label">Slug (URL pública) <span class="req">*</span></label>
+            <input class="input" value="race83" />
+            <p style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:5px">ticketmoove.com.br/<strong style="color:var(--lime)">race83</strong></p>
+          </div>
+          <div><label class="field-label">CNPJ <span class="req">*</span></label><input class="input" placeholder="00.000.000/0001-00" /></div>
+          <button class="btn btn-primary btn-lg w-full" onclick="onboardingStep(2)">Próximo <span class="ico ico-xs" data-icon="arrow-right"></span></button>
+        </div>
+      </div>
+
+      <!-- STEP 2 — Dados bancários -->
+      <div id="ob-step-2" class="card" style="padding:28px;display:none">
+        <h2 style="font-size:24px;margin-bottom:4px">DADOS BANCÁRIOS</h2>
+        <p class="text-xs muted" style="margin-bottom:16px">Passo 2 de 2 · Para receber os repasses das inscrições</p>
+        <div class="callout callout-lime" style="margin-bottom:18px">
+          <span class="ico icon-sm" style="color:var(--lime)" data-icon="info"></span>
+          <span>Os repasses são feitos em até <strong style="color:#fff">5 dias úteis</strong> após o evento.</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <label class="field-label">Banco <span class="req">*</span></label>
+            <select class="input select">
+              <option value="">Selecione seu banco</option>
+              <option>001 · Banco do Brasil</option>
+              <option>104 · Caixa Econômica Federal</option>
+              <option>237 · Bradesco</option>
+              <option>341 · Itaú Unibanco</option>
+              <option>033 · Santander</option>
+              <option>260 · Nubank</option>
+              <option>077 · Banco Inter</option>
+              <option>336 · C6 Bank</option>
+            </select>
+          </div>
+          <div class="grid-2">
+            <div><label class="field-label">Agência <span class="req">*</span></label><input class="input" placeholder="0001" /></div>
+            <div><label class="field-label">Conta <span class="req">*</span></label><input class="input" placeholder="12345-6" /></div>
+          </div>
+          <div class="flex gap-3" style="margin-top:4px">
+            <button class="btn btn-outline btn-lg" style="flex:0 0 auto" onclick="onboardingStep(1)"><span class="ico ico-xs" data-icon="arrow-left"></span> Voltar</button>
+            <button class="btn btn-primary btn-lg" style="flex:1" onclick="showScreen('dashboard')">Finalizar configuração <span class="ico ico-xs" data-icon="check"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: DASHBOARD -->
+<div id="screen-dashboard" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo"><span class="brand" data-brand="20"></span></div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item active" onclick="showScreen('dashboard')"><span class="ico ico-sm" data-icon="layout-dashboard"></span> Dashboard <span class="sidebar-dot"></span></button>
+        <button class="sidebar-item" onclick="showScreen('events-list')"><span class="ico ico-sm" data-icon="calendar"></span> Eventos</button>
+        <button class="sidebar-item" onclick="showScreen('participants')"><span class="ico ico-sm" data-icon="users"></span> Participantes</button>
+        <button class="sidebar-item" onclick="showScreen('financeiro')"><span class="ico ico-sm" data-icon="dollar-sign"></span> Financeiro</button>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="sidebar-item" onclick="showScreen('login')"><span class="ico ico-sm" data-icon="log-out"></span> Sair</button>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div><span class="text-sm" style="color:rgba(255,255,255,0.45)">Rafael Alexander</span></div>
+      <div class="page-content">
+        <div class="page-header flex justify-between items-center">
+          <div><p class="page-eyebrow">Painel do organizador</p><h1 class="page-title">DASHBOARD</h1></div>
+          <button class="btn btn-primary btn-sm" onclick="showScreen('create-event')"><span class="ico ico-xs" data-icon="plus"></span> Novo evento</button>
+        </div>
+
+        <!-- Métricas -->
+        <div class="grid-4" style="margin-bottom:16px">
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">TOTAL DE EVENTOS</span><div class="metric-icon" style="background:rgba(204,255,0,0.1);color:var(--lime)"><span class="ico ico-sm" data-icon="calendar"></span></div></div>
+            <p class="metric-value">12</p>
+            <p class="metric-delta"><span class="ico ico-xs" data-icon="trending-up"></span> +3 este mês</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">INSCRIÇÕES TOTAIS</span><div class="metric-icon" style="background:rgba(0,102,255,0.12);color:var(--blue)"><span class="ico ico-sm" data-icon="users"></span></div></div>
+            <p class="metric-value">1.847</p>
+            <p class="metric-delta"><span class="ico ico-xs" data-icon="trending-up"></span> +124 esta semana</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">RECEITA DO MÊS</span><div class="metric-icon" style="background:rgba(0,229,255,0.1);color:var(--cyan)"><span class="ico ico-sm" data-icon="banknote"></span></div></div>
+            <p class="metric-value">R$ 38.450</p>
+            <p class="metric-delta"><span class="ico ico-xs" data-icon="trending-up"></span> +18%</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">INSCRIÇÕES HOJE</span><div class="metric-icon" style="background:rgba(255,51,102,0.12);color:var(--red)"><span class="ico ico-sm" data-icon="activity"></span></div></div>
+            <p class="metric-value">47</p>
+            <p class="metric-delta" style="color:var(--red)"><span class="ico ico-xs" data-icon="activity"></span> ao vivo</p>
+          </div>
+        </div>
+
+        <!-- Gráficos: receita + inscrições -->
+        <div class="grid-2" style="margin-bottom:16px">
+          <div class="card" style="padding:18px 20px">
+            <div class="flex justify-between items-center" style="margin-bottom:14px">
+              <div class="flex gap-2 items-center"><span class="ico ico-sm" style="color:var(--lime)" data-icon="banknote"></span><span class="font-semibold text-sm">Receita — últimos 30 dias</span></div>
+              <span class="text-xs" style="color:var(--green)">+18%</span>
+            </div>
+            <div id="dash-revenue-bars" style="display:flex;align-items:flex-end;gap:3px;height:120px"></div>
+            <div class="flex justify-between" style="margin-top:8px"><span class="text-xs muted">01 mai</span><span class="text-xs muted">15 mai</span><span class="text-xs muted">28 mai</span></div>
+          </div>
+          <div class="card" style="padding:18px 20px">
+            <div class="flex gap-2 items-center" style="margin-bottom:14px"><span class="ico ico-sm" style="color:var(--blue)" data-icon="users"></span><span class="font-semibold text-sm">Inscrições por semana</span></div>
+            <div id="dash-signups-bars" style="display:flex;align-items:flex-end;gap:10px;height:120px"></div>
+            <div class="flex justify-between" style="margin-top:8px"><span class="text-xs muted">Sem 1</span><span class="text-xs muted">Sem 2</span><span class="text-xs muted">Sem 3</span><span class="text-xs muted">Sem 4</span></div>
+          </div>
+        </div>
+
+        <!-- Próximos eventos + ações + ocupação -->
+        <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:16px;align-items:start">
+          <div class="card" style="overflow:hidden">
+            <div style="padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center">
+              <div class="flex gap-2 items-center"><span class="ico ico-sm" style="color:var(--lime)" data-icon="zap"></span><span class="font-semibold text-sm">Próximos eventos</span></div>
+              <button onclick="showScreen('events-list')" class="text-xs muted flex items-center gap-1" style="background:none;border:none;cursor:pointer">Ver todos <span class="ico ico-xs" data-icon="chevron-right"></span></button>
+            </div>
+            <ul style="list-style:none">
+              <li style="border-bottom:1px solid rgba(255,255,255,0.04)">
+                <button onclick="showScreen('event-detail')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;width:100%;background:none;border:none;cursor:pointer;transition:background 0.12s" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='none'">
+                  <div style="text-align:left"><p class="font-semibold text-sm flex items-center gap-2" style="color:#fff">Corrida das Pedras 2026 <span class="badge badge-blue">HOJE</span></p><p class="text-xs muted" style="margin-top:3px">387/500 inscrições</p></div>
+                  <div style="text-align:right"><span class="badge badge-success">Confirmado</span><p class="text-xs muted" style="margin-top:5px">23 ago</p></div>
+                </button>
+              </li>
+              <li style="border-bottom:1px solid rgba(255,255,255,0.04)">
+                <button onclick="showScreen('event-detail')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;width:100%;background:none;border:none;cursor:pointer;transition:background 0.12s" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='none'">
+                  <div style="text-align:left"><p class="font-semibold text-sm" style="color:#fff">Triathlon Floripa</p><p class="text-xs muted" style="margin-top:3px">200/200 inscrições</p></div>
+                  <div style="text-align:right"><span class="badge badge-warning">Encerrado</span><p class="text-xs muted" style="margin-top:5px">12 out</p></div>
+                </button>
+              </li>
+              <li style="border-bottom:1px solid rgba(255,255,255,0.04)">
+                <button onclick="showScreen('event-detail')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;width:100%;background:none;border:none;cursor:pointer;transition:background 0.12s" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='none'">
+                  <div style="text-align:left"><p class="font-semibold text-sm" style="color:#fff">Pedal do Vento</p><p class="text-xs muted" style="margin-top:3px">42/300 inscrições</p></div>
+                  <div style="text-align:right"><span class="badge badge-default">Rascunho</span><p class="text-xs muted" style="margin-top:5px">05 nov</p></div>
+                </button>
+              </li>
+              <li>
+                <button onclick="showScreen('event-detail')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;width:100%;background:none;border:none;cursor:pointer;transition:background 0.12s" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='none'">
+                  <div style="text-align:left"><p class="font-semibold text-sm" style="color:#fff">Maratona do Sol</p><p class="text-xs muted" style="margin-top:3px">98/400 inscrições</p></div>
+                  <div style="text-align:right"><span class="badge badge-success">Confirmado</span><p class="text-xs muted" style="margin-top:5px">15 dez</p></div>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <!-- Ações rápidas -->
+            <div class="card" style="overflow:hidden">
+              <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.06)"><span class="page-eyebrow">Ações rápidas</span></div>
+              <div style="padding:6px">
+                <button class="sidebar-item" onclick="showScreen('create-event')" style="justify-content:space-between"><span class="flex items-center gap-3"><span class="ico ico-sm" style="color:var(--lime)" data-icon="plus"></span> Criar novo evento</span><span class="ico ico-xs muted" data-icon="arrow-right"></span></button>
+                <button class="sidebar-item" onclick="showScreen('participants')" style="justify-content:space-between"><span class="flex items-center gap-3"><span class="ico ico-sm" style="color:var(--blue)" data-icon="users"></span> Ver participantes</span><span class="ico ico-xs muted" data-icon="arrow-right"></span></button>
+                <button class="sidebar-item" onclick="showScreen('financeiro')" style="justify-content:space-between"><span class="flex items-center gap-3"><span class="ico ico-sm" style="color:var(--cyan)" data-icon="bar-chart-2"></span> Relatório financeiro</span><span class="ico ico-xs muted" data-icon="arrow-right"></span></button>
+                <button class="sidebar-item" onclick="showScreen('checkin')" style="justify-content:space-between"><span class="flex items-center gap-3"><span class="ico ico-sm" style="color:var(--lime)" data-icon="qr-code"></span> Check-in do evento</span><span class="ico ico-xs muted" data-icon="arrow-right"></span></button>
+              </div>
+            </div>
+            <!-- Ocupação geral -->
+            <div class="card" style="padding:16px 18px">
+              <span class="page-eyebrow">Ocupação geral</span>
+              <div style="display:flex;flex-direction:column;gap:14px;margin-top:14px">
+                <div>
+                  <div class="flex justify-between" style="margin-bottom:6px"><span class="text-xs" style="color:rgba(255,255,255,0.7)">Corrida das Pedras</span><span class="text-xs lime font-semibold">77%</span></div>
+                  <div class="progress-track"><div class="progress-fill" style="width:77%;background:var(--lime)"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between" style="margin-bottom:6px"><span class="text-xs" style="color:rgba(255,255,255,0.7)">Triathlon Floripa</span><span class="text-xs font-semibold" style="color:var(--red)">100%</span></div>
+                  <div class="progress-track"><div class="progress-fill" style="width:100%;background:var(--red)"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between" style="margin-bottom:6px"><span class="text-xs" style="color:rgba(255,255,255,0.7)">Pedal do Vento</span><span class="text-xs lime font-semibold">14%</span></div>
+                  <div class="progress-track"><div class="progress-fill" style="width:14%;background:var(--lime)"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: EVENTS LIST -->
+<div id="screen-events-list" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo"><span class="brand" data-brand="20"></span></div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" onclick="showScreen('dashboard')"><span class="ico ico-sm" data-icon="layout-dashboard"></span> Dashboard</button>
+        <button class="sidebar-item active" onclick="showScreen('events-list')"><span class="ico ico-sm" data-icon="calendar"></span> Eventos <span class="sidebar-dot"></span></button>
+        <button class="sidebar-item" onclick="showScreen('participants')"><span class="ico ico-sm" data-icon="users"></span> Participantes</button>
+        <button class="sidebar-item" onclick="showScreen('financeiro')"><span class="ico ico-sm" data-icon="dollar-sign"></span> Financeiro</button>
+      </nav>
+      <div class="sidebar-footer"><button class="sidebar-item" onclick="showScreen('login')"><span class="ico ico-sm" data-icon="log-out"></span> Sair</button></div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div></div>
+      <div class="page-content">
+        <div class="page-header flex justify-between items-center">
+          <div><h1 class="page-title">EVENTOS</h1><p class="text-sm muted" style="margin-top:4px">5 eventos cadastrados</p></div>
+          <button class="btn btn-primary btn-sm" onclick="showScreen('create-event')"><span class="ico ico-xs" data-icon="plus"></span> Novo evento</button>
+        </div>
+
+        <!-- Filtros + busca -->
+        <div class="flex justify-between items-center gap-3" style="margin-bottom:16px;flex-wrap:wrap">
+          <div class="flex gap-1" id="ev-filters" style="background:var(--card);border:1px solid var(--b6);border-radius:10px;padding:4px">
+            <button class="ev-tab active" data-filter="todos" onclick="filterEvents('todos',this)">Todos</button>
+            <button class="ev-tab" data-filter="confirmado" onclick="filterEvents('confirmado',this)">Publicado</button>
+            <button class="ev-tab" data-filter="rascunho" onclick="filterEvents('rascunho',this)">Rascunho</button>
+            <button class="ev-tab" data-filter="encerrado" onclick="filterEvents('encerrado',this)">Encerrado</button>
+            <button class="ev-tab" data-filter="cancelado" onclick="filterEvents('cancelado',this)">Cancelado</button>
+          </div>
+          <div style="position:relative;flex:1;max-width:320px;min-width:200px">
+            <span class="ico ico-sm" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.3)" data-icon="search"></span>
+            <input class="input" id="ev-search" oninput="searchEvents(this.value)" placeholder="Buscar evento..." style="padding-left:36px" />
+          </div>
+        </div>
+
+        <div class="card" style="overflow:hidden">
+          <table class="table">
+            <thead><tr><th>Evento</th><th>Data</th><th>Cidade</th><th>Vagas</th><th>Inscrições</th><th>Status</th></tr></thead>
+            <tbody id="ev-tbody">
+              <tr data-status="confirmado" data-name="corrida das pedras 2026">
+                <td class="name"><button onclick="showScreen('event-detail')" style="background:none;border:none;cursor:pointer;color:#fff;font-weight:600;font-size:13px;font-family:Inter,sans-serif" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='#fff'">Corrida das Pedras 2026</button></td>
+                <td class="mono-val">23/08/2026</td><td style="color:rgba(255,255,255,0.5);font-size:12px">São Paulo, SP</td><td style="color:rgba(255,255,255,0.4)">500</td>
+                <td style="min-width:140px"><div class="flex items-center gap-2"><span style="font-weight:600;color:#fff;width:34px">387</span><div class="progress-track" style="flex:1"><div class="progress-fill" style="width:77%;background:var(--lime)"></div></div></div></td>
+                <td><span class="badge badge-success">Confirmado</span></td>
+              </tr>
+              <tr data-status="encerrado" data-name="triathlon floripa">
+                <td class="name"><button onclick="showScreen('event-detail')" style="background:none;border:none;cursor:pointer;color:#fff;font-weight:600;font-size:13px;font-family:Inter,sans-serif" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='#fff'">Triathlon Floripa</button></td>
+                <td class="mono-val">12/10/2026</td><td style="color:rgba(255,255,255,0.5);font-size:12px">Florianópolis, SC</td><td style="color:rgba(255,255,255,0.4)">200</td>
+                <td style="min-width:140px"><div class="flex items-center gap-2"><span style="font-weight:600;color:#fff;width:34px">200</span><div class="progress-track" style="flex:1"><div class="progress-fill" style="width:100%;background:var(--red)"></div></div></div></td>
+                <td><span class="badge badge-warning">Encerrado</span></td>
+              </tr>
+              <tr data-status="rascunho" data-name="pedal do vento">
+                <td class="name"><button onclick="showScreen('event-detail')" style="background:none;border:none;cursor:pointer;color:#fff;font-weight:600;font-size:13px;font-family:Inter,sans-serif" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='#fff'">Pedal do Vento</button></td>
+                <td class="mono-val">05/11/2026</td><td style="color:rgba(255,255,255,0.5);font-size:12px">Curitiba, PR</td><td style="color:rgba(255,255,255,0.4)">300</td>
+                <td style="min-width:140px"><div class="flex items-center gap-2"><span style="font-weight:600;color:#fff;width:34px">42</span><div class="progress-track" style="flex:1"><div class="progress-fill" style="width:14%;background:var(--lime)"></div></div></div></td>
+                <td><span class="badge badge-default">Rascunho</span></td>
+              </tr>
+              <tr data-status="confirmado" data-name="maratona do sol">
+                <td class="name"><button onclick="showScreen('event-detail')" style="background:none;border:none;cursor:pointer;color:#fff;font-weight:600;font-size:13px;font-family:Inter,sans-serif" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='#fff'">Maratona do Sol</button></td>
+                <td class="mono-val">15/12/2026</td><td style="color:rgba(255,255,255,0.5);font-size:12px">Fortaleza, CE</td><td style="color:rgba(255,255,255,0.4)">400</td>
+                <td style="min-width:140px"><div class="flex items-center gap-2"><span style="font-weight:600;color:#fff;width:34px">98</span><div class="progress-track" style="flex:1"><div class="progress-fill" style="width:24%;background:var(--lime)"></div></div></div></td>
+                <td><span class="badge badge-success">Confirmado</span></td>
+              </tr>
+              <tr data-status="rascunho" data-name="ultra serra gaúcha">
+                <td class="name"><button onclick="showScreen('event-detail')" style="background:none;border:none;cursor:pointer;color:#fff;font-weight:600;font-size:13px;font-family:Inter,sans-serif" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='#fff'">Ultra Serra Gaúcha</button></td>
+                <td class="mono-val">20/01/2027</td><td style="color:rgba(255,255,255,0.5);font-size:12px">Gramado, RS</td><td style="color:rgba(255,255,255,0.4)">150</td>
+                <td style="min-width:140px"><div class="flex items-center gap-2"><span style="font-weight:600;color:#fff;width:34px">0</span><div class="progress-track" style="flex:1"><div class="progress-fill" style="width:0%;background:var(--lime)"></div></div></div></td>
+                <td><span class="badge badge-default">Rascunho</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: EVENT DETAIL -->
+<div id="screen-event-detail" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo"><span class="brand" data-brand="20"></span></div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" onclick="showScreen('dashboard')"><span class="ico ico-sm" data-icon="layout-dashboard"></span> Dashboard</button>
+        <button class="sidebar-item active" onclick="showScreen('events-list')"><span class="ico ico-sm" data-icon="calendar"></span> Eventos <span class="sidebar-dot"></span></button>
+        <button class="sidebar-item" onclick="showScreen('participants')"><span class="ico ico-sm" data-icon="users"></span> Participantes</button>
+        <button class="sidebar-item" onclick="showScreen('financeiro')"><span class="ico ico-sm" data-icon="dollar-sign"></span> Financeiro</button>
+      </nav>
+      <div class="sidebar-footer"><button class="sidebar-item" onclick="showScreen('login')"><span class="ico ico-sm" data-icon="log-out"></span> Sair</button></div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div></div>
+      <div class="page-content">
+        <button onclick="showScreen('events-list')" style="font-size:12px;color:rgba(255,255,255,0.3);background:none;border:none;cursor:pointer;margin-bottom:16px;display:flex;align-items:center;gap:6px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.3)'"><span class="ico ico-xs" data-icon="arrow-left"></span> Voltar para eventos</button>
+        <div style="position:relative;height:160px;border-radius:16px;overflow:hidden;margin-bottom:24px">
+          <img src="https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=1000&h=320&fit=crop&auto=format" alt="Parque Estadual da Cantareira" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,0.85) 0%,rgba(10,10,10,0.35) 100%)"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px">
+            <div>
+              <div class="flex gap-2 items-center" style="margin-bottom:6px">
+                <h1 style="font-size:26px;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,0.6)">ULTRA TRAIL SÃO PAULO 2026</h1>
+                <span class="badge badge-success">Publicado</span>
+              </div>
+              <p class="text-sm" style="color:rgba(255,255,255,0.7)">15 de junho de 2026 — Parque Estadual da Cantareira, São Paulo/SP</p>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-outline btn-sm"><span class="ico ico-xs" data-icon="external-link"></span> Ver página</button>
+              <button class="btn btn-outline btn-sm"><span class="ico ico-xs" data-icon="edit-3"></span> Editar</button>
+              <button class="btn btn-outline btn-sm" style="border-color:rgba(255,51,102,0.3);color:#ff6b8a">Despublicar</button>
+            </div>
+          </div>
+        </div>
+        <div class="grid-3" style="margin-bottom:20px">
+          <div class="metric-card"><p class="metric-label" style="color:var(--blue)">INSCRIÇÕES</p><p class="metric-value">234</p></div>
+          <div class="metric-card"><p class="metric-label" style="color:var(--lime)">CONFIRMADOS</p><p class="metric-value">198</p></div>
+          <div class="metric-card"><p class="metric-label" style="color:rgba(255,255,255,0.4)">OCUPAÇÃO</p><p class="metric-value">47%</p></div>
+        </div>
+        <div class="card" style="padding:18px;margin-bottom:18px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span class="text-xs muted">Vagas preenchidas</span><span class="mono text-xs" style="color:var(--lime)">47%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:47%;background:var(--lime)"></div></div>
+          <p class="text-xs muted" style="margin-top:6px">234 de 500 vagas confirmadas</p>
+        </div>
+        <div class="card" style="overflow:hidden">
+          <div style="padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between">
+            <div class="flex gap-2 items-center"><span class="ico ico-sm" style="color:var(--lime)" data-icon="users"></span><span class="font-semibold text-sm">Inscrições</span></div>
+            <div class="flex gap-2">
+              <button onclick="showScreen('checkin')" class="btn btn-primary btn-sm"><span class="ico ico-xs" data-icon="qr-code"></span> Check-in</button>
+              <button class="btn btn-outline btn-sm"><span class="ico ico-xs" data-icon="download"></span> CSV</button>
+            </div>
+          </div>
+          <table class="table">
+            <thead><tr><th>Atleta</th><th>E-mail</th><th>CPF</th><th>Status</th><th>Ação</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Carlos Silva</td><td style="color:rgba(255,255,255,0.4);font-size:12px">carlos@gmail.com</td><td class="mono-val">123.456.789-00</td><td><span class="badge badge-success">Confirmado</span></td><td><button onclick="showScreen('checkin')" style="font-size:11px;color:var(--lime);background:none;border:none;cursor:pointer">Check-in</button></td></tr>
+              <tr><td class="name">Ana Santos</td><td style="color:rgba(255,255,255,0.4);font-size:12px">ana@hotmail.com</td><td class="mono-val">987.654.321-00</td><td><span class="badge badge-checkin"><span class="ico ico-xs" data-icon="check"></span> Check-in</span></td><td></td></tr>
+              <tr><td class="name">Pedro Oliveira</td><td style="color:rgba(255,255,255,0.4);font-size:12px">pedro@gmail.com</td><td class="mono-val">456.789.123-00</td><td><span class="badge badge-warning">Pendente</span></td><td></td></tr>
+              <tr><td class="name">Maria Costa</td><td style="color:rgba(255,255,255,0.4);font-size:12px">maria@gmail.com</td><td class="mono-val">321.654.987-00</td><td><span class="badge badge-success">Confirmado</span></td><td><button onclick="showScreen('checkin')" style="font-size:11px;color:var(--lime);background:none;border:none;cursor:pointer">Check-in</button></td></tr>
+              <tr><td class="name">João Ferreira</td><td style="color:rgba(255,255,255,0.4);font-size:12px">joao@gmail.com</td><td class="mono-val">654.321.789-00</td><td><span class="badge badge-checkin"><span class="ico ico-xs" data-icon="check"></span> Check-in</span></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: CREATE EVENT -->
+<div id="screen-create-event" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo"><span class="brand" data-brand="20"></span></div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" onclick="showScreen('dashboard')"><span class="ico ico-sm" data-icon="layout-dashboard"></span> Dashboard</button>
+        <button class="sidebar-item active" onclick="showScreen('events-list')"><span class="ico ico-sm" data-icon="calendar"></span> Eventos <span class="sidebar-dot"></span></button>
+        <button class="sidebar-item" onclick="showScreen('participants')"><span class="ico ico-sm" data-icon="users"></span> Participantes</button>
+        <button class="sidebar-item" onclick="showScreen('financeiro')"><span class="ico ico-sm" data-icon="dollar-sign"></span> Financeiro</button>
+      </nav>
+      <div class="sidebar-footer"><button class="sidebar-item" onclick="showScreen('login')"><span class="ico ico-sm" data-icon="log-out"></span> Sair</button></div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div></div>
+      <div class="page-content" style="max-width:640px">
+        <div class="page-header"><p class="page-eyebrow">Novo evento</p><h1 class="page-title">CRIAR EVENTO</h1></div>
+        <div class="card" style="padding:24px">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div><label class="field-label">Nome do evento <span class="req">*</span></label><input class="input" placeholder="Ex: Corrida das Pedras 2027" /></div>
+            <div><label class="field-label">Descrição</label><textarea class="textarea" rows="3" placeholder="Descreva o evento para os atletas..."></textarea></div>
+            <div class="grid-2">
+              <div><label class="field-label">Data <span class="req">*</span></label><input class="input" type="date" /></div>
+              <div><label class="field-label">Horário</label><input class="input" type="time" value="07:00" /></div>
+            </div>
+            <div><label class="field-label">Local <span class="req">*</span></label><input class="input" placeholder="Ex: Parque Ibirapuera — Portão 10" /></div>
+            <div class="grid-2">
+              <div><label class="field-label">Cidade <span class="req">*</span></label><input class="input" placeholder="São Paulo" /></div>
+              <div><label class="field-label">Estado <span class="req">*</span></label>
+                <select class="input select"><option>SP</option><option>RJ</option><option>MG</option><option>RS</option><option>PR</option></select>
+              </div>
+            </div>
+            <div><label class="field-label">Capacidade (vagas)</label><input class="input" type="number" placeholder="500" /></div>
+            <div style="display:flex;gap:10px;padding-top:4px">
+              <button class="btn btn-primary" onclick="showScreen('event-detail')">Criar evento</button>
+              <button class="btn btn-ghost" onclick="showScreen('events-list')">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: CHECK-IN MOBILE -->
+<div id="screen-checkin" class="screen">
+  <div style="min-height:calc(100vh - 52px);background:#0a0a0a;display:flex;justify-content:center;padding:24px">
+    <div style="width:100%;max-width:380px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px">
+        <span class="brand" data-brand="18"></span>
+        <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.5)">· Check-in · Ultra Trail SP 2026</span>
+      </div>
+      <div class="card" style="padding:16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <p class="text-xs muted" style="margin-bottom:2px">Check-ins realizados</p>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800;color:#fff;line-height:1">89 <span style="font-size:18px;color:rgba(255,255,255,0.3)">/ 234</span></p>
+        </div>
+        <div style="text-align:right">
+          <p class="text-xs muted" style="margin-bottom:4px">38% confirmados</p>
+          <div style="width:80px"><div class="progress-track"><div class="progress-fill" style="width:38%;background:var(--lime)"></div></div></div>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <label class="field-label">Buscar atleta por nome ou CPF</label>
+        <input class="input" placeholder="Carlos Silva ou 123.456..." style="height:46px;font-size:15px" value="Carlos" />
+      </div>
+      <div class="card" style="padding:20px;margin-bottom:14px;border-color:rgba(204,255,0,0.2)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+          <div>
+            <p style="font-size:17px;font-weight:700;color:#fff">Carlos Silva</p>
+            <p class="text-xs muted" style="margin-top:3px">carlos@gmail.com · 123.456.789-00</p>
+          </div>
+          <span class="badge badge-success">Confirmado</span>
+        </div>
+        <div class="divider" style="margin:10px 0"></div>
+        <div class="grid-2" style="margin-bottom:16px;gap:8px">
+          <div><p class="text-xs muted">Inscrição</p><p class="text-sm font-semibold" style="color:#fff;margin-top:2px">#INS-0007</p></div>
+          <div><p class="text-xs muted">Categoria</p><p class="text-sm font-semibold" style="color:#fff;margin-top:2px">10km</p></div>
+          <div><p class="text-xs muted">Lote</p><p class="text-sm font-semibold" style="color:#fff;margin-top:2px">Regular</p></div>
+          <div><p class="text-xs muted">Valor</p><p class="text-sm font-semibold" style="color:#fff;margin-top:2px">R$ 149,00</p></div>
+        </div>
+        <button class="btn btn-primary btn-lg w-full" style="font-size:15px"><span class="ico ico-sm" data-icon="check"></span> Confirmar Check-in</button>
+      </div>
+      <div class="card" style="overflow:hidden">
+        <div style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06)"><p class="text-xs muted">Últimos check-ins</p></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04)">
+          <div><p class="text-sm font-semibold" style="color:#fff">Ana Santos</p><p class="text-xs muted">10km</p></div>
+          <div style="text-align:right"><span class="badge badge-checkin"><span class="ico ico-xs" data-icon="check"></span> Check-in</span><p class="text-xs muted" style="margin-top:4px">há 2 min</p></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04)">
+          <div><p class="text-sm font-semibold" style="color:#fff">João Ferreira</p><p class="text-xs muted">21km</p></div>
+          <div style="text-align:right"><span class="badge badge-checkin"><span class="ico ico-xs" data-icon="check"></span> Check-in</span><p class="text-xs muted" style="margin-top:4px">há 5 min</p></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px">
+          <div><p class="text-sm font-semibold" style="color:#fff">Lucia Alves</p><p class="text-xs muted">5km</p></div>
+          <div style="text-align:right"><span class="badge badge-checkin"><span class="ico ico-xs" data-icon="check"></span> Check-in</span><p class="text-xs muted" style="margin-top:4px">há 8 min</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: PARTICIPANTS -->
+<div id="screen-participants" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo"><span class="brand" data-brand="20"></span></div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" onclick="showScreen('dashboard')"><span class="ico ico-sm" data-icon="layout-dashboard"></span> Dashboard</button>
+        <button class="sidebar-item" onclick="showScreen('events-list')"><span class="ico ico-sm" data-icon="calendar"></span> Eventos</button>
+        <button class="sidebar-item active" onclick="showScreen('participants')"><span class="ico ico-sm" data-icon="users"></span> Participantes <span class="sidebar-dot"></span></button>
+        <button class="sidebar-item" onclick="showScreen('financeiro')"><span class="ico ico-sm" data-icon="dollar-sign"></span> Financeiro</button>
+      </nav>
+      <div class="sidebar-footer"><button class="sidebar-item" onclick="showScreen('login')"><span class="ico ico-sm" data-icon="log-out"></span> Sair</button></div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div></div>
+      <div class="page-content">
+        <div class="page-header flex justify-between items-center">
+          <div><p class="page-eyebrow">Gestão</p><h1 class="page-title">PARTICIPANTES</h1></div>
+          <button class="btn btn-outline btn-sm"><span class="ico ico-xs" data-icon="download"></span> Exportar CSV</button>
+        </div>
+        <div style="position:relative;margin-bottom:14px">
+          <input class="input" placeholder="Buscar por nome, e-mail, CPF ou evento..." style="padding-left:36px" />
+          <span class="ico ico-sm" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.25)" data-icon="search"></span>
+        </div>
+        <div class="card" style="overflow:hidden">
+          <table class="table">
+            <thead><tr><th>Nome</th><th>E-mail</th><th>Evento</th><th>Status</th><th>CPF</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Carlos Silva</td><td style="color:rgba(255,255,255,0.4);font-size:12px">carlos@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Ultra Trail SP</td><td><span class="badge badge-checkin"><span class="ico ico-xs" data-icon="check"></span> Check-in</span></td><td class="mono-val">123.456.789-00</td><td class="mono-val">01/06/2026</td></tr>
+              <tr><td class="name">Ana Santos</td><td style="color:rgba(255,255,255,0.4);font-size:12px">ana@hotmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Ultra Trail SP</td><td><span class="badge badge-success">Confirmado</span></td><td class="mono-val">987.654.321-00</td><td class="mono-val">02/06/2026</td></tr>
+              <tr><td class="name">Pedro Oliveira</td><td style="color:rgba(255,255,255,0.4);font-size:12px">pedro@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Maratona Corp.</td><td><span class="badge badge-warning">Pendente</span></td><td class="mono-val">456.789.123-00</td><td class="mono-val">03/06/2026</td></tr>
+              <tr><td class="name">Maria Costa</td><td style="color:rgba(255,255,255,0.4);font-size:12px">maria@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Ultra Trail SP</td><td><span class="badge badge-success">Confirmado</span></td><td class="mono-val">321.654.987-00</td><td class="mono-val">03/06/2026</td></tr>
+              <tr><td class="name">João Ferreira</td><td style="color:rgba(255,255,255,0.4);font-size:12px">joao@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Trail Experience</td><td><span class="badge badge-checkin"><span class="ico ico-xs" data-icon="check"></span> Check-in</span></td><td class="mono-val">654.321.789-00</td><td class="mono-val">04/06/2026</td></tr>
+              <tr><td class="name">Lucia Alves</td><td style="color:rgba(255,255,255,0.4);font-size:12px">lucia@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Ultra Trail SP</td><td><span class="badge badge-success">Confirmado</span></td><td class="mono-val">789.123.456-00</td><td class="mono-val">04/06/2026</td></tr>
+              <tr><td class="name">Roberto Lima</td><td style="color:rgba(255,255,255,0.4);font-size:12px">roberto@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Maratona Corp.</td><td><span class="badge badge-danger">Cancelado</span></td><td class="mono-val">147.258.369-00</td><td class="mono-val">04/06/2026</td></tr>
+              <tr><td class="name">Fernanda Cruz</td><td style="color:rgba(255,255,255,0.4);font-size:12px">fernanda@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Ultra Trail SP</td><td><span class="badge badge-success">Confirmado</span></td><td class="mono-val">369.258.147-00</td><td class="mono-val">05/06/2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: FINANCEIRO -->
+<div id="screen-financeiro" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo"><span class="brand" data-brand="20"></span></div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" onclick="showScreen('dashboard')"><span class="ico ico-sm" data-icon="layout-dashboard"></span> Dashboard</button>
+        <button class="sidebar-item" onclick="showScreen('events-list')"><span class="ico ico-sm" data-icon="calendar"></span> Eventos</button>
+        <button class="sidebar-item" onclick="showScreen('participants')"><span class="ico ico-sm" data-icon="users"></span> Participantes</button>
+        <button class="sidebar-item active" onclick="showScreen('financeiro')"><span class="ico ico-sm" data-icon="dollar-sign"></span> Financeiro <span class="sidebar-dot"></span></button>
+      </nav>
+      <div class="sidebar-footer"><button class="sidebar-item" onclick="showScreen('login')"><span class="ico ico-sm" data-icon="log-out"></span> Sair</button></div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div></div>
+      <div class="page-content">
+        <div class="page-header flex justify-between items-center">
+          <div><h1 class="page-title">FINANCEIRO</h1><p class="text-sm muted" style="margin-top:4px">Relatório de receita e repasses</p></div>
+          <div class="flex gap-2 items-center">
+            <select class="input select" style="width:auto;height:36px"><option>Todos os eventos</option><option>Corrida das Pedras 2026</option><option>Triathlon Floripa</option><option>Maratona do Sol</option></select>
+            <button class="btn btn-outline btn-sm"><span class="ico ico-xs" data-icon="download"></span> Exportar extrato</button>
+          </div>
+        </div>
+        <div class="grid-4" style="margin-bottom:16px">
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">RECEITA BRUTA</span><div class="metric-icon" style="background:rgba(204,255,0,0.1);color:var(--lime)"><span class="ico ico-sm" data-icon="trending-up"></span></div></div>
+            <p class="metric-value">R$ 57.338</p>
+            <p class="metric-delta"><span class="ico ico-xs" data-icon="trending-up"></span> +18% vs maio</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">TAXA PLATAFORMA</span><div class="metric-icon" style="background:rgba(0,102,255,0.12);color:var(--blue)"><span class="ico ico-sm" data-icon="hash"></span></div></div>
+            <p class="metric-value">R$ 1.148</p>
+            <p class="metric-delta" style="color:rgba(255,255,255,0.35)">2% do bruto</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">VALOR LÍQUIDO</span><div class="metric-icon" style="background:rgba(0,229,255,0.1);color:var(--cyan)"><span class="ico ico-sm" data-icon="dollar-sign"></span></div></div>
+            <p class="metric-value">R$ 56.190</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">A RECEBER</span><div class="metric-icon" style="background:rgba(204,255,0,0.1);color:var(--lime)"><span class="ico ico-sm" data-icon="calendar"></span></div></div>
+            <p class="metric-value">R$ 56.190</p>
+            <p class="metric-delta" style="color:rgba(255,255,255,0.35)">Após o evento</p>
+          </div>
+        </div>
+
+        <!-- Gráfico: inscrições ao longo do tempo -->
+        <div class="card" style="padding:18px 20px;margin-bottom:16px">
+          <div class="flex justify-between items-center" style="margin-bottom:18px">
+            <span class="font-semibold text-sm">Inscrições ao longo do tempo</span>
+            <div class="flex gap-1" style="background:var(--card2);border:1px solid var(--b6);border-radius:8px;padding:3px">
+              <button class="fin-range" data-range="7d" onclick="finRange('7d',this)">7d</button>
+              <button class="fin-range active" data-range="30d" onclick="finRange('30d',this)">30d</button>
+              <button class="fin-range" data-range="3m" onclick="finRange('3m',this)">3m</button>
+            </div>
+          </div>
+          <div id="fin-bars" style="display:flex;align-items:flex-end;gap:3px;height:180px"></div>
+          <div class="flex justify-between" id="fin-axis" style="margin-top:10px"><span class="text-xs muted">01 mai</span><span class="text-xs muted">15 mai</span><span class="text-xs muted">25 mai</span></div>
+        </div>
+
+        <div class="card" style="overflow:hidden">
+          <div style="padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.06)">
+            <span class="font-semibold text-sm">Receita por evento</span>
+          </div>
+          <table class="table">
+            <thead><tr><th>Evento</th><th>Inscritos</th><th>Receita bruta</th><th>Taxa plataforma</th><th>Valor líquido</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Ultra Trail SP 2026</td><td style="color:#fff;font-weight:600">234</td><td style="color:#fff;font-weight:600">R$ 23.400</td><td style="color:#ff6b8a">R$ 2.340</td><td style="color:var(--lime);font-weight:700">R$ 21.060</td><td><span class="badge badge-success">Ativo</span></td></tr>
+              <tr><td class="name">Maratona Corp. Tech</td><td style="color:#fff;font-weight:600">450</td><td style="color:#fff;font-weight:600">R$ 13.500</td><td style="color:#ff6b8a">R$ 1.350</td><td style="color:var(--lime);font-weight:700">R$ 12.150</td><td><span class="badge badge-success">Ativo</span></td></tr>
+              <tr><td class="name">Trail Experience</td><td style="color:#fff;font-weight:600">180</td><td style="color:#fff;font-weight:600">R$ 8.770</td><td style="color:#ff6b8a">R$ 877</td><td style="color:var(--lime);font-weight:700">R$ 7.893</td><td><span class="badge badge-success">Ativo</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ─── Lucide icon set (monochrome, inherits currentColor — no emoji, no multicolor) ───
+  const ICONS = {
+    'map': '<path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/>',
+    'link': '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+    'file-text': '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/>',
+    'edit-3': '<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+    'trophy': '<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+    'mail': '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+    'lock': '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+    'building-2': '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>',
+    'layout-dashboard': '<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>',
+    'plus': '<path d="M5 12h14"/><path d="M12 5v14"/>',
+    'settings': '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
+    'qr-code': '<rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/>',
+    'globe': '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
+    'check-circle': '<path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/>',
+    'users': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    'dollar-sign': '<line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+    'calendar': '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+    'clock': '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    'map-pin': '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+    'zap': '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+    'log-out': '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/>',
+    'trending-up': '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+    'bar-chart-2': '<line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>',
+    'search': '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    'download': '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>',
+    'external-link': '<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+    'check': '<polyline points="20 6 9 17 4 12"/>',
+    'arrow-right': '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+    'arrow-left': '<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
+    'chevron-right': '<path d="m9 18 6-6-6-6"/>',
+    'hourglass': '<path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/>',
+    'banknote': '<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01"/><path d="M18 12h.01"/>',
+    'flag': '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/>',
+    'info': '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
+    'activity': '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',
+    'hash': '<line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/>'
+  };
+
+  function renderIcons() {
+    document.querySelectorAll('[data-icon]').forEach(el => {
+      const name = el.getAttribute('data-icon');
+      if (ICONS[name] && !el.dataset.rendered) {
+        el.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + ICONS[name] + '</svg>';
+        el.dataset.rendered = '1';
+      }
+    });
+  }
+
+  // ─── Brand logo (real asset from /assets, graceful text fallback if missing) ───
+  function renderBrand() {
+    document.querySelectorAll('[data-brand]').forEach(el => {
+      if (el.dataset.rendered) return;
+      const h = parseInt(el.getAttribute('data-brand'), 10) || 22;
+      const fb = Math.round(h * 0.82);
+      el.innerHTML =
+        '<img class="brand-img" style="height:' + h + 'px" src="data:image/png;base64,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" alt="ticket moove" ' +
+        'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-flex\'">' +
+        '<span class="brand-fallback" style="display:none;font-size:' + fb + 'px">ticket&nbsp;<b>moove</b></span>';
+      el.dataset.rendered = '1';
+    });
+  }
+
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    const screen = document.getElementById('screen-' + id);
+    if (screen) screen.classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(b => {
+      const oc = b.getAttribute('onclick');
+      if (oc && oc.includes("'" + id + "'")) b.classList.add('active');
+    });
+    if (id === 'onboarding') onboardingStep(1);
+    if (id === 'dashboard') renderDashboardCharts();
+    if (id === 'financeiro') finRange('30d');
+    window.scrollTo(0, 0);
+  }
+
+  // ─── Onboarding: alterna entre Passo 1 (organização) e Passo 2 (dados bancários) ───
+  function onboardingStep(n) {
+    const s1 = document.getElementById('ob-step-1'), s2 = document.getElementById('ob-step-2');
+    const d1 = document.getElementById('ob-dot-1'), ln = document.getElementById('ob-line'), d2 = document.getElementById('ob-dot-2');
+    if (!s1 || !s2) return;
+    const goingTo2 = n === 2;
+    s1.style.display = goingTo2 ? 'none' : 'block';
+    s2.style.display = goingTo2 ? 'block' : 'none';
+    if (goingTo2) {
+      d1.innerHTML = '<span class="ico ico-xs" data-icon="check"></span>';
+      d1.dataset.rendered = ''; d1.style.background = 'var(--green)'; d1.style.color = '#000';
+      ln.style.background = 'var(--green)';
+      d2.style.background = 'var(--lime)'; d2.style.color = '#000';
+      renderIcons();
+    } else {
+      d1.innerHTML = '1'; d1.style.background = 'var(--lime)'; d1.style.color = '#000';
+      ln.style.background = 'rgba(255,255,255,0.1)';
+      d2.style.background = 'rgba(255,255,255,0.08)'; d2.style.color = 'rgba(255,255,255,0.3)';
+    }
+  }
+
+  // ─── Eventos: filtro por status e busca por nome ───
+  function filterEvents(status, btn) {
+    document.querySelectorAll('#ev-filters .ev-tab').forEach(t => t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const term = (document.getElementById('ev-search').value || '').toLowerCase();
+    document.querySelectorAll('#ev-tbody tr').forEach(tr => {
+      const okStatus = status === 'todos' || tr.dataset.status === status;
+      const okTerm = !term || tr.dataset.name.includes(term);
+      tr.style.display = okStatus && okTerm ? '' : 'none';
+    });
+  }
+  function searchEvents(term) {
+    term = (term || '').toLowerCase();
+    const active = document.querySelector('#ev-filters .ev-tab.active');
+    const status = active ? active.dataset.filter : 'todos';
+    document.querySelectorAll('#ev-tbody tr').forEach(tr => {
+      const okStatus = status === 'todos' || tr.dataset.status === status;
+      const okTerm = !term || tr.dataset.name.includes(term);
+      tr.style.display = okStatus && okTerm ? '' : 'none';
+    });
+  }
+
+  // ─── Gráficos de barras (CSS puro, sem libs) ───
+  function renderBars(containerId, values, opts) {
+    opts = opts || {};
+    const c = document.getElementById(containerId);
+    if (!c) return;
+    const max = Math.max.apply(null, values) || 1;
+    const hl = opts.highlightFrom != null ? opts.highlightFrom : values.length;
+    const gap = opts.gap != null ? opts.gap : 3;
+    c.style.gap = gap + 'px';
+    c.innerHTML = values.map((v, i) => {
+      const h = Math.max(2, Math.round(v / max * 100));
+      const bg = i >= hl ? 'var(--lime)' : 'rgba(204,255,0,0.28)';
+      return '<div class="chart-bar" style="height:' + h + '%;background:' + bg + '"></div>';
+    }).join('');
+  }
+
+  // Datasets do gráfico financeiro (inscrições ao longo do tempo)
+  const FIN_DATA = {
+    '7d':  { values: [120,135,128,160,175,210,245], hl: 5, axis: ['22 mai','25 mai','28 mai'] },
+    '30d': { values: [40,55,48,62,58,75,70,88,82,95,90,110,105,125,118,140,135,155,148,170,165,190,210,235,260,290], hl: 21, axis: ['01 mai','15 mai','25 mai'] },
+    '3m':  { values: [320,360,410,380,470,520,560,610,680,720,790,860], hl: 9, axis: ['Mar','Abr','Mai'] }
+  };
+  function finRange(range, btn) {
+    const d = FIN_DATA[range] || FIN_DATA['30d'];
+    if (btn) {
+      document.querySelectorAll('.fin-range').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+    } else {
+      document.querySelectorAll('.fin-range').forEach(t => t.classList.toggle('active', t.dataset.range === range));
+    }
+    renderBars('fin-bars', d.values, { highlightFrom: d.hl, gap: range === '3m' ? 8 : 3 });
+    const axis = document.getElementById('fin-axis');
+    if (axis) axis.innerHTML = d.axis.map(l => '<span class="text-xs muted">' + l + '</span>').join('');
+  }
+
+  function renderDashboardCharts() {
+    renderBars('dash-revenue-bars', [40,55,48,62,58,75,70,88,82,95,90,110,105,125,118,140,135,155,148,170,165,190,210,235,260,290], { highlightFrom: 21, gap: 3 });
+    renderBars('dash-signups-bars', [380,520,610,337], { highlightFrom: 3, gap: 10 });
+  }
+
+  renderIcons();
+  renderBrand();
+</script>
+</body>
+</html>
