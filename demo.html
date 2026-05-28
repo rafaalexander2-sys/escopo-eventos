@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ticket Moove — Demo de Produto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --card: #141414; --card2: #1a1a1a;
+      --lime: #ccff00; --blue: #039eff; --red: #ff3b3b;
+      --green: #4ade80; --amber: #fbbf24;
+      --b6: rgba(255,255,255,0.06); --b8: rgba(255,255,255,0.08);
+      --b15: rgba(255,255,255,0.15); --b40: rgba(255,255,255,0.40);
+    }
+    html { font-size: 16px; }
+    body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .lime { color: var(--lime); } .blue { color: var(--blue); }
+    .muted { color: rgba(255,255,255,0.35); }
+    .flex { display: flex; } .items-center { align-items: center; }
+    .gap-1 { gap: 4px; } .gap-2 { gap: 8px; } .gap-3 { gap: 12px; } .gap-4 { gap: 16px; }
+    .justify-between { justify-content: space-between; }
+    .text-xs { font-size: 11px; } .text-sm { font-size: 13px; }
+    .font-semibold { font-weight: 600; } .font-bold { font-weight: 700; }
+    .w-full { width: 100%; } .shrink-0 { flex-shrink: 0; }
+    .logo-symbol { width: 28px; height: 28px; border-radius: 8px; background: var(--lime); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 14px rgba(204,255,0,0.45); flex-shrink: 0; }
+    .logo-symbol svg { width: 14px; height: 14px; }
+    .logo-word { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+    .logo-word span { color: var(--lime); }
+    .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 99px; font-size: 10px; font-weight: 600; border: 1px solid transparent; }
+    .badge-default  { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.45); border-color: rgba(255,255,255,0.1); }
+    .badge-success  { background: rgba(22,163,74,0.15);  color: #4ade80; border-color: rgba(22,163,74,0.2); }
+    .badge-warning  { background: rgba(245,158,11,0.15); color: #fbbf24; border-color: rgba(245,158,11,0.2); }
+    .badge-danger   { background: rgba(255,59,59,0.15);  color: #ff6b6b; border-color: rgba(255,59,59,0.2); }
+    .badge-lime     { background: rgba(204,255,0,0.15);  color: var(--lime); border-color: rgba(204,255,0,0.2); }
+    .badge-blue     { background: rgba(3,158,255,0.15);  color: var(--blue); border-color: rgba(3,158,255,0.2); }
+    .badge-checkin  { background: rgba(99,102,241,0.15); color: #a5b4fc; border-color: rgba(99,102,241,0.2); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; font-weight: 600; border-radius: 10px; cursor: pointer; padding: 0 16px; height: 36px; border: none; transition: all 0.12s; flex-shrink: 0; font-family: 'Inter', sans-serif; }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary  { background: var(--lime); color: #000; box-shadow: 0 0 18px rgba(204,255,0,0.2); }
+    .btn-primary:hover { background: #d9ff33; }
+    .btn-accent   { background: var(--blue); color: #000; font-weight: 700; box-shadow: 0 0 18px rgba(3,158,255,0.2); }
+    .btn-accent:hover { filter: brightness(1.1); }
+    .btn-outline  { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.18); }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.35); }
+    .btn-ghost    { background: transparent; color: rgba(255,255,255,0.5); border: none; }
+    .btn-ghost:hover { color: #fff; background: rgba(255,255,255,0.05); }
+    .btn-sm { height: 30px; padding: 0 12px; font-size: 12px; border-radius: 8px; }
+    .btn-lg { height: 44px; padding: 0 24px; font-size: 15px; border-radius: 12px; }
+    .input { width: 100%; height: 40px; padding: 0 12px; border-radius: 10px; background: var(--card2); border: 1px solid rgba(255,255,255,0.08); color: #fff; font-size: 13px; outline: none; font-family: 'Inter', sans-serif; transition: border-color 0.15s, box-shadow 0.15s; }
+    .input:focus { border-color: rgba(204,255,0,0.5); box-shadow: 0 0 0 3px rgba(204,255,0,0.08); }
+    .input::placeholder { color: rgba(255,255,255,0.2); }
+    .select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 32px; }
+    .textarea { width: 100%; padding: 10px 12px; border-radius: 10px; background: var(--card2); border: 1px solid rgba(255,255,255,0.08); color: #fff; font-size: 13px; outline: none; font-family: 'Inter', sans-serif; resize: none; transition: border-color 0.15s; }
+    .textarea:focus { border-color: rgba(204,255,0,0.5); }
+    .field-label { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.6); margin-bottom: 6px; display: block; }
+    .field-label .req { color: var(--red); margin-left: 2px; }
+    .card { background: var(--card); border: 1px solid var(--b6); border-radius: 16px; }
+    .progress-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 99px; overflow: hidden; }
+    .progress-fill  { height: 100%; border-radius: 99px; transition: width 0.4s; }
+    .metric-card { background: var(--card); border: 1px solid var(--b6); border-radius: 18px; padding: 20px; }
+    .metric-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .metric-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .metric-value { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 800; color: #fff; line-height: 1; margin-top: 6px; }
+    .metric-delta { font-size: 11px; color: #4ade80; display: flex; align-items: center; gap: 3px; margin-top: 4px; }
+    #main-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,10,10,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); height: 52px; display: flex; align-items: center; padding: 0 20px; gap: 8px; }
+    .nav-screens { display: flex; gap: 2px; overflow-x: auto; flex: 1; padding: 0 8px; }
+    .nav-screens::-webkit-scrollbar { display: none; }
+    .nav-btn { flex-shrink: 0; padding: 5px 12px; border-radius: 7px; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.35); background: transparent; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.12s; white-space: nowrap; }
+    .nav-btn:hover { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.05); }
+    .nav-btn.active { color: var(--lime); background: rgba(204,255,0,0.1); }
+    .nav-tag { font-size: 9px; padding: 1px 5px; border-radius: 4px; font-weight: 600; letter-spacing: 0.04em; margin-right: 3px; }
+    .tag-pub { background: rgba(3,158,255,0.15); color: var(--blue); }
+    .tag-adm { background: rgba(204,255,0,0.12); color: var(--lime); }
+    .tag-mob { background: rgba(0,229,255,0.12); color: #00e5ff; }
+    .screen { display: none; padding-top: 52px; min-height: 100vh; }
+    .screen.active { display: block; }
+    .admin-wrap { display: flex; height: calc(100vh - 52px); overflow: hidden; }
+    .sidebar { width: 212px; background: #111; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; flex-shrink: 0; }
+    .sidebar-logo { padding: 14px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 8px; }
+    .sidebar-nav { flex: 1; padding: 10px 8px; display: flex; flex-direction: column; gap: 2px; }
+    .sidebar-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 10px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.32); cursor: pointer; transition: all 0.12s; background: transparent; border: none; font-family: 'Inter', sans-serif; width: 100%; text-align: left; }
+    .sidebar-item:hover { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.04); }
+    .sidebar-item.active { color: var(--lime); background: rgba(204,255,0,0.1); }
+    .sidebar-dot { width: 5px; height: 5px; border-radius: 99px; background: var(--lime); margin-left: auto; }
+    .sidebar-footer { padding: 8px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .sidebar-footer .sidebar-item { color: rgba(255,255,255,0.2); }
+    .sidebar-footer .sidebar-item:hover { color: #ff6b6b; background: rgba(255,59,59,0.05); }
+    .main-content { flex: 1; overflow-y: auto; }
+    .topbar { height: 52px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; gap: 8px; }
+    .avatar { width: 28px; height: 28px; border-radius: 99px; background: linear-gradient(135deg, var(--lime), #00e5ff); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #000; }
+    .page-content { padding: 28px; }
+    .page-header { margin-bottom: 28px; }
+    .page-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 4px; }
+    .page-title { font-size: 28px; }
+    .table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .table th { padding: 11px 16px; text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.22); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(255,255,255,0.75); vertical-align: middle; }
+    .table tr:last-child td { border-bottom: none; }
+    .table tbody tr:hover td { background: rgba(255,255,255,0.018); }
+    .table td.name { font-weight: 600; color: #fff; }
+    .table td.mono-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.4); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 16px 0; }
+    .callout { border-radius: 10px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.5; }
+    .callout-lime { background: rgba(204,255,0,0.07); border: 1px solid rgba(204,255,0,0.14); color: rgba(255,255,255,0.6); }
+    .icon-sm { width: 14px; height: 14px; flex-shrink: 0; }
+    .journey-step { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; border-radius: 16px; cursor: pointer; width: 140px; transition: all 0.15s; background: none; border: none; font-family: 'Inter', sans-serif; }
+    .journey-arrow { flex-shrink: 0; display: flex; align-items: center; padding: 0 4px; }
+    .screen-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+    .screen-card { background: #141414; border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 18px; text-align: left; cursor: pointer; transition: all 0.15s; width: 100%; font-family: 'Inter', sans-serif; }
+    .screen-card:hover { border-color: rgba(255,255,255,0.14); background: #1a1a1a; }
+    select option { background: #1a1a1a; color: #fff; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="logo-symbol">
+    <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+    </svg>
+  </div>
+  <span class="logo-word">Ticket<span>Moove</span></span>
+  <div class="nav-screens">
+    <button class="nav-btn active" onclick="showScreen('journey')">🗺️ Jornada</button>
+    <button class="nav-btn" onclick="showScreen('public-event')"><span class="nav-tag tag-pub">PÚBLICO</span>Página do evento</button>
+    <button class="nav-btn" onclick="showScreen('confirmation')"><span class="nav-tag tag-pub">PÚBLICO</span>Confirmação</button>
+    <button class="nav-btn" onclick="showScreen('login')"><span class="nav-tag tag-adm">ADMIN</span>Login</button>
+    <button class="nav-btn" onclick="showScreen('onboarding')"><span class="nav-tag tag-adm">ADMIN</span>Onboarding</button>
+    <button class="nav-btn" onclick="showScreen('dashboard')"><span class="nav-tag tag-adm">ADMIN</span>Dashboard</button>
+    <button class="nav-btn" onclick="showScreen('events-list')"><span class="nav-tag tag-adm">ADMIN</span>Eventos</button>
+    <button class="nav-btn" onclick="showScreen('event-detail')"><span class="nav-tag tag-adm">ADMIN</span>Detalhe evento</button>
+    <button class="nav-btn" onclick="showScreen('create-event')"><span class="nav-tag tag-adm">ADMIN</span>Criar evento</button>
+    <button class="nav-btn" onclick="showScreen('checkin')"><span class="nav-tag tag-mob">MOBILE</span>Check-in</button>
+    <button class="nav-btn" onclick="showScreen('participants')"><span class="nav-tag tag-adm">ADMIN</span>Participantes</button>
+    <button class="nav-btn" onclick="showScreen('financeiro')"><span class="nav-tag tag-adm">ADMIN</span>Financeiro</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════ SCREEN: JOURNEY MAP -->
+<div id="screen-journey" class="screen active">
+  <div style="max-width:1100px;margin:0 auto;padding:48px 24px 80px">
+
+    <div style="margin-bottom:60px">
+      <p style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:10px">Demo de produto · Maio 2026</p>
+      <h1 style="font-size:clamp(48px,7vw,80px);color:#fff;margin-bottom:16px">DOIS PERFIS,<br><span style="color:var(--lime)">UMA PLATAFORMA</span></h1>
+      <p style="font-size:14px;color:rgba(255,255,255,0.38);max-width:520px;line-height:1.6">O atleta nunca cria conta — acessa o link, se inscreve e recebe o QR. O organizador gerencia tudo pelo painel admin.</p>
+      <div style="display:flex;gap:16px;margin-top:24px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="showScreen('public-event')">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Ver jornada do atleta
+        </button>
+        <button class="btn btn-outline" onclick="showScreen('login')">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Ver painel do organizador
+        </button>
+      </div>
+    </div>
+
+    <!-- Athlete flow -->
+    <div style="margin-bottom:52px">
+      <div class="flex items-center gap-3" style="margin-bottom:20px">
+        <div class="metric-icon" style="background:rgba(3,158,255,0.12)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div>
+          <h2 style="font-size:22px;color:#fff">JORNADA DO ATLETA</h2>
+          <p class="text-xs muted" style="margin-top:2px">Mobile-first · Sem cadastro · Formulário inline · QR code por e-mail</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;overflow-x:auto;padding-bottom:8px">
+        <button class="journey-step" onclick="showScreen('public-event')" style="border:1px solid rgba(3,158,255,0.15);background:rgba(3,158,255,0.04)" onmouseover="this.style.borderColor='rgba(3,158,255,0.4)';this.style.background='rgba(3,158,255,0.1)'" onmouseout="this.style.borderColor='rgba(3,158,255,0.15)';this.style.background='rgba(3,158,255,0.04)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(3,158,255,0.12);display:flex;align-items:center;justify-content:center;font-size:16px">🔗</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Recebe o link</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">/e/:slug</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(3,158,255,0.25)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(3,158,255,0.4)" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+        <button class="journey-step" onclick="showScreen('public-event')" style="border:1px solid rgba(3,158,255,0.15);background:rgba(3,158,255,0.04)" onmouseover="this.style.borderColor='rgba(3,158,255,0.4)';this.style.background='rgba(3,158,255,0.1)'" onmouseout="this.style.borderColor='rgba(3,158,255,0.15)';this.style.background='rgba(3,158,255,0.04)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(3,158,255,0.12);display:flex;align-items:center;justify-content:center;font-size:16px">📄</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Vê o evento</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Hero + info</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(3,158,255,0.25)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(3,158,255,0.4)" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+        <button class="journey-step" onclick="showScreen('public-event')" style="border:1px solid rgba(3,158,255,0.15);background:rgba(3,158,255,0.04)" onmouseover="this.style.borderColor='rgba(3,158,255,0.4)';this.style.background='rgba(3,158,255,0.1)'" onmouseout="this.style.borderColor='rgba(3,158,255,0.15)';this.style.background='rgba(3,158,255,0.04)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(3,158,255,0.12);display:flex;align-items:center;justify-content:center;font-size:16px">✍️</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Preenche form</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Dados pessoais</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(3,158,255,0.25)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(3,158,255,0.4)" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+        <button class="journey-step" onclick="showScreen('confirmation')" style="border:1px solid rgba(3,158,255,0.15);background:rgba(3,158,255,0.04)" onmouseover="this.style.borderColor='rgba(3,158,255,0.4)';this.style.background='rgba(3,158,255,0.1)'" onmouseout="this.style.borderColor='rgba(3,158,255,0.15)';this.style.background='rgba(3,158,255,0.04)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(3,158,255,0.12);display:flex;align-items:center;justify-content:center;font-size:16px">🎉</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Confirmação</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Tela de sucesso</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(3,158,255,0.25)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(3,158,255,0.4)" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+        <button class="journey-step" onclick="showScreen('confirmation')" style="border:1px solid rgba(3,158,255,0.15);background:rgba(3,158,255,0.04)" onmouseover="this.style.borderColor='rgba(3,158,255,0.4)';this.style.background='rgba(3,158,255,0.1)'" onmouseout="this.style.borderColor='rgba(3,158,255,0.15)';this.style.background='rgba(3,158,255,0.04)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(3,158,255,0.12);display:flex;align-items:center;justify-content:center;font-size:16px">📧</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">E-mail + QR</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Código de check-in</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- Organizer flow -->
+    <div style="margin-bottom:52px">
+      <div class="flex items-center gap-3" style="margin-bottom:20px">
+        <div class="metric-icon" style="background:rgba(204,255,0,0.1)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div>
+          <h2 style="font-size:22px;color:#fff">JORNADA DO ORGANIZADOR</h2>
+          <p class="text-xs muted" style="margin-top:2px">Desktop-first · Painel admin · Dados densos · Gestão completa</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;overflow-x:auto;padding-bottom:8px">
+        <button class="journey-step" onclick="showScreen('login')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(204,255,0,0.1);display:flex;align-items:center;justify-content:center;font-size:16px">🔐</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Login</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">/login</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(204,255,0,0.2)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(204,255,0,0.35)" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+        <button class="journey-step" onclick="showScreen('onboarding')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(204,255,0,0.1);display:flex;align-items:center;justify-content:center;font-size:16px">🏢</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Onboarding</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Org + banco</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(204,255,0,0.2)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(204,255,0,0.35)" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+        <button class="journey-step" onclick="showScreen('dashboard')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(204,255,0,0.1);display:flex;align-items:center;justify-content:center;font-size:16px">📊</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Dashboard</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Visão geral</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(204,255,0,0.2)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(204,255,0,0.35)" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+        <button class="journey-step" onclick="showScreen('create-event')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(204,255,0,0.1);display:flex;align-items:center;justify-content:center;font-size:16px">➕</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Criar evento</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">/events/new</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(204,255,0,0.2)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(204,255,0,0.35)" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+        <button class="journey-step" onclick="showScreen('event-detail')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(204,255,0,0.1);display:flex;align-items:center;justify-content:center;font-size:16px">⚙️</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Gerenciar</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">/events/:id</p>
+        </button>
+        <div class="journey-arrow"><div style="width:20px;height:1px;background:rgba(204,255,0,0.2)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(204,255,0,0.35)" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+        <button class="journey-step" onclick="showScreen('checkin')" style="border:1px solid rgba(204,255,0,0.12);background:rgba(204,255,0,0.03)" onmouseover="this.style.borderColor='rgba(204,255,0,0.35)';this.style.background='rgba(204,255,0,0.08)'" onmouseout="this.style.borderColor='rgba(204,255,0,0.12)';this.style.background='rgba(204,255,0,0.03)'">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(204,255,0,0.1);display:flex;align-items:center;justify-content:center;font-size:16px">📲</div>
+          <p style="font-size:12px;font-weight:600;color:#fff;text-align:center">Check-in</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center">Dia do evento</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- All screens grid -->
+    <div>
+      <h2 style="font-size:22px;color:#fff;margin-bottom:4px">TODAS AS TELAS</h2>
+      <p class="text-sm muted" style="margin-bottom:20px">Clique para navegar direto para qualquer tela</p>
+      <div class="screen-grid">
+        <button class="screen-card" onclick="showScreen('public-event')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">🌐</span><span class="badge badge-blue">PÚBLICO</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Página do evento</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('confirmation')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">✅</span><span class="badge badge-blue">PÚBLICO</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Confirmação</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('login')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">🔐</span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Login</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('onboarding')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">🏢</span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Onboarding</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('dashboard')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">📊</span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Dashboard</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('events-list')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">📅</span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Lista de eventos</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('create-event')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">➕</span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Criar evento</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('event-detail')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">⚙️</span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Detalhe do evento</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('checkin')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">📲</span><span class="badge badge-checkin">MOBILE</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Check-in</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('participants')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">👥</span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Participantes</p>
+        </button>
+        <button class="screen-card" onclick="showScreen('financeiro')">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px"><span style="font-size:22px">💰</span><span class="badge badge-lime">ADMIN</span></div>
+          <p style="font-size:13px;font-weight:600;color:#fff">Financeiro</p>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: PUBLIC EVENT -->
+<div id="screen-public-event" class="screen">
+  <div style="background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:52px;z-index:10">
+    <div style="max-width:900px;margin:0 auto;padding:0 16px;height:44px;display:flex;align-items:center;justify-content:space-between">
+      <button onclick="showScreen('journey')" style="font-size:12px;color:rgba(255,255,255,0.35);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">← Jornada</button>
+      <span class="mono" style="font-size:10px;color:rgba(255,255,255,0.18)">/e/corrida-das-pedras-2026</span>
+      <button onclick="showScreen('login')" class="btn btn-ghost btn-sm">Admin →</button>
+    </div>
+  </div>
+  <div style="position:relative;height:340px;overflow:hidden;background:linear-gradient(135deg,rgba(204,255,0,0.08) 0%,rgba(10,10,10,0.9) 60%),#0d0d0d">
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 20px">
+      <div style="max-width:900px;margin:0 auto">
+        <div class="flex gap-2" style="margin-bottom:12px">
+          <span class="badge badge-success">Inscrições abertas</span>
+          <span class="badge badge-warning">13 vagas restantes</span>
+        </div>
+        <h1 style="font-size:clamp(40px,7vw,68px);color:#fff;margin-bottom:10px">CORRIDA DAS<br>PEDRAS 2026</h1>
+        <div class="flex gap-4" style="flex-wrap:wrap">
+          <span style="font-size:13px;color:rgba(255,255,255,0.5)">📅 23 de agosto de 2026</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.5)">⏰ 07:00h</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.5)">📍 Parque Ibirapuera, São Paulo — SP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:28px 20px 60px">
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:28px">
+      <div>
+        <h2 style="font-size:18px;margin-bottom:10px">SOBRE O EVENTO</h2>
+        <p class="text-sm" style="color:rgba(255,255,255,0.48);line-height:1.7;margin-bottom:24px">A Corrida das Pedras é um dos eventos mais tradicionais de São Paulo, percorrendo os caminhos do Parque Ibirapuera. Em sua 8ª edição, o evento oferece percursos de 5km, 10km e 21km com chip de cronometragem e kit completo do atleta.</p>
+        <h2 style="font-size:18px;margin-bottom:12px">CATEGORIAS</h2>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center;background:#141414;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 16px">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-right:8px">5km</span><span class="text-sm" style="color:rgba(255,255,255,0.38)">Recreativa — sem chip</span></div>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--lime)">R$ 89</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:#141414;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 16px">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-right:8px">10km</span><span class="text-sm" style="color:rgba(255,255,255,0.38)">Competitivo — chip de cronometragem</span></div>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--lime)">R$ 149</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:#141414;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 16px">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-right:8px">21km</span><span class="text-sm" style="color:rgba(255,255,255,0.38)">Meia maratona — kit premium</span></div>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--lime)">R$ 189</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="padding:18px;margin-bottom:12px">
+          <p class="font-bold text-sm" style="margin-bottom:12px">Lotes</p>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:9px;border:1px solid rgba(255,255,255,0.05);background:transparent;opacity:0.45">
+              <div><p style="font-size:12px;font-weight:600;color:#fff">Lote 1 — Early Bird</p><p style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px">Esgotado</p></div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:#fff">R$ 89</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:9px;border:1px solid rgba(204,255,0,0.28);background:rgba(204,255,0,0.05)">
+              <div><p style="font-size:12px;font-weight:600;color:#fff">Lote 2 — Regular</p><p style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px">Ativo · até 31/07</p></div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:#fff">R$ 149</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:9px;border:1px solid rgba(255,255,255,0.05);background:transparent;opacity:0.45">
+              <div><p style="font-size:12px;font-weight:600;color:#fff">Lote 3 — Last Call</p><p style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px">A partir de 01/08</p></div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:#fff">R$ 189</span>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span class="text-xs muted">Vagas disponíveis</span><span class="text-xs mono" style="color:var(--lime)">97%</span></div>
+            <div class="progress-track"><div class="progress-fill" style="width:97%;background:var(--lime)"></div></div>
+          </div>
+        </div>
+        <div class="card" style="padding:18px">
+          <p class="font-bold text-sm" style="margin-bottom:14px">👥 Fazer inscrição</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div><label class="field-label">Nome completo <span class="req">*</span></label><input class="input" placeholder="Ana Paula Ferreira" /></div>
+            <div><label class="field-label">E-mail <span class="req">*</span></label><input class="input" type="email" placeholder="ana@gmail.com" /></div>
+            <div class="grid-2" style="gap:8px">
+              <div><label class="field-label">CPF <span class="req">*</span></label><input class="input" placeholder="000.000.000-00" /></div>
+              <div><label class="field-label">Telefone</label><input class="input" placeholder="(11) 99999-9999" /></div>
+            </div>
+            <div><label class="field-label">Categoria <span class="req">*</span></label>
+              <select class="input select"><option>10km — R$ 149,00</option><option>5km — R$ 89,00</option><option>21km — R$ 189,00</option></select>
+            </div>
+            <button class="btn btn-accent btn-lg w-full" onclick="showScreen('confirmation')" style="margin-top:4px">⚡ Confirmar inscrição — R$ 149,00</button>
+            <p style="font-size:10px;text-align:center;color:rgba(255,255,255,0.2)">Seus dados são protegidos e usados apenas para este evento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,0.06);padding:14px;text-align:center">
+    <p style="font-size:11px;color:rgba(255,255,255,0.2)">Inscrições gerenciadas por <span style="color:var(--lime);font-weight:600">Ticket Moove</span></p>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: CONFIRMATION -->
+<div id="screen-confirmation" class="screen">
+  <div style="min-height:calc(100vh - 52px);display:flex;align-items:center;justify-content:center;padding:24px">
+    <div style="max-width:420px;width:100%;text-align:center">
+      <div style="position:relative;display:inline-flex;margin-bottom:24px">
+        <div style="width:80px;height:80px;border-radius:99px;background:rgba(74,222,128,0.1);display:flex;align-items:center;justify-content:center;font-size:40px">✅</div>
+        <div style="position:absolute;bottom:-4px;right:-4px;width:32px;height:32px;border-radius:99px;background:var(--blue);display:flex;align-items:center;justify-content:center"><span style="font-size:14px">⚡</span></div>
+      </div>
+      <h1 style="font-size:46px;color:#fff;margin-bottom:8px">INSCRIÇÃO<br>CONFIRMADA!</h1>
+      <p class="text-sm muted" style="margin-bottom:24px">Boa, Ana Paula! Você está inscrita na Corrida das Pedras 2026.</p>
+      <div class="card" style="padding:20px;text-align:left;margin-bottom:16px">
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px">
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.35)">Evento</span><span style="font-weight:500;color:#fff">Corrida das Pedras 2026</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.35)">Categoria</span><span style="font-weight:500;color:#fff">10km — Competitivo</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.35)">Data</span><span style="font-weight:500;color:#fff">23 de agosto · 07:00h</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.35)">Local</span><span style="font-weight:500;color:#fff">Parque Ibirapuera, SP</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.35)">Valor pago</span><span style="font-weight:500;color:#fff">R$ 149,00</span></div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;display:flex;flex-direction:column;align-items:center;gap:8px">
+          <p style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25)">QR Code de check-in</p>
+          <div style="width:110px;height:110px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="#0a0a0a"/><rect x="16" y="5" width="3" height="3" fill="#0a0a0a"/><rect x="16" y="16" width="3" height="3" fill="#0a0a0a"/><rect x="5" y="16" width="3" height="3" fill="#0a0a0a"/></svg>
+          </div>
+          <code class="font-bold mono" style="color:var(--lime);font-size:14px">#INS-0042</code>
+        </div>
+      </div>
+      <div class="callout callout-lime" style="margin-bottom:20px;text-align:left">
+        <span>📧</span>
+        <p>Enviamos a confirmação e o QR code para <strong style="color:#fff">ana@gmail.com</strong>. Verifique sua caixa de entrada.</p>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-outline" style="flex:1" onclick="showScreen('public-event')">← Ver evento</button>
+        <button class="btn btn-accent" style="flex:1" onclick="showScreen('journey')">🏁 Início</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: LOGIN -->
+<div id="screen-login" class="screen">
+  <div style="min-height:calc(100vh - 52px);display:flex">
+    <div style="flex:1;display:flex;position:relative;overflow:hidden;background:radial-gradient(ellipse at 30% 50%,rgba(204,255,0,0.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(0,229,255,0.07) 0%,transparent 50%),#090909">
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,transparent,#0a0a0a)"></div>
+      <div style="position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;padding:40px;max-width:480px">
+        <div class="flex gap-3 items-center">
+          <div class="logo-symbol" style="width:34px;height:34px;border-radius:10px"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <span style="font-size:15px;font-weight:700;color:#fff">Ticket<span style="color:var(--lime)">Moove</span></span>
+        </div>
+        <div>
+          <h2 style="font-size:48px;color:#fff;margin-bottom:14px">GERENCIE SEUS<br><span style="color:var(--lime)">EVENTOS</span><br>COM PRECISÃO</h2>
+          <p class="text-sm" style="color:rgba(255,255,255,0.38);line-height:1.7">A plataforma para organizadores de eventos endurance. Inscrições, check-in e financeiro em um único lugar.</p>
+          <div style="display:flex;gap:24px;margin-top:20px">
+            <div><p style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff">1.847</p><p style="font-size:11px;color:rgba(255,255,255,0.3)">Inscrições</p></div>
+            <div><p style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff">12</p><p style="font-size:11px;color:rgba(255,255,255,0.3)">Eventos ativos</p></div>
+            <div><p style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff">R$ 38K</p><p style="font-size:11px;color:rgba(255,255,255,0.3)">Receita/mês</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width:400px;background:#0a0a0a;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px;flex-shrink:0">
+      <div style="width:100%;max-width:320px">
+        <h1 style="font-size:30px;color:#fff;margin-bottom:4px">Entrar no painel</h1>
+        <p class="text-sm muted" style="margin-bottom:28px">Acesso exclusivo para organizadores</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><label class="field-label">E-mail</label><input class="input" type="email" value="rafael@race83.com" /></div>
+          <div><label class="field-label">Senha</label><input class="input" type="password" value="••••••••" /></div>
+          <button class="btn btn-primary btn-lg w-full" onclick="showScreen('dashboard')">Entrar</button>
+        </div>
+        <button style="width:100%;text-align:center;font-size:12px;color:var(--lime);background:none;border:none;cursor:pointer;margin-top:14px">Esqueci minha senha</button>
+        <div class="divider"></div>
+        <p class="text-xs" style="text-align:center;color:rgba(255,255,255,0.2)">Não tem acesso? Fale com a equipe Ticket Moove.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: ONBOARDING -->
+<div id="screen-onboarding" class="screen">
+  <div style="min-height:calc(100vh - 52px);display:flex;align-items:center;justify-content:center;padding:24px">
+    <div style="width:100%;max-width:420px">
+      <div class="flex items-center gap-2" style="justify-content:center;margin-bottom:32px">
+        <div class="logo-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <span style="font-size:14px;font-weight:700;color:#fff">Ticket<span style="color:var(--lime)">Moove</span></span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:28px">
+        <div style="width:32px;height:32px;border-radius:99px;background:var(--lime);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">1</div>
+        <div style="width:60px;height:1px;background:rgba(255,255,255,0.1)"></div>
+        <div style="width:32px;height:32px;border-radius:99px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:rgba(255,255,255,0.3)">2</div>
+      </div>
+      <div class="card" style="padding:28px">
+        <h2 style="font-size:24px;margin-bottom:4px">DADOS DA ORGANIZAÇÃO</h2>
+        <p class="text-xs muted" style="margin-bottom:20px">Passo 1 de 2 · Como você quer aparecer para os atletas</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><label class="field-label">Nome da organização <span class="req">*</span></label><input class="input" value="Race83 Eventos" /></div>
+          <div>
+            <label class="field-label">Slug (URL pública) <span class="req">*</span></label>
+            <input class="input" value="race83" />
+            <p style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:5px">ticketmoove.com.br/<strong style="color:var(--lime)">race83</strong></p>
+          </div>
+          <div><label class="field-label">CNPJ <span class="req">*</span></label><input class="input" placeholder="00.000.000/0001-00" /></div>
+          <button class="btn btn-primary btn-lg w-full" onclick="showScreen('dashboard')">Próximo →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: DASHBOARD -->
+<div id="screen-dashboard" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <span class="logo-word">Ticket<span>Moove</span></span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item active" onclick="showScreen('dashboard')"><span>📊</span> Dashboard <span class="sidebar-dot"></span></button>
+        <button class="sidebar-item" onclick="showScreen('events-list')"><span>📅</span> Eventos</button>
+        <button class="sidebar-item" onclick="showScreen('participants')"><span>👥</span> Participantes</button>
+        <button class="sidebar-item" onclick="showScreen('financeiro')"><span>💰</span> Financeiro</button>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="sidebar-item" onclick="showScreen('login')"><span>⬅</span> Sair</button>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div><span class="text-sm" style="color:rgba(255,255,255,0.45)">Rafael Alexander</span></div>
+      <div class="page-content">
+        <div class="page-header flex justify-between items-center">
+          <div><p class="page-eyebrow">Painel do organizador</p><h1 class="page-title">VISÃO GERAL</h1></div>
+          <button class="btn btn-primary btn-sm" onclick="showScreen('create-event')">+ Novo evento</button>
+        </div>
+        <div class="grid-4" style="margin-bottom:24px">
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">EVENTOS</span><div class="metric-icon" style="background:rgba(204,255,0,0.1)"><span style="font-size:14px">📅</span></div></div>
+            <p class="metric-value">5</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">INSCRIÇÕES</span><div class="metric-icon" style="background:rgba(3,158,255,0.1)"><span style="font-size:14px">👥</span></div></div>
+            <p class="metric-value">1.234</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">RECEITA DO MÊS</span><div class="metric-icon" style="background:rgba(0,229,255,0.1)"><span style="font-size:14px">💰</span></div></div>
+            <p class="metric-value">R$ 38K</p>
+            <p class="metric-delta">↑ +12% vs mês ant.</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span class="metric-label">OCUPAÇÃO MÉDIA</span><div class="metric-icon" style="background:rgba(255,149,0,0.1)"><span style="font-size:14px">📈</span></div></div>
+            <p class="metric-value">87%</p>
+          </div>
+        </div>
+        <div class="card" style="overflow:hidden">
+          <div style="padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center">
+            <div class="flex gap-2 items-center"><span style="color:var(--lime)">⚡</span><span class="font-semibold text-sm">Próximos eventos</span></div>
+            <button onclick="showScreen('events-list')" class="text-xs muted" style="background:none;border:none;cursor:pointer">Ver todos</button>
+          </div>
+          <ul style="list-style:none">
+            <li style="border-bottom:1px solid rgba(255,255,255,0.04)">
+              <button onclick="showScreen('event-detail')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;width:100%;background:none;border:none;cursor:pointer;transition:background 0.12s" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='none'">
+                <div style="text-align:left"><p class="font-semibold text-sm" style="color:#fff">Ultra Trail São Paulo 2026</p><p class="text-xs muted" style="margin-top:3px">São Paulo/SP · 15 Jun 2026 · 234 inscritos</p></div>
+                <span class="badge badge-success">Publicado</span>
+              </button>
+            </li>
+            <li style="border-bottom:1px solid rgba(255,255,255,0.04)">
+              <button onclick="showScreen('event-detail')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;width:100%;background:none;border:none;cursor:pointer;transition:background 0.12s" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='none'">
+                <div style="text-align:left"><p class="font-semibold text-sm" style="color:#fff">Maratona Corporativa Tech</p><p class="text-xs muted" style="margin-top:3px">Rio de Janeiro/RJ · 22 Jun 2026 · 450 inscritos</p></div>
+                <span class="badge badge-success">Publicado</span>
+              </button>
+            </li>
+            <li style="border-bottom:1px solid rgba(255,255,255,0.04)">
+              <button onclick="showScreen('event-detail')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;width:100%;background:none;border:none;cursor:pointer;transition:background 0.12s" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='none'">
+                <div style="text-align:left"><p class="font-semibold text-sm" style="color:#fff">Trail Running Experience</p><p class="text-xs muted" style="margin-top:3px">Campinas/SP · 05 Jul 2026 · 180 inscritos</p></div>
+                <span class="badge badge-default">Rascunho</span>
+              </button>
+            </li>
+            <li>
+              <button onclick="showScreen('event-detail')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;width:100%;background:none;border:none;cursor:pointer;transition:background 0.12s" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='none'">
+                <div style="text-align:left"><p class="font-semibold text-sm" style="color:#fff">Desafio das Montanhas</p><p class="text-xs muted" style="margin-top:3px">Petrópolis/RJ · 12 Jul 2026 · 0 inscritos</p></div>
+                <span class="badge badge-default">Rascunho</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: EVENTS LIST -->
+<div id="screen-events-list" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <span class="logo-word">Ticket<span>Moove</span></span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" onclick="showScreen('dashboard')"><span>📊</span> Dashboard</button>
+        <button class="sidebar-item active" onclick="showScreen('events-list')"><span>📅</span> Eventos <span class="sidebar-dot"></span></button>
+        <button class="sidebar-item" onclick="showScreen('participants')"><span>👥</span> Participantes</button>
+        <button class="sidebar-item" onclick="showScreen('financeiro')"><span>💰</span> Financeiro</button>
+      </nav>
+      <div class="sidebar-footer"><button class="sidebar-item" onclick="showScreen('login')"><span>⬅</span> Sair</button></div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div></div>
+      <div class="page-content">
+        <div class="page-header flex justify-between items-center">
+          <div><p class="page-eyebrow">Gerenciamento</p><h1 class="page-title">EVENTOS</h1></div>
+          <button class="btn btn-primary btn-sm" onclick="showScreen('create-event')">+ Novo evento</button>
+        </div>
+        <div class="card" style="overflow:hidden">
+          <table class="table">
+            <thead><tr><th>Evento</th><th>Data</th><th>Local</th><th>Inscrições</th><th>Vagas</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="name"><button onclick="showScreen('event-detail')" style="background:none;border:none;cursor:pointer;color:#fff;font-weight:600;font-size:13px;font-family:Inter,sans-serif" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='#fff'">Ultra Trail SP 2026</button></td><td class="mono-val">15/06/2026</td><td style="color:rgba(255,255,255,0.4);font-size:12px">São Paulo — SP</td><td style="font-weight:600;color:#fff">234</td><td style="color:rgba(255,255,255,0.4)">500</td><td><span class="badge badge-success">Publicado</span></td></tr>
+              <tr><td class="name"><button onclick="showScreen('event-detail')" style="background:none;border:none;cursor:pointer;color:#fff;font-weight:600;font-size:13px;font-family:Inter,sans-serif" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='#fff'">Maratona Corp. Tech</button></td><td class="mono-val">22/06/2026</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Rio de Janeiro — RJ</td><td style="font-weight:600;color:#fff">450</td><td style="color:rgba(255,255,255,0.4)">600</td><td><span class="badge badge-success">Publicado</span></td></tr>
+              <tr><td class="name"><button onclick="showScreen('event-detail')" style="background:none;border:none;cursor:pointer;color:#fff;font-weight:600;font-size:13px;font-family:Inter,sans-serif" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='#fff'">Trail Experience</button></td><td class="mono-val">05/07/2026</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Campinas — SP</td><td style="font-weight:600;color:#fff">180</td><td style="color:rgba(255,255,255,0.4)">200</td><td><span class="badge badge-success">Publicado</span></td></tr>
+              <tr><td class="name"><button onclick="showScreen('event-detail')" style="background:none;border:none;cursor:pointer;color:#fff;font-weight:600;font-size:13px;font-family:Inter,sans-serif" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='#fff'">Desafio das Montanhas</button></td><td class="mono-val">12/07/2026</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Petrópolis — RJ</td><td style="font-weight:600;color:#fff">0</td><td style="color:rgba(255,255,255,0.4)">150</td><td><span class="badge badge-default">Rascunho</span></td></tr>
+              <tr><td class="name"><button onclick="showScreen('event-detail')" style="background:none;border:none;cursor:pointer;color:#fff;font-weight:600;font-size:13px;font-family:Inter,sans-serif" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='#fff'">Corrida das Pedras</button></td><td class="mono-val">23/08/2026</td><td style="color:rgba(255,255,255,0.4);font-size:12px">São Paulo — SP</td><td style="font-weight:600;color:#fff">487</td><td style="color:rgba(255,255,255,0.4)">500</td><td><span class="badge badge-success">Publicado</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: EVENT DETAIL -->
+<div id="screen-event-detail" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <span class="logo-word">Ticket<span>Moove</span></span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" onclick="showScreen('dashboard')"><span>📊</span> Dashboard</button>
+        <button class="sidebar-item active" onclick="showScreen('events-list')"><span>📅</span> Eventos <span class="sidebar-dot"></span></button>
+        <button class="sidebar-item" onclick="showScreen('participants')"><span>👥</span> Participantes</button>
+        <button class="sidebar-item" onclick="showScreen('financeiro')"><span>💰</span> Financeiro</button>
+      </nav>
+      <div class="sidebar-footer"><button class="sidebar-item" onclick="showScreen('login')"><span>⬅</span> Sair</button></div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div></div>
+      <div class="page-content">
+        <button onclick="showScreen('events-list')" style="font-size:12px;color:rgba(255,255,255,0.3);background:none;border:none;cursor:pointer;margin-bottom:16px;display:flex;align-items:center;gap:6px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">← Voltar para eventos</button>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+          <div>
+            <div class="flex gap-2 items-center" style="margin-bottom:6px">
+              <h1 style="font-size:26px;color:#fff">ULTRA TRAIL SÃO PAULO 2026</h1>
+              <span class="badge badge-success">Publicado</span>
+            </div>
+            <p class="text-sm muted">15 de junho de 2026 — Parque Estadual da Cantareira, São Paulo/SP</p>
+          </div>
+          <div class="flex gap-2">
+            <button class="btn btn-outline btn-sm">🔗 Ver página</button>
+            <button class="btn btn-outline btn-sm">✏️ Editar</button>
+            <button class="btn btn-outline btn-sm" style="border-color:rgba(255,59,59,0.3);color:#ff6b6b">Despublicar</button>
+          </div>
+        </div>
+        <div class="grid-3" style="margin-bottom:20px">
+          <div class="metric-card"><p class="metric-label" style="color:var(--blue)">INSCRIÇÕES</p><p class="metric-value">234</p></div>
+          <div class="metric-card"><p class="metric-label" style="color:var(--lime)">CONFIRMADOS</p><p class="metric-value">198</p></div>
+          <div class="metric-card"><p class="metric-label" style="color:rgba(255,255,255,0.4)">OCUPAÇÃO</p><p class="metric-value">47%</p></div>
+        </div>
+        <div class="card" style="padding:18px;margin-bottom:18px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span class="text-xs muted">Vagas preenchidas</span><span class="mono text-xs" style="color:var(--lime)">47%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:47%;background:var(--lime)"></div></div>
+          <p class="text-xs muted" style="margin-top:6px">234 de 500 vagas confirmadas</p>
+        </div>
+        <div class="card" style="overflow:hidden">
+          <div style="padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between">
+            <div class="flex gap-2 items-center"><span style="color:var(--lime)">👥</span><span class="font-semibold text-sm">Inscrições</span></div>
+            <div class="flex gap-2">
+              <button onclick="showScreen('checkin')" class="btn btn-primary btn-sm">📲 Check-in</button>
+              <button class="btn btn-outline btn-sm">⬇ CSV</button>
+            </div>
+          </div>
+          <table class="table">
+            <thead><tr><th>Atleta</th><th>E-mail</th><th>CPF</th><th>Status</th><th>Ação</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Carlos Silva</td><td style="color:rgba(255,255,255,0.4);font-size:12px">carlos@gmail.com</td><td class="mono-val">123.456.789-00</td><td><span class="badge badge-success">Confirmado</span></td><td><button onclick="showScreen('checkin')" style="font-size:11px;color:var(--lime);background:none;border:none;cursor:pointer">Check-in</button></td></tr>
+              <tr><td class="name">Ana Santos</td><td style="color:rgba(255,255,255,0.4);font-size:12px">ana@hotmail.com</td><td class="mono-val">987.654.321-00</td><td><span class="badge badge-checkin">Check-in ✓</span></td><td></td></tr>
+              <tr><td class="name">Pedro Oliveira</td><td style="color:rgba(255,255,255,0.4);font-size:12px">pedro@gmail.com</td><td class="mono-val">456.789.123-00</td><td><span class="badge badge-warning">Pendente</span></td><td></td></tr>
+              <tr><td class="name">Maria Costa</td><td style="color:rgba(255,255,255,0.4);font-size:12px">maria@gmail.com</td><td class="mono-val">321.654.987-00</td><td><span class="badge badge-success">Confirmado</span></td><td><button onclick="showScreen('checkin')" style="font-size:11px;color:var(--lime);background:none;border:none;cursor:pointer">Check-in</button></td></tr>
+              <tr><td class="name">João Ferreira</td><td style="color:rgba(255,255,255,0.4);font-size:12px">joao@gmail.com</td><td class="mono-val">654.321.789-00</td><td><span class="badge badge-checkin">Check-in ✓</span></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: CREATE EVENT -->
+<div id="screen-create-event" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <span class="logo-word">Ticket<span>Moove</span></span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" onclick="showScreen('dashboard')"><span>📊</span> Dashboard</button>
+        <button class="sidebar-item active" onclick="showScreen('events-list')"><span>📅</span> Eventos <span class="sidebar-dot"></span></button>
+        <button class="sidebar-item" onclick="showScreen('participants')"><span>👥</span> Participantes</button>
+        <button class="sidebar-item" onclick="showScreen('financeiro')"><span>💰</span> Financeiro</button>
+      </nav>
+      <div class="sidebar-footer"><button class="sidebar-item" onclick="showScreen('login')"><span>⬅</span> Sair</button></div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div></div>
+      <div class="page-content" style="max-width:640px">
+        <div class="page-header"><p class="page-eyebrow">Novo evento</p><h1 class="page-title">CRIAR EVENTO</h1></div>
+        <div class="card" style="padding:24px">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div><label class="field-label">Nome do evento <span class="req">*</span></label><input class="input" placeholder="Ex: Corrida das Pedras 2027" /></div>
+            <div><label class="field-label">Descrição</label><textarea class="textarea" rows="3" placeholder="Descreva o evento para os atletas..."></textarea></div>
+            <div class="grid-2">
+              <div><label class="field-label">Data <span class="req">*</span></label><input class="input" type="date" /></div>
+              <div><label class="field-label">Horário</label><input class="input" type="time" value="07:00" /></div>
+            </div>
+            <div><label class="field-label">Local <span class="req">*</span></label><input class="input" placeholder="Ex: Parque Ibirapuera — Portão 10" /></div>
+            <div class="grid-2">
+              <div><label class="field-label">Cidade <span class="req">*</span></label><input class="input" placeholder="São Paulo" /></div>
+              <div><label class="field-label">Estado <span class="req">*</span></label>
+                <select class="input select"><option>SP</option><option>RJ</option><option>MG</option><option>RS</option><option>PR</option></select>
+              </div>
+            </div>
+            <div><label class="field-label">Capacidade (vagas)</label><input class="input" type="number" placeholder="500" /></div>
+            <div style="display:flex;gap:10px;padding-top:4px">
+              <button class="btn btn-primary" onclick="showScreen('event-detail')">Criar evento</button>
+              <button class="btn btn-ghost" onclick="showScreen('events-list')">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: CHECK-IN MOBILE -->
+<div id="screen-checkin" class="screen">
+  <div style="min-height:calc(100vh - 52px);background:#0a0a0a;display:flex;justify-content:center;padding:24px">
+    <div style="width:100%;max-width:380px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px">
+        <div class="logo-symbol" style="width:24px;height:24px;border-radius:6px"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <span style="font-size:13px;font-weight:700;color:#fff">Check-in · Ultra Trail SP 2026</span>
+      </div>
+      <div class="card" style="padding:16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <p class="text-xs muted" style="margin-bottom:2px">Check-ins realizados</p>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800;color:#fff;line-height:1">89 <span style="font-size:18px;color:rgba(255,255,255,0.3)">/ 234</span></p>
+        </div>
+        <div style="text-align:right">
+          <p class="text-xs muted" style="margin-bottom:4px">38% confirmados</p>
+          <div style="width:80px"><div class="progress-track"><div class="progress-fill" style="width:38%;background:var(--lime)"></div></div></div>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <label class="field-label">Buscar atleta por nome ou CPF</label>
+        <input class="input" placeholder="Carlos Silva ou 123.456..." style="height:46px;font-size:15px" value="Carlos" />
+      </div>
+      <div class="card" style="padding:20px;margin-bottom:14px;border-color:rgba(204,255,0,0.2)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+          <div>
+            <p style="font-size:17px;font-weight:700;color:#fff">Carlos Silva</p>
+            <p class="text-xs muted" style="margin-top:3px">carlos@gmail.com · 123.456.789-00</p>
+          </div>
+          <span class="badge badge-success">Confirmado</span>
+        </div>
+        <div class="divider" style="margin:10px 0"></div>
+        <div class="grid-2" style="margin-bottom:16px;gap:8px">
+          <div><p class="text-xs muted">Inscrição</p><p class="text-sm font-semibold" style="color:#fff;margin-top:2px">#INS-0007</p></div>
+          <div><p class="text-xs muted">Categoria</p><p class="text-sm font-semibold" style="color:#fff;margin-top:2px">10km</p></div>
+          <div><p class="text-xs muted">Lote</p><p class="text-sm font-semibold" style="color:#fff;margin-top:2px">Regular</p></div>
+          <div><p class="text-xs muted">Valor</p><p class="text-sm font-semibold" style="color:#fff;margin-top:2px">R$ 149,00</p></div>
+        </div>
+        <button class="btn btn-primary btn-lg w-full" style="font-size:15px">✓ Confirmar Check-in</button>
+      </div>
+      <div class="card" style="overflow:hidden">
+        <div style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06)"><p class="text-xs muted">Últimos check-ins</p></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04)">
+          <div><p class="text-sm font-semibold" style="color:#fff">Ana Santos</p><p class="text-xs muted">10km</p></div>
+          <div style="text-align:right"><span class="badge badge-checkin">Check-in ✓</span><p class="text-xs muted" style="margin-top:4px">há 2 min</p></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04)">
+          <div><p class="text-sm font-semibold" style="color:#fff">João Ferreira</p><p class="text-xs muted">21km</p></div>
+          <div style="text-align:right"><span class="badge badge-checkin">Check-in ✓</span><p class="text-xs muted" style="margin-top:4px">há 5 min</p></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px">
+          <div><p class="text-sm font-semibold" style="color:#fff">Lucia Alves</p><p class="text-xs muted">5km</p></div>
+          <div style="text-align:right"><span class="badge badge-checkin">Check-in ✓</span><p class="text-xs muted" style="margin-top:4px">há 8 min</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: PARTICIPANTS -->
+<div id="screen-participants" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <span class="logo-word">Ticket<span>Moove</span></span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" onclick="showScreen('dashboard')"><span>📊</span> Dashboard</button>
+        <button class="sidebar-item" onclick="showScreen('events-list')"><span>📅</span> Eventos</button>
+        <button class="sidebar-item active" onclick="showScreen('participants')"><span>👥</span> Participantes <span class="sidebar-dot"></span></button>
+        <button class="sidebar-item" onclick="showScreen('financeiro')"><span>💰</span> Financeiro</button>
+      </nav>
+      <div class="sidebar-footer"><button class="sidebar-item" onclick="showScreen('login')"><span>⬅</span> Sair</button></div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div></div>
+      <div class="page-content">
+        <div class="page-header flex justify-between items-center">
+          <div><p class="page-eyebrow">Gestão</p><h1 class="page-title">PARTICIPANTES</h1></div>
+          <button class="btn btn-outline btn-sm">⬇ Exportar CSV</button>
+        </div>
+        <div style="position:relative;margin-bottom:14px">
+          <input class="input" placeholder="Buscar por nome, e-mail, CPF ou evento..." style="padding-left:36px" />
+          <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.25);font-size:13px">🔍</span>
+        </div>
+        <div class="card" style="overflow:hidden">
+          <table class="table">
+            <thead><tr><th>Nome</th><th>E-mail</th><th>Evento</th><th>Status</th><th>CPF</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Carlos Silva</td><td style="color:rgba(255,255,255,0.4);font-size:12px">carlos@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Ultra Trail SP</td><td><span class="badge badge-checkin">Check-in ✓</span></td><td class="mono-val">123.456.789-00</td><td class="mono-val">01/06/2026</td></tr>
+              <tr><td class="name">Ana Santos</td><td style="color:rgba(255,255,255,0.4);font-size:12px">ana@hotmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Ultra Trail SP</td><td><span class="badge badge-success">Confirmado</span></td><td class="mono-val">987.654.321-00</td><td class="mono-val">02/06/2026</td></tr>
+              <tr><td class="name">Pedro Oliveira</td><td style="color:rgba(255,255,255,0.4);font-size:12px">pedro@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Maratona Corp.</td><td><span class="badge badge-warning">Pendente</span></td><td class="mono-val">456.789.123-00</td><td class="mono-val">03/06/2026</td></tr>
+              <tr><td class="name">Maria Costa</td><td style="color:rgba(255,255,255,0.4);font-size:12px">maria@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Ultra Trail SP</td><td><span class="badge badge-success">Confirmado</span></td><td class="mono-val">321.654.987-00</td><td class="mono-val">03/06/2026</td></tr>
+              <tr><td class="name">João Ferreira</td><td style="color:rgba(255,255,255,0.4);font-size:12px">joao@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Trail Experience</td><td><span class="badge badge-checkin">Check-in ✓</span></td><td class="mono-val">654.321.789-00</td><td class="mono-val">04/06/2026</td></tr>
+              <tr><td class="name">Lucia Alves</td><td style="color:rgba(255,255,255,0.4);font-size:12px">lucia@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Ultra Trail SP</td><td><span class="badge badge-success">Confirmado</span></td><td class="mono-val">789.123.456-00</td><td class="mono-val">04/06/2026</td></tr>
+              <tr><td class="name">Roberto Lima</td><td style="color:rgba(255,255,255,0.4);font-size:12px">roberto@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Maratona Corp.</td><td><span class="badge badge-danger">Cancelado</span></td><td class="mono-val">147.258.369-00</td><td class="mono-val">04/06/2026</td></tr>
+              <tr><td class="name">Fernanda Cruz</td><td style="color:rgba(255,255,255,0.4);font-size:12px">fernanda@gmail.com</td><td style="color:rgba(255,255,255,0.4);font-size:12px">Ultra Trail SP</td><td><span class="badge badge-success">Confirmado</span></td><td class="mono-val">369.258.147-00</td><td class="mono-val">05/06/2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCREEN: FINANCEIRO -->
+<div id="screen-financeiro" class="screen">
+  <div class="admin-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <span class="logo-word">Ticket<span>Moove</span></span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" onclick="showScreen('dashboard')"><span>📊</span> Dashboard</button>
+        <button class="sidebar-item" onclick="showScreen('events-list')"><span>📅</span> Eventos</button>
+        <button class="sidebar-item" onclick="showScreen('participants')"><span>👥</span> Participantes</button>
+        <button class="sidebar-item active" onclick="showScreen('financeiro')"><span>💰</span> Financeiro <span class="sidebar-dot"></span></button>
+      </nav>
+      <div class="sidebar-footer"><button class="sidebar-item" onclick="showScreen('login')"><span>⬅</span> Sair</button></div>
+    </div>
+    <div class="main-content">
+      <div class="topbar"><div class="avatar">RA</div></div>
+      <div class="page-content">
+        <div class="page-header flex justify-between items-center">
+          <div><p class="page-eyebrow">Gestão financeira</p><h1 class="page-title">FINANCEIRO</h1></div>
+          <button class="btn btn-outline btn-sm">⬇ Exportar extrato</button>
+        </div>
+        <div class="grid-4" style="margin-bottom:24px">
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px"><span class="metric-label">RECEITA TOTAL</span><span style="font-size:18px">💵</span></div>
+            <p style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:var(--lime)">R$ 45.670</p>
+            <p style="font-size:11px;color:#4ade80;margin-top:4px">↑ +12% vs mês ant.</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px"><span class="metric-label">CONFIRMADA</span><span style="font-size:18px">✅</span></div>
+            <p style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#4ade80">R$ 38.950</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px"><span class="metric-label">PENDENTE</span><span style="font-size:18px">⏳</span></div>
+            <p style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fbbf24">R$ 6.720</p>
+          </div>
+          <div class="metric-card">
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px"><span class="metric-label">TICKET MÉDIO</span><span style="font-size:18px">📊</span></div>
+            <p style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:var(--blue)">R$ 195</p>
+          </div>
+        </div>
+        <div class="card" style="overflow:hidden">
+          <div style="padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.06)">
+            <span class="font-semibold text-sm">Receita por evento</span>
+          </div>
+          <table class="table">
+            <thead><tr><th>Evento</th><th>Inscritos</th><th>Receita bruta</th><th>Taxa plataforma</th><th>Valor líquido</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Ultra Trail SP 2026</td><td style="color:#fff;font-weight:600">234</td><td style="color:#fff;font-weight:600">R$ 23.400</td><td style="color:rgba(255,59,59,0.8)">R$ 2.340</td><td style="color:var(--lime);font-weight:700">R$ 21.060</td><td><span class="badge badge-success">Ativo</span></td></tr>
+              <tr><td class="name">Maratona Corp. Tech</td><td style="color:#fff;font-weight:600">450</td><td style="color:#fff;font-weight:600">R$ 13.500</td><td style="color:rgba(255,59,59,0.8)">R$ 1.350</td><td style="color:var(--lime);font-weight:700">R$ 12.150</td><td><span class="badge badge-success">Ativo</span></td></tr>
+              <tr><td class="name">Trail Experience</td><td style="color:#fff;font-weight:600">180</td><td style="color:#fff;font-weight:600">R$ 8.770</td><td style="color:rgba(255,59,59,0.8)">R$ 877</td><td style="color:var(--lime);font-weight:700">R$ 7.893</td><td><span class="badge badge-success">Ativo</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    const screen = document.getElementById('screen-' + id);
+    if (screen) screen.classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active');
+    });
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
