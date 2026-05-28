@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Briefing de Design — Ticket Moove</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f9f7;
+      --white: #ffffff;
+      --ink: #0f0f0f;
+      --ink-2: #3a3a3a;
+      --ink-3: #6b6b6b;
+      --ink-4: #9b9b9b;
+      --border: #e8e8e4;
+      --accent: #0066cc;
+      --accent-light: #e8f0fb;
+      --orange: #f97316;
+      --orange-light: #fff3e8;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --red: #dc2626;
+      --red-light: #fef2f2;
+      --yellow-light: #fffbeb;
+      --yellow: #d97706;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 8px; }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--ink-3);
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-links a:hover { background: var(--bg); color: var(--ink); }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 56px;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 10px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 17px;
+      color: var(--ink-2);
+      max-width: 580px;
+      line-height: 1.6;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      font-size: 13px;
+      color: var(--ink-3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-meta-item strong { color: var(--ink); }
+
+    /* ── SECTION ── */
+    section { margin-bottom: 64px; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      color: var(--ink-3);
+      font-size: 14px;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    /* ── CARD BASE ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-sub {
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    /* ── SCREEN CARD ── */
+    .screen-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .screen-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .screen-info {}
+    .screen-route {
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+    .screen-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .screen-who {
+      font-size: 12px;
+      color: var(--ink-4);
+    }
+    .screen-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+    .tag-public  { background: var(--orange-light); color: var(--orange); }
+    .tag-admin   { background: var(--accent-light);  color: var(--accent); }
+    .tag-super   { background: var(--yellow-light);  color: var(--yellow); }
+    .screen-body { padding: 20px 24px; }
+    .screen-body h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      margin-bottom: 10px;
+    }
+    .element-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .element-list li {
+      font-size: 13px;
+      color: var(--ink-2);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 12px;
+      background: var(--bg);
+      border-radius: 8px;
+      line-height: 1.4;
+    }
+    .element-list li::before {
+      content: '·';
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .element-list li strong { color: var(--ink); }
+
+    .screen-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .screen-cols { grid-template-columns: 1fr; }
+      nav { padding: 0 16px; }
+      .container { padding: 0 16px; }
+      .hero h1 { font-size: 28px; }
+    }
+
+    /* ── BRAND SECTION ── */
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 600px) { .brand-grid { grid-template-columns: 1fr 1fr; } }
+    .color-swatch {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .swatch-color { height: 72px; }
+    .swatch-info { padding: 10px 12px; background: var(--white); }
+    .swatch-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+    .swatch-hex  { font-size: 11px; color: var(--ink-4); font-family: monospace; }
+    .swatch-role { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+
+    .typo-sample {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+    }
+    .typo-label { font-size: 11px; color: var(--ink-4); margin-bottom: 4px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* ── TONE BOX ── */
+    .tone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 600px) { .tone-grid { grid-template-columns: 1fr; } }
+    .tone-card {
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .tone-yes { background: var(--green-light); }
+    .tone-no  { background: var(--red-light); }
+    .tone-head { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+    .tone-yes .tone-head { color: var(--green); }
+    .tone-no  .tone-head { color: var(--red); }
+    .tone-card ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .tone-card li { font-size: 13px; color: var(--ink-2); padding-left: 14px; position: relative; }
+    .tone-card li::before { position: absolute; left: 0; }
+    .tone-yes li::before { content: '✓'; color: var(--green); }
+    .tone-no  li::before { content: '✗'; color: var(--red); }
+
+    /* ── FLOW DIAGRAM ── */
+    .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 16px 0; }
+    .flow-step {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-2);
+    }
+    .flow-step.active { background: var(--accent); color: white; border-color: var(--accent); }
+    .flow-arrow { color: var(--ink-4); font-size: 16px; padding: 0 6px; }
+
+    /* ── PRIORITY TABLE ── */
+    .priority-table { width: 100%; border-collapse: collapse; }
+    .priority-table th {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      text-align: left;
+      padding: 10px 16px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .priority-table td {
+      font-size: 13px;
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-2);
+      vertical-align: top;
+    }
+    .priority-table tr:last-child td { border-bottom: none; }
+    .priority-table tr:hover td { background: var(--bg); }
+    .priority-table td:first-child { font-weight: 600; color: var(--ink); }
+    .p1 { color: var(--red) !important; font-weight: 700 !important; }
+    .p2 { color: var(--orange) !important; font-weight: 700 !important; }
+    .p3 { color: var(--green) !important; font-weight: 700 !important; }
+    .table-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    /* ── CALLOUT ── */
+    .callout {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      display: flex;
+      gap: 12px;
+    }
+    .callout-blue   { background: var(--accent-light); color: #1a3d6e; }
+    .callout-orange { background: var(--orange-light); color: #7c3008; }
+    .callout-icon   { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── DIVIDER ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      margin-top: 80px;
+      text-align: center;
+      color: var(--ink-4);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Ticket<span>Moove</span></div>
+  <div class="nav-links">
+    <a href="#marca">Marca</a>
+    <a href="#telas-publicas">Telas públicas</a>
+    <a href="#telas-admin">Admin</a>
+    <a href="#prioridades">Prioridades</a>
+    <a href="#entregaveis">Entregáveis</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">📋 Briefing de Design</div>
+    <h1>Design System &<br/>Telas da Plataforma</h1>
+    <p>Briefing completo para a equipe de design: identidade de marca, todas as telas da plataforma, fluxos do usuário e prioridades de entrega.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">📦 Produto: <strong>Ticket Moove</strong></div>
+      <div class="hero-meta-item">📅 Data: <strong>Maio 2026</strong></div>
+      <div class="hero-meta-item">👤 Para: <strong>Equipe de Design</strong></div>
+      <div class="hero-meta-item">🎯 Nicho: <strong>Eventos Endurance</strong></div>
+    </div>
+  </div>
+
+  <!-- CONTEXTO -->
+  <section>
+    <div class="section-label">Contexto do produto</div>
+    <h2>O que é o Ticket Moove</h2>
+    <p class="section-desc">Plataforma SaaS para gestão de inscrições em eventos esportivos de endurance: corridas de rua, triathlon e ciclismo. Posicionada como <strong>parceiro do organizador</strong> — não apenas uma ferramenta. Menor taxa do mercado, repasse rápido, atendimento próximo e ferramentas de captação de atletas.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="card">
+        <div class="card-title">🏃 Quem usa</div>
+        <div class="card-sub">Dois perfis distintos com necessidades bem diferentes.</div>
+        <ul class="element-list">
+          <li><strong>Organizador de evento</strong> — usa o painel admin para criar eventos, gerenciar inscrições e acompanhar resultados</li>
+          <li><strong>Atleta</strong> — acessa a página pública do evento para se inscrever, recebe confirmação por e-mail com QR code</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🎯 Posicionamento visual</div>
+        <div class="card-sub">A marca precisa transmitir os pilares do produto.</div>
+        <ul class="element-list">
+          <li><strong>Confiança</strong> — dinheiro do organizador precisa estar seguro</li>
+          <li><strong>Energia</strong> — contexto esportivo, movimento, performance</li>
+          <li><strong>Parceria</strong> — próximo, humano, não genérico</li>
+          <li><strong>Clareza</strong> — telas limpas, dados visíveis, zero ruído</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARCA -->
+  <section id="marca">
+    <div class="section-label">Identidade de marca</div>
+    <h2>Nome e personalidade</h2>
+    <p class="section-desc">O nome <strong>Ticket Moove</strong> une dois mundos: "Ticket" remete ao produto (inscrição, ingresso, acesso) e "Moove" ao movimento — endurance, performance, estar em ação. O duplo "o" é intencional, cria distinção visual e memorabilidade.</p>
+
+    <div class="callout callout-orange">
+      <span class="callout-icon">⚡</span>
+      <div>A logo precisa funcionar em fundo claro, fundo escuro e em tamanho pequeno (favicon, app icon). Testar em contextos reais: cabeçalho de e-mail, crachá de evento, camiseta de organizador.</div>
+    </div>
+
+    <!-- Paleta -->
+    <h4 style="font-size:13px;font-weight:700;color:var(--ink);margin:24px 0 10px;">Paleta de cores</h4>
+    <div class="callout callout-blue" style="margin:0 0 20px;">
+      <span class="callout-icon">🎨</span>
+      <div>As cores serão definidas pela equipe de design junto com a criação da logo e identidade visual. O que o produto precisa que a paleta transmita: <strong>confiança</strong> (organizador deposita dinheiro na plataforma), <strong>energia</strong> (contexto esportivo, movimento, endurance) e <strong>clareza</strong> (interface de dados limpa). A paleta deve funcionar tanto no painel admin (produto B2B, mais sóbrio) quanto na página pública do evento (B2C, mais impacto).</div>
+    </div>
+
+    <!-- Tipografia -->
+    <h4 style="font-size:13px;font-weight:700;color:var(--ink);margin:28px 0 14px;">Tipografia</h4>
+    <div class="typo-sample">
+      <div class="typo-label">Display / Headings</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--ink);line-height:1.1;">Corrida das Pedras 2026</div>
+      <div style="font-size:12px;color:var(--ink-4);margin-top:6px;">Inter 800 — letra-spacing apertado — usado em títulos de evento e hero</div>
+    </div>
+    <div class="typo-sample">
+      <div class="typo-label">Body / Interface</div>
+      <div style="font-size:15px;color:var(--ink-2);line-height:1.6;">São Paulo — 23 de agosto de 2026 — Parque Ibirapuera</div>
+      <div style="font-size:12px;color:var(--ink-4);margin-top:6px;">Inter 400–500 — texto de interface, labels, descrições</div>
+    </div>
+    <div class="typo-sample">
+      <div class="typo-label">Mono / Dados</div>
+      <div style="font-size:14px;font-family:monospace;color:var(--ink);">CPF 123.456.789-00 &nbsp;|&nbsp; R$ 249,00 &nbsp;|&nbsp; #INS-0042</div>
+      <div style="font-size:12px;color:var(--ink-4);margin-top:6px;">JetBrains Mono / SF Mono — CPF, valores, códigos de inscrição</div>
+    </div>
+
+    <!-- Tom de voz -->
+    <h4 style="font-size:13px;font-weight:700;color:var(--ink);margin:28px 0 14px;">Tom de voz (microcopy)</h4>
+    <div class="tone-grid">
+      <div class="tone-card tone-yes">
+        <div class="tone-head">✓ Escrever assim</div>
+        <ul>
+          <li>Inscrição confirmada!</li>
+          <li>Criar meu evento</li>
+          <li>Ver participantes</li>
+          <li>Publicar evento</li>
+          <li>Salvar alterações</li>
+          <li>Algo deu errado — tente novamente</li>
+        </ul>
+      </div>
+      <div class="tone-card tone-no">
+        <div class="tone-head">✗ Evitar</div>
+        <ul>
+          <li>Operação realizada com sucesso</li>
+          <li>Inicializar novo evento</li>
+          <li>Visualizar lista de participantes</li>
+          <li>Publicar para tornar público</li>
+          <li>Persistir dados</li>
+          <li>Erro 422: entidade não processável</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- TELAS PÚBLICAS -->
+  <section id="telas-publicas">
+    <div class="section-label">Telas públicas — acesso do atleta</div>
+    <h2>Jornada do atleta</h2>
+    <p class="section-desc">O atleta nunca precisa criar conta. Ele acessa o link do evento, preenche o formulário e recebe a confirmação por e-mail. Mobile-first obrigatório — a maioria vai acessar pelo celular.</p>
+
+    <div class="flow">
+      <div class="flow-step">Link do evento</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step active">Página do evento</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Formulário</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Confirmação</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">E-mail com QR</div>
+    </div>
+
+    <!-- P1: Página pública -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">/e/:slug</div>
+          <div class="screen-name">Página pública do evento</div>
+          <div class="screen-who">Quem vê: atletas, público geral</div>
+        </div>
+        <div class="screen-tag tag-public">Público</div>
+      </div>
+      <div class="screen-body">
+        <div class="screen-cols">
+          <div>
+            <h4>Elementos obrigatórios</h4>
+            <ul class="element-list">
+              <li><strong>Hero com banner do evento</strong> — imagem ou gradiente de marca do organizador. Título grande, data, local</li>
+              <li><strong>Informações do evento</strong> — data completa, horário, endereço com link para mapa, capacidade e vagas restantes</li>
+              <li><strong>Descrição do evento</strong> — texto do organizador sobre percurso, categorias, kits, etc.</li>
+              <li><strong>Lotes / preços</strong> — exibir lote ativo com preço em destaque. Mostrar lotes futuros como "em breve"</li>
+              <li><strong>Formulário de inscrição</strong> inline na mesma página (não redireciona). Nome, e-mail, CPF, telefone, data de nascimento + campos customizados do organizador</li>
+              <li><strong>Botão CTA principal</strong> — "Quero me inscrever" / "Confirmar inscrição"</li>
+              <li><strong>Rodapé mínimo</strong> — "Powered by Ticket Moove" com link</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Estados da tela</h4>
+            <ul class="element-list">
+              <li><strong>Inscrições abertas</strong> — formulário visível, CTA ativo</li>
+              <li><strong>Esgotado</strong> — "Vagas encerradas" — sem formulário, opção de lista de espera (futuro)</li>
+              <li><strong>Encerrado</strong> — evento já aconteceu — banner informativo</li>
+              <li><strong>Sucesso</strong> — após envio: tela de confirmação com nome do atleta, resumo da inscrição e instrução de verificar e-mail</li>
+            </ul>
+            <h4 style="margin-top:16px;">Comportamentos mobile</h4>
+            <ul class="element-list">
+              <li>Hero compacto no mobile — sem cortar informação importante</li>
+              <li>Formulário em coluna única no mobile</li>
+              <li>Teclado numérico no CPF e telefone</li>
+              <li>Botão fixo no bottom no mobile quando o formulário estiver fora da tela</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-mail confirmação -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">E-mail transacional</div>
+          <div class="screen-name">Confirmação de inscrição</div>
+          <div class="screen-who">Quem recebe: atleta inscrito</div>
+        </div>
+        <div class="screen-tag tag-public">Público</div>
+      </div>
+      <div class="screen-body">
+        <h4>Elementos obrigatórios</h4>
+        <ul class="element-list">
+          <li><strong>Logo da plataforma</strong> no topo do e-mail</li>
+          <li><strong>Saudação personalizada</strong> — "Boa, [Nome]! Sua inscrição está confirmada."</li>
+          <li><strong>Resumo da inscrição</strong> — evento, data, local, lote, valor</li>
+          <li><strong>QR Code de check-in</strong> — gerado no momento do envio, único por inscrição</li>
+          <li><strong>Número da inscrição</strong> em destaque (ex: #INS-0042)</li>
+          <li><strong>Instruções</strong> — "Apresente este QR code no dia do evento"</li>
+          <li><strong>Rodapé</strong> — contato do organizador, "Powered by Ticket Moove"</li>
+        </ul>
+        <div class="callout callout-blue" style="margin-top:16px;">
+          <span class="callout-icon">💡</span>
+          <div>O e-mail precisa ter boa renderização em Gmail, Outlook e Apple Mail. HTML simples, sem CSS externo. QR code como imagem inline (base64).</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- TELAS ADMIN -->
+  <section id="telas-admin">
+    <div class="section-label">Telas do admin — painel do organizador</div>
+    <h2>Jornada do organizador</h2>
+    <p class="section-desc">O organizador acessa o painel via <strong>app.ticketmoove.com.br</strong>. Interface densa mas organizada — ele precisa de dados na cara dura, sem precisar clicar muito. Desktop-first, com responsividade mínima para tablet.</p>
+
+    <!-- Layout admin -->
+    <div class="callout callout-blue">
+      <span class="callout-icon">🖥️</span>
+      <div><strong>Layout global do admin:</strong> sidebar fixa à esquerda com logo, navegação e logout. Conteúdo principal na direita. Sidebar colapsável no tablet. No mobile: menu hambúrguer. Fundo: cinza-claro (#F8FAFC), cards brancos com sombra leve.</div>
+    </div>
+
+    <!-- Login -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">/login</div>
+          <div class="screen-name">Login do organizador</div>
+          <div class="screen-who">Quem vê: organizadores cadastrados</div>
+        </div>
+        <div class="screen-tag tag-admin">Admin</div>
+      </div>
+      <div class="screen-body">
+        <ul class="element-list">
+          <li><strong>Logo Ticket Moove</strong> centralizada no topo</li>
+          <li><strong>Card de login</strong> centralizado na tela — e-mail, senha, botão entrar</li>
+          <li><strong>Link "Esqueci minha senha"</strong></li>
+          <li><strong>Fundo diferenciado</strong> — gradiente sutil ou imagem de contexto esportivo</li>
+          <li>Sem opção de cadastro autônomo — organizadores são cadastrados pela plataforma</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Onboarding -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">/onboarding</div>
+          <div class="screen-name">Primeiro acesso — configurar organização</div>
+          <div class="screen-who">Quem vê: novo organizador no primeiro login</div>
+        </div>
+        <div class="screen-tag tag-admin">Admin</div>
+      </div>
+      <div class="screen-body">
+        <ul class="element-list">
+          <li><strong>Passo 1 — Dados da organização:</strong> nome da organização, slug (URL pública ex: <em>race83</em>), CNPJ</li>
+          <li><strong>Passo 2 — Dados bancários</strong> para receber repasses (banco, agência, conta)</li>
+          <li><strong>Stepper visual</strong> mostrando o progresso (Passo 1 de 2)</li>
+          <li>Tela clean, sem sidebar — foco total no preenchimento</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">/dashboard</div>
+          <div class="screen-name">Visão geral</div>
+          <div class="screen-who">Quem vê: organizador logado</div>
+        </div>
+        <div class="screen-tag tag-admin">Admin</div>
+      </div>
+      <div class="screen-body">
+        <div class="screen-cols">
+          <div>
+            <h4>Elementos obrigatórios</h4>
+            <ul class="element-list">
+              <li><strong>Saudação</strong> — "Bom dia, Rafael" com data atual</li>
+              <li><strong>Cards de métricas:</strong> Total de eventos · Total de inscrições · Receita do mês · Inscrições hoje</li>
+              <li><strong>Lista de próximos eventos</strong> — até 5 eventos, com data, status e número de inscrições</li>
+              <li><strong>Botão "Novo evento"</strong> em destaque no header</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Estados / comportamentos</h4>
+            <ul class="element-list">
+              <li><strong>Estado vazio</strong> (zero eventos) — ilustração + CTA para criar primeiro evento. Não mostrar zeros em tabelas</li>
+              <li>Cards de métricas com skeleton loading enquanto carrega</li>
+              <li>Evento com inscrições no dia pisca ou tem badge "Hoje"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista eventos -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">/events</div>
+          <div class="screen-name">Lista de eventos</div>
+          <div class="screen-who">Quem vê: organizador logado</div>
+        </div>
+        <div class="screen-tag tag-admin">Admin</div>
+      </div>
+      <div class="screen-body">
+        <ul class="element-list">
+          <li><strong>Tabela de eventos</strong> — nome, data, cidade, vagas, inscrições, status</li>
+          <li><strong>Filtros</strong> — por status (Todos / Publicado / Rascunho / Encerrado)</li>
+          <li><strong>Busca</strong> por nome do evento</li>
+          <li><strong>Status como badge</strong> colorido — Rascunho (cinza) · Publicado (verde) · Encerrado (azul) · Cancelado (vermelho)</li>
+          <li><strong>Ação inline</strong> por linha — menu "·  ·  ·" com: Ver, Editar, Publicar/Despublicar, Duplicar</li>
+          <li><strong>CTA</strong> "Novo evento" no header da página</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Criar evento -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">/events/new</div>
+          <div class="screen-name">Criar evento</div>
+          <div class="screen-who">Quem vê: organizador criando um novo evento</div>
+        </div>
+        <div class="screen-tag tag-admin">Admin</div>
+      </div>
+      <div class="screen-body">
+        <div class="screen-cols">
+          <div>
+            <h4>Seções do formulário</h4>
+            <ul class="element-list">
+              <li><strong>Informações gerais:</strong> nome do evento, descrição</li>
+              <li><strong>Data e local:</strong> data, horário, endereço completo, cidade, estado</li>
+              <li><strong>Capacidade:</strong> total de vagas</li>
+              <li><strong>Imagem de capa:</strong> upload do banner do evento (proporção 16:9 recomendada)</li>
+              <li><strong>URL pública:</strong> slug gerado automaticamente do nome, editável</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Comportamentos</h4>
+            <ul class="element-list">
+              <li>Formulário em coluna única — sem abas. Salvar como rascunho automático</li>
+              <li>Slug gerado ao digitar o nome — editável manualmente</li>
+              <li>Preview da URL pública em tempo real</li>
+              <li>Upload de imagem com preview antes de salvar</li>
+              <li>Botão "Salvar rascunho" e "Publicar agora" ao final</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detalhe evento -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">/events/:id</div>
+          <div class="screen-name">Detalhe do evento</div>
+          <div class="screen-who">Quem vê: organizador gerenciando um evento</div>
+        </div>
+        <div class="screen-tag tag-admin">Admin</div>
+      </div>
+      <div class="screen-body">
+        <div class="screen-cols">
+          <div>
+            <h4>Área superior — visão geral</h4>
+            <ul class="element-list">
+              <li><strong>Header</strong> — nome do evento, status, botões Editar / Publicar / Ver página pública</li>
+              <li><strong>Cards de métricas:</strong> Inscrições · Confirmados · Ocupação (%) · Receita gerada</li>
+              <li><strong>Barra de progresso</strong> de capacidade — vagas preenchidas vs total</li>
+            </ul>
+            <h4 style="margin-top:16px;">Lotes de preço</h4>
+            <ul class="element-list">
+              <li>Tabela de lotes: nome, preço, vagas, datas de validade, status (ativo/expirado)</li>
+              <li>Botão "Adicionar lote"</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Lista de inscrições</h4>
+            <ul class="element-list">
+              <li>Tabela: nome, e-mail, CPF, lote, status, data de inscrição</li>
+              <li>Busca por nome ou e-mail</li>
+              <li>Filtro por status (Todos / Confirmado / Pendente / Check-in)</li>
+              <li>Ação "Check-in" por linha — muda status para "Check-in ✓"</li>
+              <li>Botão "Exportar CSV" com todos os campos</li>
+            </ul>
+            <h4 style="margin-top:16px;">Ações globais do evento</h4>
+            <ul class="element-list">
+              <li>Publicar / Despublicar evento</li>
+              <li>Copiar link público</li>
+              <li>Encerrar inscrições</li>
+              <li>Cancelar evento (com aviso de impacto)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Check-in -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">/events/:id/checkin</div>
+          <div class="screen-name">Check-in no dia do evento</div>
+          <div class="screen-who">Quem usa: staff do evento com celular/tablet</div>
+        </div>
+        <div class="screen-tag tag-admin">Admin</div>
+      </div>
+      <div class="screen-body">
+        <ul class="element-list">
+          <li><strong>Modo mobile-first exclusivo</strong> — esta tela é usada pelo staff no dia do evento</li>
+          <li><strong>Busca por nome ou CPF</strong> — campo grande, teclado em destaque</li>
+          <li><strong>Resultado em card grande</strong> — foto (futura), nome, número de inscrição, lote, status atual</li>
+          <li><strong>Botão "Confirmar check-in"</strong> em verde, grande, fácil de apertar</li>
+          <li><strong>Feedback visual claro</strong> — verde com ✓ para confirmado, vermelho para já foi feito ou não encontrado</li>
+          <li>Contador no topo — "X de Y check-ins realizados"</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Participantes -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">/participants</div>
+          <div class="screen-name">Participantes</div>
+          <div class="screen-who">Quem vê: organizador logado</div>
+        </div>
+        <div class="screen-tag tag-admin">Admin</div>
+      </div>
+      <div class="screen-body">
+        <ul class="element-list">
+          <li><strong>Tabela unificada</strong> de todos os atletas inscritos em todos os eventos</li>
+          <li><strong>Busca global</strong> por nome, e-mail, CPF</li>
+          <li><strong>Filtro por evento</strong> — dropdown com todos os eventos do organizador</li>
+          <li><strong>Filtro por status</strong> — Todos / Confirmado / Check-in / Cancelado</li>
+          <li><strong>Exportar CSV</strong> com todos os dados (aplicando os filtros ativos)</li>
+          <li>Paginação ou scroll infinito para listas grandes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Financeiro -->
+    <div class="screen-card">
+      <div class="screen-header">
+        <div class="screen-info">
+          <div class="screen-route">/financeiro</div>
+          <div class="screen-name">Relatório financeiro</div>
+          <div class="screen-who">Quem vê: organizador logado</div>
+        </div>
+        <div class="screen-tag tag-admin">Admin</div>
+      </div>
+      <div class="screen-body">
+        <ul class="element-list">
+          <li><strong>Cards de resumo:</strong> Receita bruta · Taxa plataforma · Valor líquido · A receber</li>
+          <li><strong>Gráfico de inscrições ao longo do tempo</strong> (linha) — por evento ou geral</li>
+          <li><strong>Tabela de repasses</strong> — data, valor bruto, taxa, valor líquido, status (pago/pendente)</li>
+          <li><strong>Filtro por evento e período</strong></li>
+          <li>Exportar extrato em CSV</li>
+        </ul>
+        <div class="callout callout-blue" style="margin-top:16px;">
+          <span class="callout-icon">💡</span>
+          <div>Esta tela é para uma segunda versão — incluir no sistema de design agora mas não priorizar para o MVP.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- COMPONENTES -->
+  <section>
+    <div class="section-label">Componentes do design system</div>
+    <h2>Biblioteca de componentes</h2>
+    <p class="section-desc">Estes são os blocos de construção que precisam estar definidos antes de montar qualquer tela. O design system será implementado em código (React + Tailwind) com base nos tokens entregues.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="card">
+        <div class="card-title">🔘 Botões</div>
+        <ul class="element-list">
+          <li><strong>Primary</strong> — ação principal (azul)</li>
+          <li><strong>Accent</strong> — CTA público / atleta (laranja)</li>
+          <li><strong>Secondary</strong> — ação secundária (cinza)</li>
+          <li><strong>Outline</strong> — ação terciária (borda)</li>
+          <li><strong>Ghost</strong> — ação suave (sem fundo)</li>
+          <li><strong>Destructive</strong> — ação destrutiva (vermelho)</li>
+          <li>Tamanhos: SM · MD · LG · Icon</li>
+          <li>Estado: default · hover · active · disabled · loading</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📝 Inputs e formulários</div>
+        <ul class="element-list">
+          <li><strong>Input text</strong> — estados: default, focus, error, disabled</li>
+          <li><strong>Select</strong> — dropdown nativo estilizado</li>
+          <li><strong>Textarea</strong> — para descrições</li>
+          <li><strong>Label</strong> — acima do campo, obrigatório marcado com *</li>
+          <li><strong>Mensagem de erro</strong> — abaixo do campo, em vermelho</li>
+          <li><strong>Hint text</strong> — instrução abaixo do campo, em cinza</li>
+          <li><strong>File upload</strong> — zona de drag & drop para banner do evento</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🏷️ Badges e status</div>
+        <ul class="element-list">
+          <li><strong>Rascunho</strong> — cinza</li>
+          <li><strong>Publicado</strong> — verde</li>
+          <li><strong>Encerrado</strong> — azul</li>
+          <li><strong>Cancelado</strong> — vermelho</li>
+          <li><strong>Pendente</strong> — amarelo</li>
+          <li><strong>Check-in ✓</strong> — azul índigo</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📊 Cards e dados</div>
+        <ul class="element-list">
+          <li><strong>Metric card</strong> — ícone + label + valor em destaque</li>
+          <li><strong>Event card</strong> — para listagens compactas</li>
+          <li><strong>Empty state</strong> — ilustração + texto + CTA</li>
+          <li><strong>Skeleton loader</strong> — placeholder animado</li>
+          <li><strong>Table</strong> — header, linhas, hover, paginação</li>
+          <li><strong>Progress bar</strong> — ocupação de vagas</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🔔 Feedback</div>
+        <ul class="element-list">
+          <li><strong>Toast</strong> — notificação temporária (sucesso, erro, info)</li>
+          <li><strong>Alert inline</strong> — aviso dentro de um formulário</li>
+          <li><strong>Modal de confirmação</strong> — ações destrutivas (cancelar evento, etc.)</li>
+          <li><strong>Loading spinner</strong> — para ações assíncronas</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🧭 Navegação</div>
+        <ul class="element-list">
+          <li><strong>Sidebar admin</strong> — logo, nav items, avatar/logout</li>
+          <li><strong>Nav item</strong> — ícone + label, estados: default, active, hover</li>
+          <li><strong>Breadcrumb</strong> — ex: Eventos / Corrida das Pedras</li>
+          <li><strong>Tabs</strong> — para filtros dentro de uma tela</li>
+          <li><strong>Dropdown menu</strong> — ações "· · ·" por linha de tabela</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- PRIORIDADES -->
+  <section id="prioridades">
+    <div class="section-label">Prioridades de entrega</div>
+    <h2>O que entregar primeiro</h2>
+    <p class="section-desc">O MVP precisa de um subconjunto das telas. Design e desenvolvimento acontecem em paralelo — priorizar o que desbloqueia o produto para os primeiros organizadores.</p>
+
+    <div class="table-wrap">
+      <table class="priority-table">
+        <thead>
+          <tr>
+            <th>Tela</th>
+            <th>Prioridade</th>
+            <th>Motivo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Logo + identidade base</td><td class="p1">P1 — Urgente</td><td>Desbloqueia tudo. Sem logo não tem marca.</td></tr>
+          <tr><td>Design system (tokens, botões, inputs)</td><td class="p1">P1 — Urgente</td><td>Base de todos os componentes — primeiro a entregar</td></tr>
+          <tr><td>Página pública do evento</td><td class="p1">P1 — Urgente</td><td>É o produto para o atleta. Precisa estar certo</td></tr>
+          <tr><td>Login do organizador</td><td class="p1">P1 — Urgente</td><td>Primeiro acesso ao painel</td></tr>
+          <tr><td>Dashboard (visão geral)</td><td class="p1">P1 — Urgente</td><td>Primeira tela após login</td></tr>
+          <tr><td>Criar evento</td><td class="p1">P1 — Urgente</td><td>Funcionalidade core do produto</td></tr>
+          <tr><td>Detalhe do evento + inscrições</td><td class="p1">P1 — Urgente</td><td>Gestão de atletas é o valor central</td></tr>
+          <tr><td>E-mail de confirmação</td><td class="p2">P2 — Importante</td><td>Atleta recebe após se inscrever</td></tr>
+          <tr><td>Lista de eventos</td><td class="p2">P2 — Importante</td><td>Necessário com 2+ eventos</td></tr>
+          <tr><td>Lista de participantes</td><td class="p2">P2 — Importante</td><td>Visão global de atletas</td></tr>
+          <tr><td>Check-in mobile</td><td class="p2">P2 — Importante</td><td>Necessário no dia do evento</td></tr>
+          <tr><td>Onboarding (primeiro login)</td><td class="p2">P2 — Importante</td><td>Configurar organização antes de criar evento</td></tr>
+          <tr><td>Relatório financeiro</td><td class="p3">P3 — Depois</td><td>Necessário quando houver pagamentos reais</td></tr>
+          <tr><td>Editar evento</td><td class="p3">P3 — Depois</td><td>Funcional mas não crítico no início</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- ENTREGÁVEIS -->
+  <section id="entregaveis">
+    <div class="section-label">Entregáveis esperados</div>
+    <h2>O que a equipe de design precisa entregar</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="card">
+        <div class="card-title">🎨 Identidade de marca</div>
+        <ul class="element-list">
+          <li>Logo principal (fundo claro + fundo escuro)</li>
+          <li>Versão horizontal + versão ícone/símbolo</li>
+          <li>Favicon (32×32, 64×64)</li>
+          <li>Paleta de cores oficial com códigos hex</li>
+          <li>Tipografia definida (fontes e hierarquia)</li>
+          <li>Guia de uso da marca (o que pode e o que não pode)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🖼️ Telas — Figma</div>
+        <ul class="element-list">
+          <li>Arquivo Figma organizado por fluxo</li>
+          <li>Componentes no Figma alinhados ao design system</li>
+          <li>Todas as telas P1 em versão desktop</li>
+          <li>Página pública + e-mail em versão mobile</li>
+          <li>Estados de tela (vazio, loading, erro, sucesso)</li>
+          <li>Protótipo navegável para validação com o time</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🔤 Tokens de design</div>
+        <ul class="element-list">
+          <li>Cores nomeadas e exportáveis (ex: via tokens JSON ou CSS vars)</li>
+          <li>Escala tipográfica completa</li>
+          <li>Espaçamentos (spacing scale)</li>
+          <li>Border radius por nível</li>
+          <li>Sombras (shadow scale)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📦 Assets para desenvolvimento</div>
+        <ul class="element-list">
+          <li>Ícones em SVG (ou biblioteca definida — ex: Lucide)</li>
+          <li>Imagens de placeholder para eventos</li>
+          <li>Ilustração para empty states</li>
+          <li>Templates de banner de evento (Canva ou Figma) para organizadores usarem</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout callout-orange" style="margin-top:8px;">
+      <span class="callout-icon">🤝</span>
+      <div><strong>Alinhamento técnico:</strong> O código usa React + Tailwind CSS. Os tokens de cor e tipografia do design serão implementados diretamente como variáveis CSS no projeto. Quanto mais o Figma usar variáveis/tokens, mais fácil e fiel será a implementação.</div>
+    </div>
+  </section>
+
+  <!-- REFERÊNCIAS -->
+  <section>
+    <div class="section-label">Referências visuais</div>
+    <h2>Direção estética</h2>
+    <p class="section-desc">O design deve equilibrar o profissionalismo de um produto B2B (painel admin limpo, dados densos) com a energia de uma marca esportiva (página pública com impacto visual). Não precisa ser nenhuma das referências abaixo — serve para alinhar direção.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+      <div class="card">
+        <div class="card-title">🏁 Admin: Linear</div>
+        <div class="card-sub">Interface limpa, tipografia forte, dados densos sem peso visual. Dark sidebar ou light sidebar — os dois funcionam.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">🏆 Público: Ticket Sports</div>
+        <div class="card-sub">Página de evento com hero de impacto, informações do percurso, formulário de inscrição integrado. Referência direta de concorrente.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚡ Energia: Strava</div>
+        <div class="card-sub">Tom esportivo sem ser agressivo. Dados de performance com design acessível. Comunidade de atletas — referência de linguagem visual do nicho.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <strong>Ticket Moove</strong> · Briefing de Design · Maio 2026<br />
+    Documento interno — Rafael Alexander & Cássio Silva Miranda
+  </div>
+</footer>
+
+</body>
+</html>

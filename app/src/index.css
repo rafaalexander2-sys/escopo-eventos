@@ -1,1 +1,73 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --background:           #0a0a0a;
+  --foreground:           #ffffff;
+  --card:                 #141414;
+  --card-foreground:      #ffffff;
+  --popover:              #1a1a1a;
+  --popover-foreground:   #ffffff;
+  --primary:              #ccff00;
+  --primary-foreground:   #000000;
+  --secondary:            #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --muted:                #242424;
+  --muted-foreground:     #888888;
+  --accent:               #039eff;
+  --accent-foreground:    #000000;
+  --destructive:          #ff3b3b;
+  --destructive-foreground: #ffffff;
+  --border:               rgba(255,255,255,0.08);
+  --input:                transparent;
+  --input-background:     #1a1a1a;
+  --ring:                 #ccff00;
+  --sidebar:              #111111;
+  --sidebar-border:       rgba(255,255,255,0.06);
+  --radius:               0.5rem;
+}
+
+@theme inline {
+  --color-background:           var(--background);
+  --color-foreground:           var(--foreground);
+  --color-card:                 var(--card);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-accent:               var(--accent);
+  --color-accent-foreground:    var(--accent-foreground);
+  --color-destructive:          var(--destructive);
+  --color-border:               var(--border);
+  --color-input:                var(--input);
+  --color-ring:                 var(--ring);
+  --color-sidebar:              var(--sidebar);
+  --radius-sm:  calc(var(--radius) - 4px);
+  --radius-md:  calc(var(--radius) - 2px);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) + 4px);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }

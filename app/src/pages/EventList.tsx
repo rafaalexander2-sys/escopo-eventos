@@ -6,18 +6,9 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { Event } from '@/types'
 
-const STATUS_LABEL: Record<Event['status'], string> = {
-  draft: 'Rascunho',
-  published: 'Publicado',
-  closed: 'Encerrado',
-  cancelled: 'Cancelado',
-}
-
-const STATUS_VARIANT: Record<Event['status'], 'default' | 'success' | 'warning' | 'danger' | 'info'> = {
-  draft: 'default',
-  published: 'success',
-  closed: 'info',
-  cancelled: 'danger',
+const STATUS_LABEL: Record<Event['status'], string> = { draft: 'Rascunho', published: 'Publicado', closed: 'Encerrado', cancelled: 'Cancelado' }
+const STATUS_VARIANT: Record<Event['status'], 'default' | 'success' | 'warning' | 'danger' | 'info' | 'lime'> = {
+  draft: 'default', published: 'success', closed: 'lime', cancelled: 'danger',
 }
 
 export default function EventList() {
@@ -28,13 +19,7 @@ export default function EventList() {
     async function load() {
       const { data: org } = await supabase.from('organizations').select('id').single()
       if (!org) { setLoading(false); return }
-
-      const { data } = await supabase
-        .from('events')
-        .select('*')
-        .eq('organization_id', org.id)
-        .order('date', { ascending: true })
-
+      const { data } = await supabase.from('events').select('*').eq('organization_id', org.id).order('date', { ascending: true })
       setEvents(data ?? [])
       setLoading(false)
     }
@@ -42,50 +27,48 @@ export default function EventList() {
   }, [])
 
   return (
-    <div className="px-8 py-8 max-w-4xl">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-xl font-bold">Eventos</h1>
+    <div className="px-6 py-8 max-w-4xl">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-1">Gerenciamento</p>
+          <h1 className="text-3xl font-black text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>EVENTOS</h1>
+        </div>
         <Button asChild size="sm">
-          <Link to="/events/new">
-            <Plus size={14} />
-            Novo evento
-          </Link>
+          <Link to="/events/new"><Plus size={14} />Novo evento</Link>
         </Button>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-100">
+      <div className="bg-[#141414] border border-white/6 rounded-2xl overflow-hidden">
         {loading ? (
-          <div className="px-5 py-10 text-center text-sm text-gray-400">Carregando...</div>
+          <div className="px-5 py-12 text-center text-sm text-white/25">Carregando...</div>
         ) : events.length === 0 ? (
-          <div className="px-5 py-10 text-center text-sm text-gray-400">
-            Nenhum evento ainda.{' '}
-            <Link to="/events/new" className="text-gray-700 underline underline-offset-2">Criar agora</Link>
+          <div className="px-5 py-12 text-center space-y-3">
+            <p className="text-sm text-white/25">Nenhum evento ainda.</p>
+            <Button asChild size="sm" variant="outline">
+              <Link to="/events/new"><Plus size={13} />Criar agora</Link>
+            </Button>
           </div>
         ) : (
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-gray-100 text-xs text-gray-400">
-                <th className="px-5 py-3 text-left font-medium">Evento</th>
-                <th className="px-5 py-3 text-left font-medium">Data</th>
-                <th className="px-5 py-3 text-left font-medium">Local</th>
-                <th className="px-5 py-3 text-left font-medium">Status</th>
+              <tr className="border-b border-white/6">
+                <th className="px-5 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-white/25">Evento</th>
+                <th className="px-5 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-white/25">Data</th>
+                <th className="px-5 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-white/25">Local</th>
+                <th className="px-5 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-white/25">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
-              {events.map((ev) => (
-                <tr key={ev.id} className="hover:bg-gray-50 transition-colors">
+            <tbody className="divide-y divide-white/4">
+              {events.map(ev => (
+                <tr key={ev.id} className="hover:bg-white/2 transition-colors group">
                   <td className="px-5 py-3.5">
-                    <Link to={`/events/${ev.id}`} className="font-medium text-gray-900 hover:underline">
+                    <Link to={`/events/${ev.id}`} className="font-semibold text-white group-hover:text-[#ccff00] transition-colors">
                       {ev.title}
                     </Link>
                   </td>
-                  <td className="px-5 py-3.5 text-gray-500">
-                    {new Date(ev.date).toLocaleDateString('pt-BR')}
-                  </td>
-                  <td className="px-5 py-3.5 text-gray-500">{ev.city} — {ev.state}</td>
-                  <td className="px-5 py-3.5">
-                    <Badge variant={STATUS_VARIANT[ev.status]}>{STATUS_LABEL[ev.status]}</Badge>
-                  </td>
+                  <td className="px-5 py-3.5 text-white/40 font-mono text-xs">{new Date(ev.date).toLocaleDateString('pt-BR')}</td>
+                  <td className="px-5 py-3.5 text-white/40">{ev.city} — {ev.state}</td>
+                  <td className="px-5 py-3.5"><Badge variant={STATUS_VARIANT[ev.status]}>{STATUS_LABEL[ev.status]}</Badge></td>
                 </tr>
               ))}
             </tbody>

@@ -1,52 +1,43 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ChevronDown } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 
 const STATES = ['AC','AL','AM','AP','BA','CE','DF','ES','GO','MA','MG','MS','MT','PA','PB','PE','PI','PR','RJ','RN','RO','RR','RS','SC','SE','SP','TO']
 
 function slugify(str: string) {
-  return str
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
+  return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 }
+
+function Field({ label, required, hint, children }: { label: string; required?: boolean; hint?: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <label className="text-sm font-medium text-white/75">
+        {label}{required && <span className="text-[#ff3b3b] ml-0.5">*</span>}
+      </label>
+      {children}
+      {hint && <span className="text-xs text-white/25">{hint}</span>}
+    </div>
+  )
+}
+
+const inputCls = 'w-full h-10 px-3 rounded-xl bg-[#1a1a1a] border border-white/8 text-sm text-white placeholder:text-white/20 outline-none focus:border-[#ccff00]/60 focus:ring-2 focus:ring-[#ccff00]/12 transition-all'
 
 export default function EventNew() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [form, setForm] = useState({ title: '', description: '', date: '', time: '', location: '', city: '', state: 'SP', capacity: '' })
 
-  const [form, setForm] = useState({
-    title: '',
-    description: '',
-    date: '',
-    time: '',
-    location: '',
-    city: '',
-    state: 'SP',
-    capacity: '',
-  })
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-    setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  }
+  function set(key: string, value: string) { setForm(f => ({ ...f, [key]: value })) }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     setError('')
-
     const { data: org } = await supabase.from('organizations').select('id').single()
-    if (!org) {
-      setError('Organização não encontrada.')
-      setLoading(false)
-      return
-    }
+    if (!org) { setError('Organização não encontrada.'); setLoading(false); return }
 
     const { data, error: err } = await supabase.from('events').insert({
       organization_id: org.id,
@@ -62,87 +53,72 @@ export default function EventNew() {
       status: 'draft',
     }).select().single()
 
-    if (err) {
-      setError(err.message)
-      setLoading(false)
-      return
-    }
-
+    if (err) { setError(err.message); setLoading(false); return }
     navigate(`/events/${data.id}`)
   }
 
   return (
-    <div className="px-8 py-8 max-w-2xl">
-      <h1 className="text-xl font-bold mb-6">Novo evento</h1>
+    <div className="px-6 py-8 max-w-2xl">
+      <div className="mb-8">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-1">Novo evento</p>
+        <h1 className="text-3xl font-black text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>CRIAR EVENTO</h1>
+      </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-xl border border-gray-100 p-6 space-y-5">
-        <div className="space-y-1.5">
-          <Label htmlFor="title">Nome do evento *</Label>
-          <Input id="title" name="title" value={form.title} onChange={handleChange} placeholder="Ex: Corrida das Pedras 2026" required />
-        </div>
+      <form onSubmit={handleSubmit} className="bg-[#141414] border border-white/6 rounded-2xl p-6 space-y-5">
+        <Field label="Nome do evento" required>
+          <input className={inputCls} placeholder="Ex: Corrida das Pedras 2026" value={form.title} onChange={e => set('title', e.target.value)} required />
+        </Field>
 
-        <div className="space-y-1.5">
-          <Label htmlFor="description">Descrição</Label>
+        <Field label="Descrição">
           <textarea
-            id="description"
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            placeholder="Descreva o evento para os atletas..."
+            className={`${inputCls} h-auto py-2.5 resize-none`}
             rows={3}
-            className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 resize-none"
+            placeholder="Descreva o evento para os atletas..."
+            value={form.description}
+            onChange={e => set('description', e.target.value)}
           />
-        </div>
+        </Field>
 
         <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1.5">
-            <Label htmlFor="date">Data *</Label>
-            <Input id="date" name="date" type="date" value={form.date} onChange={handleChange} required />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="time">Horário</Label>
-            <Input id="time" name="time" type="time" value={form.time} onChange={handleChange} />
-          </div>
+          <Field label="Data" required>
+            <input className={inputCls} type="date" value={form.date} onChange={e => set('date', e.target.value)} required />
+          </Field>
+          <Field label="Horário">
+            <input className={inputCls} type="time" value={form.time} onChange={e => set('time', e.target.value)} />
+          </Field>
         </div>
 
-        <div className="space-y-1.5">
-          <Label htmlFor="location">Local *</Label>
-          <Input id="location" name="location" value={form.location} onChange={handleChange} placeholder="Ex: Parque Ibirapuera — Portão 10" required />
-        </div>
+        <Field label="Local" required>
+          <input className={inputCls} placeholder="Ex: Parque Ibirapuera — Portão 10" value={form.location} onChange={e => set('location', e.target.value)} required />
+        </Field>
 
         <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1.5">
-            <Label htmlFor="city">Cidade *</Label>
-            <Input id="city" name="city" value={form.city} onChange={handleChange} placeholder="São Paulo" required />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="state">Estado *</Label>
-            <select
-              id="state"
-              name="state"
-              value={form.state}
-              onChange={handleChange}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              {STATES.map(s => <option key={s} value={s}>{s}</option>)}
-            </select>
-          </div>
+          <Field label="Cidade" required>
+            <input className={inputCls} placeholder="São Paulo" value={form.city} onChange={e => set('city', e.target.value)} required />
+          </Field>
+          <Field label="Estado" required>
+            <div className="relative">
+              <select
+                className={`${inputCls} appearance-none pr-8`}
+                value={form.state}
+                onChange={e => set('state', e.target.value)}
+              >
+                {STATES.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+              <ChevronDown size={13} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none" />
+            </div>
+          </Field>
         </div>
 
-        <div className="space-y-1.5">
-          <Label htmlFor="capacity">Capacidade (vagas)</Label>
-          <Input id="capacity" name="capacity" type="number" min="0" value={form.capacity} onChange={handleChange} placeholder="500" />
-        </div>
+        <Field label="Capacidade (vagas)">
+          <input className={inputCls} type="number" min="0" placeholder="500" value={form.capacity} onChange={e => set('capacity', e.target.value)} />
+        </Field>
 
-        {error && <p className="text-sm text-red-500">{error}</p>}
+        {error && <p className="text-xs text-[#ff6b6b] bg-[#ff3b3b]/8 border border-[#ff3b3b]/20 rounded-lg px-3 py-2">{error}</p>}
 
         <div className="flex gap-3 pt-1">
-          <Button type="submit" disabled={loading}>
-            {loading ? 'Salvando...' : 'Criar evento'}
-          </Button>
-          <Button type="button" variant="ghost" onClick={() => navigate('/events')}>
-            Cancelar
-          </Button>
+          <Button type="submit" disabled={loading}>{loading ? 'Salvando...' : 'Criar evento'}</Button>
+          <Button type="button" variant="ghost" onClick={() => navigate('/events')}>Cancelar</Button>
         </div>
       </form>
     </div>
